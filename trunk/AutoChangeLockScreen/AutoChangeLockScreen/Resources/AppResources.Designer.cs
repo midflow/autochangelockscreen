@@ -88,6 +88,87 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto Change.
+        /// </summary>
+        public static string AutoChange {
+            get {
+                return ResourceManager.GetString("AutoChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buy no ads App.
+        /// </summary>
+        public static string BuyApp {
+            get {
+                return ResourceManager.GetString("BuyApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose Source.
+        /// </summary>
+        public static string ChooseSource {
+            get {
+                return ResourceManager.GetString("ChooseSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string Default {
+            get {
+                return ResourceManager.GetString("Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string Help {
+            get {
+                return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interval time.
+        /// </summary>
+        public static string IntervalTime {
+            get {
+                return ResourceManager.GetString("IntervalTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load Images.
+        /// </summary>
+        public static string LoadImages {
+            get {
+                return ResourceManager.GetString("LoadImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Apps.
+        /// </summary>
+        public static string MyApps {
+            get {
+                return ResourceManager.GetString("MyApps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rate It.
+        /// </summary>
+        public static string RateIt {
+            get {
+                return ResourceManager.GetString("RateIt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LeftToRight.
         /// </summary>
         public static string ResourceFlowDirection {
@@ -97,11 +178,47 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to en-US.
+        ///   Looks up a localized string similar to vi.
         /// </summary>
         public static string ResourceLanguage {
             get {
                 return ResourceManager.GetString("ResourceLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RSS.
+        /// </summary>
+        public static string Rss {
+            get {
+                return ResourceManager.GetString("Rss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Source.
+        /// </summary>
+        public static string SetSource {
+            get {
+                return ResourceManager.GetString("SetSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        public static string Start {
+            get {
+                return ResourceManager.GetString("Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Photos.
+        /// </summary>
+        public static string YourPhotos {
+            get {
+                return ResourceManager.GetString("YourPhotos", resourceCulture);
             }
         }
     }
