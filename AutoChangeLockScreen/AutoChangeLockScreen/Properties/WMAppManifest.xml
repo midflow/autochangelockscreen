@@ -6,7 +6,7 @@
     <Language code="vi-VN" />
   </Languages>
   <App xmlns="" ProductID="{9e210bba-9a80-4f2c-9601-d3f926d160ac}" Title="AutoChangeLockScreen" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="AutoChangeLockScreen author" Description="Sample description" Publisher="AutoChangeLockScreen" PublisherID="{cde9748e-d1f2-4067-b8cc-f4e0d758d2fd}">
-    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
+    <IconPath IsRelative="true" IsResource="false">window-2.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
@@ -20,18 +20,25 @@
     <Tokens>
       <PrimaryToken TokenID="AutoChangeLockScreenToken" TaskName="_default">
         <TemplateFlip>
-          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
+          <SmallImageURI IsRelative="true" IsResource="false">window-2.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
+          <BackgroundImageURI IsRelative="true" IsResource="false">window-2.png</BackgroundImageURI>
           <Title>AutoChangeLockScreen</Title>
-          <BackContent></BackContent>
-          <BackBackgroundImageURI></BackBackgroundImageURI>
-          <BackTitle></BackTitle>
-          <DeviceLockImageURI></DeviceLockImageURI>
-          <HasLarge></HasLarge>
+          <BackContent>
+          </BackContent>
+          <BackBackgroundImageURI>
+          </BackBackgroundImageURI>
+          <BackTitle>
+          </BackTitle>
+          <DeviceLockImageURI>
+          </DeviceLockImageURI>
+          <HasLarge>False</HasLarge>
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>
+    <Extensions>
+      <Extension ExtensionName="LockScreen_Background" ConsumerID="{111DFF24-AA15-4A96-8006-2BFF8122084F}" TaskID="_default" />
+</Extensions>
     <ScreenResolutions>
       <ScreenResolution Name="ID_RESOLUTION_WVGA" />
       <ScreenResolution Name="ID_RESOLUTION_WXGA" />

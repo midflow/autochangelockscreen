@@ -117,21 +117,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ResourceFlowDirection" xml:space="preserve">
-    <value>LeftToRight</value>
-    <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
-  </data>
-  <data name="ResourceLanguage" xml:space="preserve">
-    <value>en-US</value>
-    <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
-  </data>
-  <data name="ApplicationTitle" xml:space="preserve">
-    <value>Lock Screen</value>
-  </data>
   <data name="AppBarButtonText" xml:space="preserve">
     <value>add</value>
   </data>
   <data name="AppBarMenuItemText" xml:space="preserve">
     <value>Menu Item</value>
+  </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>Lock Screen</value>
+  </data>
+  <data name="AutoChange" xml:space="preserve">
+    <value>Auto Change</value>
+  </data>
+  <data name="BuyApp" xml:space="preserve">
+    <value>Buy no ads App</value>
+  </data>
+  <data name="ChooseSource" xml:space="preserve">
+    <value>Choose Source</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="IntervalTime" xml:space="preserve">
+    <value>Interval time</value>
+  </data>
+  <data name="LoadImages" xml:space="preserve">
+    <value>Load Images</value>
+  </data>
+  <data name="MyApps" xml:space="preserve">
+    <value>My Apps</value>
+  </data>
+  <data name="RateIt" xml:space="preserve">
+    <value>Rate It</value>
+  </data>
+  <data name="ResourceFlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
+  </data>
+  <data name="ResourceLanguage" xml:space="preserve">
+    <value>vi</value>
+    <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
+  </data>
+  <data name="Rss" xml:space="preserve">
+    <value>RSS</value>
+  </data>
+  <data name="SetSource" xml:space="preserve">
+    <value>Set Source</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="YourPhotos" xml:space="preserve">
+    <value>Your Photos</value>
   </data>
 </root>
