@@ -1,0 +1,67 @@
+﻿<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    x:Class="AutoChangeLockScreen.MainPage"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True" Opacity="0.9">
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar BackgroundColor="#FF2648A2">
+            <shell:ApplicationBarIconButton x:Name="abbStart" IconUri="/Assets/AppBar/check.png" Text="Start" Click="ApplicationBarIconButton_Click"></shell:ApplicationBarIconButton>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/edit.png" Text="Set Source" Click="ApplicationBarIconButton_Click"></shell:ApplicationBarIconButton>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/favs.png" Text="Rate It"></shell:ApplicationBarIconButton>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.share.rest.png" Text="Buy"></shell:ApplicationBarIconButton>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem  Text="Start" Click="ApplicationBarMenuItem_Click" />
+                <shell:ApplicationBarMenuItem  Text="My Apps" />
+                <shell:ApplicationBarMenuItem  Text="Buy no ads App" />
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+
+
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="Background.png"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
+            <TextBlock Text="{Binding LocalizedResources.AutoChange, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF110505" FontWeight="Bold" FontSize="26.667" />
+            <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle1Style}" x:Name="AppTitle" Foreground="#FF2C2726" FontWeight="Bold" FontSize="60"/>
+        </StackPanel>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" >
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.ChooseSource, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" Foreground="#FF110505" FontWeight="Bold" FontFamily="Tahoma" FontSize="26.667" TextDecorations="Underline"/>
+
+        </Grid>
+        <RadioButton Content="{Binding LocalizedResources.Default, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Bottom" IsChecked="True" Foreground="#FFF9F9F9" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="1" />
+        <RadioButton Content="{Binding LocalizedResources.YourPhotos, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="3" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold"  />
+        <RadioButton Content="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold"  />
+        
+    </Grid>
+
+</phone:PhoneApplicationPage>
