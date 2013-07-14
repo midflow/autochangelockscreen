@@ -13,9 +13,7 @@ namespace AutoChangeLockScreen.Services
     {
         public static List<Photo> GetPhotos()
         {
-            List<Photo> imageList = new List<Photo>();
-            Random _rnd = new Random(42 * 42);
-            DateTime start = new DateTime(2010, 1, 1);
+            List<Photo> imageList = new List<Photo>();            
 
             for (int i = 0; i < 15; i++)
             {
@@ -23,7 +21,7 @@ namespace AutoChangeLockScreen.Services
                 {
                     ImageSource = new Uri(String.Format("/Content/{0}.jpg", i), UriKind.Relative),
                     Title = i.ToString(),
-                    TimeStamp = start.AddDays(_rnd.Next(0, 450)),
+                    //TimeStamp = start.AddDays(_rnd.Next(0, 450)),
                     Selected = false
                 };
 
