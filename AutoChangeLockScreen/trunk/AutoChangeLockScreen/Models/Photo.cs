@@ -12,7 +12,7 @@ namespace AutoChangeLockScreen.Models
     {
         public string Title { get; set; }
         public Uri ImageSource { get; set; }
-        public DateTime TimeStamp { get; set; }
+        //public DateTime TimeStamp { get; set; }
         public bool Selected { get; set; }
     }
 }

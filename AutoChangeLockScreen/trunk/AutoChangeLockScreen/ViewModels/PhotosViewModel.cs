@@ -21,9 +21,9 @@ namespace AutoChangeLockScreen.ViewModels
 
                 var groupedPhotos =
                     from photo in photos
-                    orderby photo.TimeStamp
-                    group photo by photo.TimeStamp.ToString("y") into photosByMonth
-                    select new KeyedList<string, Photo>(photosByMonth);
+                    orderby photo.Title
+                    group photo by photo.Title.ToString() into photosByTitle
+                    select new KeyedList<string, Photo>(photosByTitle);
 
                 return new List<KeyedList<string, Photo>>(groupedPhotos);
             }
