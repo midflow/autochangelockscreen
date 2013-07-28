@@ -23,126 +23,162 @@ namespace AutoChangeLockScreen
 {
     public partial class LoadImages : PhoneApplicationPage
     {
+        // Constructor
         public LoadImages()
         {
             InitializeComponent();
-            var viewModel = new PhotosViewModel();
-            DataContext = viewModel;
 
-            
-            //if (PhotoHubLLS.ItemsSource != null)
-            //    PhotoHubLLS.ScrollTo(PhotoHubLLS.ItemsSource[PhotoHubLLS.ItemsSource.Count - 1]);
+            Loaded += LoadImages_Loaded;
+        }
+        private void LoadImages_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
+            string[] files = isoStore.GetFileNames("*");
+            App.imageList = new List<myImages>();
+            foreach (string dirfile in files)
+            {
+                if (dirfile.ToString() != "SetSource.ini")
+                    App.imageList.Add(new myImages(dirfile.ToString(), false));
+            }
 
+            this.myList.ItemsSource = App.imageList;
         }
 
-        private void stackPanel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void myList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if (!IsSelected)
-            //{
-            //VisualStateManager.GoToState(this, "Selected", true);
-            //FrameworkElement fre = (FrameworkElement) sender;
-            StackPanel stp = (StackPanel) sender;            
+            List<StackPanel> listItems = new List<StackPanel>();
+            GetItemsRecursive<StackPanel>(myList, ref listItems);
 
-            foreach (var child in stp.Children)
+            if (e.AddedItems.Count > 0 && e.AddedItems[0] != null)
             {
-                if (child.GetType().ToString() == "System.Windows.Controls.CheckBox")
+                foreach (StackPanel stp in listItems)
                 {
-                    CheckBox chk = (CheckBox)child;
-                    chk.IsChecked = !chk.IsChecked;
-                    if (chk.IsChecked == true) ExtendedVisualStateManager.GoToElementState(stp, "Selected", true);
-                    else ExtendedVisualStateManager.GoToElementState(stp, "Normal", true);
-                }
-            }           
-        }
-
-        private void btnMinus_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                foreach (var lli in PhotoHubLLS.ItemsSource)
-                {
-                    System.Collections.IList illi = (System.Collections.IList)lli;
-                    Photo pt = (Photo)illi[0];
-                    if (pt.Selected == true)
+                    if (e.AddedItems[0].Equals(stp.DataContext))
                     {
-                        IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
-                        if (storage.FileExists(pt.ImageSource.ToString().Substring(1)))
-                        {
-                            storage.DeleteFile(pt.ImageSource.ToString().Substring(1));
-                            PhotoHubLLS.ItemsSource.Remove(pt);
-                        }
+                        myImages myimg = e.AddedItems[0] as myImages;
+
+                        myimg.ImageSeclected = !myimg.ImageSeclected;
+
+                        if (myimg.ImageSeclected)
+                            ExtendedVisualStateManager.GoToElementState(stp, "Selected", true);
+                        else
+                            ExtendedVisualStateManager.GoToElementState(stp, "Normal", true);
                     }
-                }   
+                }
             }
-            catch (Exception ex)
+        }
+
+        private void ClearSelectedPanel()
+        {
+            List<StackPanel> listItems = new List<StackPanel>();
+            GetItemsRecursive<StackPanel>(myList, ref listItems);
+
+            foreach (StackPanel stp in listItems)
             {
-                MessageBox.Show(ex.ToString());
+                ExtendedVisualStateManager.GoToElementState(stp, "Normal", true);
             }
+
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            App.isDefault = 1;
+            App.StartAgent();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/Page1.xaml", UriKind.Relative));
         }
 
-        //private void SelectedItemChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    //if (PhotoHubLLS != null)
-        //    //{
-        //    //    // Get item of LongListSelector.
-        //    //    List<CustomUserControl> userControlList = new List<CustomUserControl>();
-        //    //    GetItemsRecursive<CustomUserControl>(PhotoHubLLS, ref userControlList);
+        private void btnMinus_Click(object sender, EventArgs e)
+        {
+            var list = myList.ItemsSource;
 
-        //    //    // Selected.
-        //    //    if (e.AddedItems.Count > 0 && e.AddedItems[0] != null)
-        //    //    {
-        //    //        foreach (CustomUserControl userControl in userControlList)
-        //    //        {
-        //    //            if (e.AddedItems[0].Equals(userControl.DataContext))
-        //    //            {
-        //    //                VisualStateManager.GoToState(userControl, "Selected", true);
-        //    //            }
-        //    //        }
-        //    //    }
+            for (int i = 0; i < list.Count; i++)
+            {
+                myImages img = (myImages)list[i];
+                if (img.ImageSeclected)
+                {
+                    IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
+                    if (storage.FileExists(img.ImageName))
+                    {
+                        storage.DeleteFile(img.ImageName);
+                        RenameImage(img.ImageName, list, i);
+                    }
+                    //App.imageList.Remove(img);
+                }
+            }
+            ClearSelectedPanel();
+            LoadImages_Loaded(null, null);
+        }
 
-        //    //    // Removed.
-        //    //    if (e.RemovedItems.Count > 0 && e.RemovedItems[0] != null)
-        //    //    {
-        //    //        foreach (CustomUserControl userControl in userControlList)
-        //    //        {
-        //    //            if (e.RemovedItems[0].Equals(userControl.DataContext))
-        //    //            {
-        //    //                VisualStateManager.GoToState(userControl, "Normal", true);
-        //    //            }
-        //    //        }
-        //    //    }
-        //    //}        
-        //}
+        private void RenameImage(string p, System.Collections.IList list, int j)
+        {
+            for (int i = list.Count; i > j; i--)
+            {
+                myImages img = (myImages)list[i - 1];
+                if (img.ImageSeclected == false)
+                {
+                    IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
+                    if (p == img.ImageName) return;
+                    if (storage.FileExists(img.ImageName))
+                    {
+                        storage.MoveFile(img.ImageName, p);
+                        return;
+                    }
+                }
+            }
+        }
 
-        ///// <summary>
-        ///// Recursively get the item.
-        ///// </summary>
-        ///// <typeparam name="T">The item to get.</typeparam>
-        ///// <param name="parents">Parent container.</param>
-        ///// <param name="objectList">Item list</param>
-        //public static void GetItemsRecursive<T>(DependencyObject parents, ref List<T> objectList) where T : DependencyObject
-        //{
-        //    var childrenCount = VisualTreeHelper.GetChildrenCount(parents);
+        /// <summary>
+        /// Recursively get the item.
+        /// </summary>
+        /// <typeparam name="T">The item to get.</typeparam>
+        /// <param name="parents">Parent container.</param>
+        /// <param name="objectList">Item list</param>
+        public static void GetItemsRecursive<T>(DependencyObject parents, ref List<T> objectList) where T : DependencyObject
+        {
+            var childrenCount = VisualTreeHelper.GetChildrenCount(parents);
 
-        //    for (int i = 0; i < childrenCount; i++)
-        //    {
-        //        var child = VisualTreeHelper.GetChild(parents, i);
+            for (int i = 0; i < childrenCount; i++)
+            {
+                var child = VisualTreeHelper.GetChild(parents, i);
 
-        //        if (child is T)
-        //        {
-        //            objectList.Add(child as T);
-        //        }
+                if (child is T)
+                {
+                    objectList.Add(child as T);
+                }
 
-        //        GetItemsRecursive<T>(child, ref objectList);
-        //    }
+                GetItemsRecursive<T>(child, ref objectList);
+            }
 
-        //    return;
-        //}
+            return;
+        }
+        private T FindFirstElementInVisualTree<T>(DependencyObject parentElement) where T : DependencyObject
+        {
+            var count = VisualTreeHelper.GetChildrenCount(parentElement);
+            if (count == 0)
+                return null;
+
+            for (int i = 0; i < count; i++)
+            {
+                var child = VisualTreeHelper.GetChild(parentElement, i);
+
+                if (child != null && child is T)
+                {
+                    return (T)child;
+                }
+                else
+                {
+                    var result = FindFirstElementInVisualTree<T>(child);
+                    if (result != null)
+                        return result;
+
+                }
+            }
+            return null;
+        }
 
     }
 }

@@ -11,24 +11,9 @@ namespace AutoChangeLockScreen.Services
 {
     public static class DataService
     {
-        public static List<Photo> GetPhotos()
-        {
-            List<Photo> imageList = new List<Photo>();            
-
-            for (int i = 0; i < 15; i++)
-            {
-                Photo imageData = new Photo()
-                {
-                    ImageSource = new Uri(String.Format("/Content/{0}.jpg", i), UriKind.Relative),
-                    Title = i.ToString(),
-                    //TimeStamp = start.AddDays(_rnd.Next(0, 450)),
-                    Selected = false
-                };
-
-                imageList.Add(imageData);
-            }
-
-            return imageList;
+        public static List<myImages> GetImages()
+        {            
+            return App.imageList;
         }
     }
 }

@@ -13,7 +13,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True" Opacity="0.9">
-    <phone:PhoneApplicationPage.ApplicationBar>
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar BackgroundColor="#FF2648A2">
             <shell:ApplicationBarIconButton x:Name="abbStart" IconUri="/Assets/AppBar/check.png" Text="Start" Click="ApplicationBarIconButton_Click"></shell:ApplicationBarIconButton>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/edit.png" Text="Set Source" Click="ApplicationBarIconButton_Click"></shell:ApplicationBarIconButton>
@@ -27,7 +27,7 @@
         </shell:ApplicationBar>
 
 
-    </phone:PhoneApplicationPage.ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
 
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
@@ -58,10 +58,12 @@
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.ChooseSource, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" Foreground="#FF110505" FontWeight="Bold" FontFamily="Tahoma" FontSize="26.667" TextDecorations="Underline"/>
 
         </Grid>
-        <RadioButton Content="{Binding LocalizedResources.Default, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Bottom" IsChecked="True" Foreground="#FFF9F9F9" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="1" />
-        <RadioButton Content="{Binding LocalizedResources.YourPhotos, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="3" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold"  />
-        <RadioButton Content="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold"  />
-        
+        <!--<RadioButton Name="rbtDefault" Content="{Binding LocalizedResources.Default, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Bottom" IsChecked="True" Foreground="#FFF9F9F9" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="1" />
+        <RadioButton Name="rbtYourPhotos" Content="{Binding LocalizedResources.YourPhotos, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="3" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold"  />
+        <RadioButton Name="rbtRSS" Content="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold"  />-->
+        <Button Name="btnDefault" Content="{Binding LocalizedResources.Default, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Bottom"  Foreground="#FFF9F9F9" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="1" Width="180" Background="#FF589DCD" BorderThickness="1" RenderTransformOrigin="0,0" Click="btnDefault_Click" />
+        <Button Name="btnYour" Content="{Binding LocalizedResources.YourPhotos, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="3" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnYour_Click"  />
+        <Button Name="btnRSS" Content="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnRSS_Click" />
     </Grid>
 
 </phone:PhoneApplicationPage>

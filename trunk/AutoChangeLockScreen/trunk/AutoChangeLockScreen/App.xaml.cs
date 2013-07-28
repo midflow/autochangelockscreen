@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+#define DEBUG_AGENT
+using System;
 using System.Diagnostics;
 using System.Resources;
 using System.Windows;
@@ -10,11 +12,24 @@ using AutoChangeLockScreen.Resources;
 using System.Windows.Media.Imaging;
 using System.IO.IsolatedStorage;
 using System.IO;
+using System.Collections.Generic;
+using AutoChangeLockScreen.Models;
+using Microsoft.Phone.Scheduler;
+using Windows.Phone.System.UserProfile;
 
 namespace AutoChangeLockScreen
 {
     public partial class App : Application
     {
+        public static int NumberImage = 0;
+        public static string imgName = "";
+        public static string FullImgName = "";
+        public static bool blLoadIamge = false;
+        public static int isDefault = 0;
+        public static List<myImages> imageList = new List<myImages>();
+        static PeriodicTask periodicTask;
+        static string periodicTaskName = "PeriodicAgent";
+        public static bool agentsAreEnabled = true;
 
         //user
         //load file from storage
@@ -48,6 +63,138 @@ namespace AutoChangeLockScreen
             }
         }
 
+        public static void StartAgent()
+        {
+            string strSource = isDefault == 0 ? "Default" : (isDefault == 2 ? "Rss" : "Your");
+            string[] files;
+            IsolatedStorageFile isoStore;
+            isoStore = IsolatedStorageFile.GetUserStoreForApplication();
+
+            IsolatedStorageFileStream fileStream = isoStore.OpenFile("SetSource.ini", FileMode.Create, FileAccess.Write);
+
+            switch (strSource)
+            {
+                case "Default":
+                    LockScreenChange("wallpaper/Walleper_0.jpg", true);
+                    string path = Path.Combine(Environment.CurrentDirectory, "wallpaper");
+                    files = Directory.GetFiles(path);
+                    NumberImage = files.Length;
+                    break;
+                case "Your":
+                    LockScreenChange(App.imageList[0].ImageName, false);
+                    isoStore = IsolatedStorageFile.GetUserStoreForApplication();
+                    files = isoStore.GetFileNames("*");
+                    NumberImage = files.Length - 1;
+                    break;
+                case "Rss":
+                    LockScreenChange("download/DownloadedWallpaper_0.jpg", true);
+                    isoStore = IsolatedStorageFile.GetUserStoreForApplication();
+                    files = isoStore.GetFileNames("download/*");
+                    NumberImage = files.Length;
+                    break;
+            }
+
+            strSource += " " + NumberImage.ToString();
+
+            using (StreamWriter writer = new StreamWriter(fileStream))
+            {
+                writer.Write(strSource);
+                writer.Close();
+            }
+
+            StartPeriodicAgent();
+        }
+
+        public static void StartPeriodicAgent()
+        {
+            // is old task running, remove it
+            periodicTask = ScheduledActionService.Find(periodicTaskName) as PeriodicTask;
+            if (periodicTask != null)
+            {
+                try
+                {
+                    ScheduledActionService.Remove(periodicTaskName);
+                }
+                catch (Exception)
+                {
+                }
+            }
+            // create a new task
+            periodicTask = new PeriodicTask(periodicTaskName);
+            // load description from localized strings
+            periodicTask.Description = "This is Lockscreen image provider app.";
+            // set expiration days
+            periodicTask.ExpirationTime = DateTime.Now.AddDays(14);
+            try
+            {
+                // add thas to scheduled action service
+                ScheduledActionService.Add(periodicTask);
+                // debug, so run in every 30 secs
+
+
+#if(DEBUG_AGENT)
+        ScheduledActionService.LaunchForTest(periodicTaskName, TimeSpan.FromSeconds(10));
+        System.Diagnostics.Debug.WriteLine("Periodic task is started: " + periodicTaskName);
+#endif
+
+            }
+            catch (InvalidOperationException exception)
+            {
+                if (exception.Message.Contains("BNS Error: The action is disabled"))
+                {
+                    // load error text from localized strings
+                    MessageBox.Show("Background agents for this application have been disabled by the user.");
+                }
+                if (exception.Message.Contains("BNS Error: The maximum number of ScheduledActions of this type have already been added."))
+                {
+                    // No user action required. The system prompts the user when the hard limit of periodic tasks has been reached.
+                }
+            }
+            catch (SchedulerServiceException)
+            {
+                // No user action required.
+            }
+        }
+
+        public static async void LockScreenChange(string filePathOfTheImage, bool isAppResource)
+        {
+            try
+            {
+                if (!LockScreenManager.IsProvidedByCurrentApplication)
+                {
+                    // If you're not the provider, this call will prompt the user for permission.
+                    // Calling RequestAccessAsync from a background agent is not allowed.
+                    await LockScreenManager.RequestAccessAsync();
+                }
+
+                // Only do further work if the access is granted.
+                if (LockScreenManager.IsProvidedByCurrentApplication)
+                {
+                    // At this stage, the app is the active lock screen background provider.
+                    // The following code example shows the new URI schema.
+                    // ms-appdata points to the root of the local app data folder.
+                    // ms-appx points to the Local app install folder, to reference resources bundled in the XAP package
+                    var schema = isAppResource ? "ms-appx:///" : "ms-appdata:///Local/";
+                    var uri = new Uri(schema + filePathOfTheImage, UriKind.Absolute);
+
+                    // Set the lock screen background image.
+                    LockScreen.SetImageUri(uri);
+
+                    // Get the URI of the lock screen background image.
+                    var currentImage = LockScreen.GetImageUri();
+                    System.Diagnostics.Debug.WriteLine("The new lock screen background image is set to {0}", currentImage.ToString());
+                    MessageBox.Show("Lock screen changed. Click F12 or go to lock screen.");
+                }
+                else
+                {
+                    MessageBox.Show("Background cant be updated as you clicked no!!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
 
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
