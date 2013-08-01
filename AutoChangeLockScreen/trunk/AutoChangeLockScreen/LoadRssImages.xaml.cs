@@ -22,39 +22,39 @@ using AutoChangeLockScreen.Resources;
 
 namespace AutoChangeLockScreen
 {
-    public partial class LoadImages : PhoneApplicationPage
+    public partial class LoadRssImages : PhoneApplicationPage
     {
         // Constructor
-        public LoadImages()
+        public LoadRssImages()
         {
             InitializeComponent();
-
             BuildLocalizedApplicationBar();
             Loaded += LoadImages_Loaded;
         }
         private void LoadImages_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
-            string[] files = isoStore.GetFileNames("*");
-            App.imageList = new List<myImages>();
-            foreach (string dirfile in files)
+            if (isoStore.DirectoryExists("download"))
             {
-                if (dirfile.ToString() != "SetSource.ini")
-                    App.imageList.Add(new myImages(dirfile.ToString(), false));
+                string[] files = isoStore.GetFileNames("download/*");
+                App.imageList = new List<myImages>();
+                foreach (string dirfile in files)
+                {
+                    App.imageList.Add(new myImages("download/" + dirfile.ToString(), false));
+                }
+
+                this.myList.ItemsSource = App.imageList;
+                ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
+                aibStart.IsEnabled = App.imageList.Count > 0 ? true : false;
             }
-
-            this.myList.ItemsSource = App.imageList;
-            ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
-            aibStart.IsEnabled = App.imageList.Count > 0 ? true : false;
         }
-
+        // Build a localized ApplicationBar
         private void BuildLocalizedApplicationBar()
-        {
+        {            
             ApplicationBar = new ApplicationBar();
             ApplicationBar.BackgroundColor = App.GetColorFromHexString("FF08317B");
             ApplicationBar.Mode = ApplicationBarMode.Default;
             ApplicationBar.Opacity = 0.5;
-
             LocalizedButtonBar("/Assets/AppBar/transport.play.png", AppResources.Start, btnStart_Click);
             LocalizedButtonBar("/Assets/AppBar/add.png", AppResources.Start, btnAdd_Click);
             LocalizedButtonBar("/Assets/AppBar/minus.png", AppResources.Start, btnMinus_Click);
@@ -82,6 +82,11 @@ namespace AutoChangeLockScreen
             ApplicationBar.MenuItems.Add(appBarMenuItem);
         }
 
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            LoadImages_Loaded(null, null);
+        }
         private void myList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             List<StackPanel> listItems = new List<StackPanel>();
@@ -120,13 +125,13 @@ namespace AutoChangeLockScreen
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            App.isDefault = 1;
+            App.isDefault = 2;
             App.StartAgent();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Page1.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/RssPage.xaml", UriKind.Relative));
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
@@ -139,10 +144,10 @@ namespace AutoChangeLockScreen
                 if (img.ImageSeclected)
                 {
                     IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
-                    if (storage.FileExists(img.ImageName))
+                    if (storage.FileExists("download/" + img.ImageName))
                     {
-                        storage.DeleteFile(img.ImageName);
-                        RenameImage(img.ImageName, list, i);
+                        storage.DeleteFile("download/" + img.ImageName);
+                        RenameImage("download/" + img.ImageName, list, i);
                     }
                     //App.imageList.Remove(img);
                 }
@@ -159,10 +164,10 @@ namespace AutoChangeLockScreen
                 if (img.ImageSeclected == false)
                 {
                     IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
-                    if (p == img.ImageName) return;
-                    if (storage.FileExists(img.ImageName))
+                    if (p == "download/" + img.ImageName) return;
+                    if (storage.FileExists("download/" + img.ImageName))
                     {
-                        storage.MoveFile(img.ImageName, p);
+                        storage.MoveFile("download/" + img.ImageName, p);
                         return;
                     }
                 }
@@ -217,6 +222,7 @@ namespace AutoChangeLockScreen
             }
             return null;
         }
+
         private void btnDeleteAll_Click(object sender, EventArgs e)
         {
             var list = myList.ItemsSource;
@@ -237,5 +243,6 @@ namespace AutoChangeLockScreen
             //ClearSelectedPanel();
             LoadImages_Loaded(null, null);
         }
+
     }
 }

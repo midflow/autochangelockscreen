@@ -37,7 +37,7 @@ namespace AutoChangeLockScreen
         public RssPage()
         {
             InitializeComponent();
-            btnChangeImg.IsEnabled = false;            
+            btnFinished.IsEnabled = false;            
         }
 
         #region Download image Methods
@@ -61,7 +61,7 @@ namespace AutoChangeLockScreen
 
             // Create a filename for JPEG file in isolated storage.
 
-            String tempJPEG = "download/Walleper_" + Convert.ToString(imageCount) + ".jpg";
+            String tempJPEG = "download/Wallpaper_" + Convert.ToString(imageCount) + ".jpg";
 
             // Create virtual store and file stream. Check for duplicate tempJPEG files.
             using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
@@ -96,7 +96,7 @@ namespace AutoChangeLockScreen
 
                 if (imageCount == int.Parse(NoImage)-1)
                 {
-                    btnChangeImg.IsEnabled = true;
+                    btnFinished.IsEnabled = true;
 
                     progress.IsIndeterminate = false;
                     progress.Visibility = Visibility.Collapsed;
@@ -124,6 +124,7 @@ namespace AutoChangeLockScreen
                     .Select(m => m.Attribute("url").Value)
                     .ToArray();
 
+                NoImage = imgarray.Length.ToString();
                 if (imgarray.Length > 0)
                 {
                     imageCount = 0;
@@ -223,37 +224,37 @@ namespace AutoChangeLockScreen
                 // No user action required.
             }
         }
-        private void ChangeLockscreen()
-        {
-            try
-            {
-                var currentImage = LockScreen.GetImageUri();
-                string Imagename = string.Empty;
+        //private void ChangeLockscreen()
+        //{
+        //    try
+        //    {
+        //        var currentImage = LockScreen.GetImageUri();
+        //        string Imagename = string.Empty;
 
-                string imgCount = currentImage.ToString().Substring(currentImage.ToString().IndexOf('_') + 1, currentImage.ToString().Length - (currentImage.ToString().IndexOf('_') + 1)).Replace(".jpg", "");
+        //        string imgCount = currentImage.ToString().Substring(currentImage.ToString().IndexOf('_') + 1, currentImage.ToString().Length - (currentImage.ToString().IndexOf('_') + 1)).Replace(".jpg", "");
 
-                if (imgCount != "24")
-                    Imagename = "DownloadedWalleper_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
-                else
-                    Imagename = "DownloadedWalleper_0.jpg";
+        //        if (imgCount != "24")
+        //            Imagename = "DownloadedWalleper_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
+        //        else
+        //            Imagename = "DownloadedWalleper_0.jpg";
 
-                LockScreenChange(Imagename, false);
-                BitmapImage Bit_Img = new BitmapImage();
-                using (IsolatedStorageFile ISF = IsolatedStorageFile.GetUserStoreForApplication())
-                {
-                    using (IsolatedStorageFileStream FS = ISF.OpenFile(Imagename, FileMode.Open, FileAccess.Read))
-                    {
-                        Bit_Img.SetSource(FS);
-                    }
-                }
-                this.DwldImg.Source = Bit_Img;
-                //DwldImg.Source = new BitmapImage(new Uri("ms-appdata:///Local/" + Imagename, UriKind.RelativeOrAbsolute));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
+        //        LockScreenChange(Imagename, false);
+        //        BitmapImage Bit_Img = new BitmapImage();
+        //        using (IsolatedStorageFile ISF = IsolatedStorageFile.GetUserStoreForApplication())
+        //        {
+        //            using (IsolatedStorageFileStream FS = ISF.OpenFile(Imagename, FileMode.Open, FileAccess.Read))
+        //            {
+        //                Bit_Img.SetSource(FS);
+        //            }
+        //        }
+        //        this.DwldImg.Source = Bit_Img;
+        //        //DwldImg.Source = new BitmapImage(new Uri("ms-appdata:///Local/" + Imagename, UriKind.RelativeOrAbsolute));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.ToString());
+        //    }
+        //}
         #endregion
 
         #region Methods
@@ -266,13 +267,13 @@ namespace AutoChangeLockScreen
                 btnDownload.IsEnabled = false;
                 listBox1.Visibility = System.Windows.Visibility.Collapsed;
                 DwldImg.Visibility = System.Windows.Visibility.Visible;
-                btnChangeImg.IsEnabled = false;
+                btnFinished.IsEnabled = false;
                 progress.IsIndeterminate = true;
                 progress.Visibility = Visibility.Visible;
                 downloadPercentage.Text = "Downloading.... please wait...";
                 string url = "http://www.degraeve.com/flickr-rss/rss.php?tags=" + txtTag.Text + "&tagmode=all&sort=interestingness-desc&num=" + NoImage;
                 DownloadRSS(url);
-                btnDownload.IsEnabled = true;
+                btnDownload.IsEnabled = true;                                
             }
             else
             {
@@ -281,10 +282,10 @@ namespace AutoChangeLockScreen
 
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            ChangeLockscreen();
-        }
+        //private void Button_Click_2(object sender, RoutedEventArgs e)
+        //{
+        //    ChangeLockscreen();
+        //}
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
@@ -329,17 +330,16 @@ namespace AutoChangeLockScreen
                                                       };
                 IList<FlickrData> ilist = list.Cast<FlickrData>().ToList();
                 listBox1.ItemsSource = ilist;
+                
             }
         }
-
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            // set first image 
-            LockScreenChange("Download/Walleper_0.jpg", false);
-            // start service
-            StartPeriodicAgent();
-        }
+        
         #endregion
+
+        private void btnFinished_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
 
         
     }
