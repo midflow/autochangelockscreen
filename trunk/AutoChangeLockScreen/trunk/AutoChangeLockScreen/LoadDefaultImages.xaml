@@ -26,7 +26,6 @@
         <shell:ApplicationBar BackgroundColor="#FF2648A2">
             <shell:ApplicationBarIconButton x:Name="abbStart" IconUri="/Assets/AppBar/transport.play.png" Text="Start" Click="btnStart_Click"/>           
         </shell:ApplicationBar>
-
     </phone:PhoneApplicationPage.ApplicationBar>
 
 
@@ -45,8 +44,8 @@
         </Grid.RowDefinitions>
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="Auto change lock screen" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Your Images" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding LocalizedResources.ImageSource, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding LocalizedResources.DefaultImages, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
@@ -56,8 +55,8 @@
                         <StackPanel x:Name="stackPanel" Orientation="Horizontal" Margin="0,0,0,17">                       	                            
                             <Image Height="150" Width="150" Source="{Binding ImageBinary}" Margin="12,0,9,0"/>
                             <Grid Width="311">
-                                <TextBlock Text="{Binding ImageName}"  TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                <TextBlock Text="{Binding ImageSize}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                <TextBlock Text="{Binding ImageName}"  TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="26.667" Margin="12,0,12,76"/>
+                                <TextBlock Text="{Binding ImageSize}" TextWrapping="Wrap" Margin="12,79,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="18.667"/>
                             </Grid>
                         </StackPanel>
                     </DataTemplate>

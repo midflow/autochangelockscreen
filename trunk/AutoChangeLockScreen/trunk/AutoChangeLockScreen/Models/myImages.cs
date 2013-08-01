@@ -43,12 +43,22 @@ namespace AutoChangeLockScreen.Models
         private BitmapImage m_ImageBinary;
         public myImages(string strImageName, bool isSelected)
         {
-            this.ImageName = strImageName;
+            string[] strFileName = strImageName.Split('/');
+            if (strImageName.Length > 1)
+            {
+               this.ImageName = strFileName[strFileName.Length - 1]; ;
+            }
+            else
+            {
+                this.ImageName = strImageName;
+            }
+            
             this.ImageSeclected = isSelected;
             //*** Image Binary ***'
             BitmapImage image = new BitmapImage();
-            IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
+            IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();            
             string isoFilename = strImageName;
+            
             Stream stream = isoStore.OpenFile(isoFilename, System.IO.FileMode.Open);
             image.SetSource(stream);
             this.ImageBinary = image;

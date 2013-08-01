@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
   <data name="AppBarButtonText" xml:space="preserve">
     <value>add</value>
   </data>
@@ -130,7 +133,7 @@
     <value>Auto Change</value>
   </data>
   <data name="BuyApp" xml:space="preserve">
-    <value>Buy no ads App</value>
+    <value>Buy App</value>
   </data>
   <data name="ChooseSource" xml:space="preserve">
     <value>Choose Source</value>
@@ -138,8 +141,33 @@
   <data name="Default" xml:space="preserve">
     <value>Default</value>
   </data>
+  <data name="DefaultImages" xml:space="preserve">
+    <value>Default Images</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteAll" xml:space="preserve">
+    <value>Delete All</value>
+  </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
+  </data>
+  <data name="HelpDefault" xml:space="preserve">
+    <value>Follow these steps:  
+1. Select "Default" button
+2. You will see the default images
+3. Press Start Button to start set wallpaper with the first image
+4. Choose "Yes" if the App request your permission.</value>
+  </data>
+  <data name="HelpRss" xml:space="preserve">
+    <value>1. Chon nut Your photos 2. Chon nut Add de them photo 3. Chon photo tu thu vien hoac chup anh 4. Crop anh theo y muon 5. Lap lai voi nhung anh khac neu ban muon them 6. Chon anh neu ban muon xoa bot va nhan nut xoa 7. nhan nut start de bat dau 8. Chon Yes khi duoc hoi</value>
+  </data>
+  <data name="HelpYours" xml:space="preserve">
+    <value>1. Chon nut Your photos 2. Chon nut Add de them photo 3. Chon photo tu thu vien hoac chup anh 4. Crop anh theo y muon 5. Lap lai voi nhung anh khac neu ban muon them 6. Chon anh neu ban muon xoa bot va nhan nut xoa 7. nhan nut start de bat dau 8. Chon Yes khi duoc hoi</value>
+  </data>
+  <data name="ImageSource" xml:space="preserve">
+    <value>Image Source</value>
   </data>
   <data name="IntervalTime" xml:space="preserve">
     <value>Interval time</value>
@@ -160,6 +188,9 @@
   <data name="ResourceLanguage" xml:space="preserve">
     <value>vi</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
+  </data>
+  <data name="Review" xml:space="preserve">
+    <value>Review</value>
   </data>
   <data name="Rss" xml:space="preserve">
     <value>RSS</value>

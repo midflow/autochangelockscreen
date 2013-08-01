@@ -16,6 +16,7 @@ using Microsoft.Phone.Tasks;
 using System.IO.IsolatedStorage;
 using System.IO;
 using AutoChangeLockScreen.Models;
+using System.Windows.Media;
 
 
 namespace AutoChangeLockScreen
@@ -34,7 +35,7 @@ namespace AutoChangeLockScreen
             LoadImages_Loaded();
             //AppTitle.Text = AutoChangeLockScreen.Resources.AppResources.ApplicationTitle;
             // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
+            BuildLocalizedApplicationBar();
 
             //IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication();
             //if (iso.FileExists("SetSource.ini"))
@@ -60,20 +61,49 @@ namespace AutoChangeLockScreen
 
         }
         // Build a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    ApplicationBar = new ApplicationBar();
+        private void BuildLocalizedApplicationBar()
+        {
+            ApplicationBar = new ApplicationBar();
+            ApplicationBar.BackgroundColor = App.GetColorFromHexString("FF08317B");
+            ApplicationBar.Mode = ApplicationBarMode.Default;
+            ApplicationBar.Opacity = 0.5;
+            LocalizedButtonBar("/Assets/AppBar/favs.png", AppResources.Review, ReviewButton_Click);
+            LocalizedButtonBar("/Assets/AppBar/appbar.questionmark.rest.png", AppResources.Help, HelpButton_Click);
+            LocalizedButtonBar("/Assets/AppBar/appbar.status.rest.png", AppResources.About, AboutButton_Click);
+            LocalizedButtonBar("/Assets/AppBar/folder.png", AppResources.MyApps, MyAppsButton_Click);            
+        }
 
-        //    LocalizedButtonBar("/Assets/AppBar/check.png", AppResources.Start);
-        //    LocalizedButtonBar("/Assets/AppBar/edit.png", AppResources.SetSource);
-        //    LocalizedButtonBar("/Assets/AppBar/favs.png", AppResources.RateIt);
-        //    LocalizedButtonBar("/Assets/AppBar/appbar.share.rest.png", AppResources.BuyApp);
+        protected static Color GetColorFromHexString(string s)
+        {
+            // remove artifacts
+            s = s.Trim().TrimStart('#');
 
-        //    LocalizedMenuBar(AppResources.Start);
-        //    LocalizedMenuBar(AppResources.MyApps);
-        //    LocalizedMenuBar(AppResources.BuyApp);
-        //}
+            // only 8 (with alpha channel) or 6 symbols are allowed
+            if (s.Length != 8 && s.Length != 6)
+                throw new ArgumentException("Unknown string format!");
 
+            int startParseIndex = 0;
+            bool alphaChannelExists = s.Length == 8; // check if alpha canal exists            
+
+            // read alpha channel value
+            byte a = 255;
+            if (alphaChannelExists)
+            {
+                a = System.Convert.ToByte(s.Substring(0, 2), 16);
+                startParseIndex += 2;
+            }
+
+            // read r value
+            byte r = System.Convert.ToByte(s.Substring(startParseIndex, 2), 16);
+            startParseIndex += 2;
+            // read g value
+            byte g = System.Convert.ToByte(s.Substring(startParseIndex, 2), 16);
+            startParseIndex += 2;
+            // read b value
+            byte b = System.Convert.ToByte(s.Substring(startParseIndex, 2), 16);
+
+            return Color.FromArgb(a, r, g, b);
+        }
         private void LoadImages_Loaded()
         {
             IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
@@ -95,19 +125,19 @@ namespace AutoChangeLockScreen
             }
         }
 
-//        private void LocalizedButtonBar(string imgpath, string text)
-//        {
-//            // Set the page's ApplicationBar to a new instance of ApplicationBar.
+        private void LocalizedButtonBar(string imgpath, string text, EventHandler function)
+        {
+            // Set the page's ApplicationBar to a new instance of ApplicationBar.
 
 
-//            // Create a new button and set the text value to the localized string from AppResources.
-//            ApplicationBarIconButton appBarButton =
-//                new ApplicationBarIconButton(new
-//                Uri(imgpath, UriKind.Relative));
-//            appBarButton.Text = text;
-//            appBarButton.Click += ApplicationBarIconButton_Click;
-//            ApplicationBar.Buttons.Add(appBarButton);
-//        }
+            // Create a new button and set the text value to the localized string from AppResources.
+            ApplicationBarIconButton appBarButton =
+                new ApplicationBarIconButton(new
+                Uri(imgpath, UriKind.Relative));
+            appBarButton.Text = text;
+            appBarButton.Click += function;
+            ApplicationBar.Buttons.Add(appBarButton);
+        }
 
 //        private void LocalizedMenuBar(string text)
 //        {
@@ -305,8 +335,36 @@ namespace AutoChangeLockScreen
         {
             Dispatcher.BeginInvoke(() =>
             {
-                NavigationService.Navigate(new Uri("/RssPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/LoadRssImages.xaml", UriKind.Relative));
             });
+        }
+
+        private void ReviewButton_Click(object sender, EventArgs e)
+        {
+            MarketplaceReviewTask review = new MarketplaceReviewTask();
+            review.Show();
+        }
+        private void HelpButton_Click(object sender, EventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                NavigationService.Navigate(new Uri("/Help.xaml", UriKind.Relative));
+            });
+        }
+        private void AboutButton_Click(object sender, EventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                NavigationService.Navigate(new Uri("/About.xaml", UriKind.Relative));
+            });
+        }
+        private void MyAppsButton_Click(object sender, EventArgs e)
+        {
+            MarketplaceSearchTask mkpSearch = new MarketplaceSearchTask();
+            mkpSearch.ContentType = MarketplaceContentType.Applications;
+            mkpSearch.SearchTerms = "trunglt";
+
+            mkpSearch.Show();
         }
 
     }

@@ -17,6 +17,7 @@ using System.IO.IsolatedStorage;
 using Windows.Storage;
 using System.Windows.Media;
 using Microsoft.Expression.Interactivity.Core;
+using AutoChangeLockScreen.Resources;
 
 
 namespace AutoChangeLockScreen
@@ -27,8 +28,29 @@ namespace AutoChangeLockScreen
         public LoadDefaultImages()
         {
             InitializeComponent();
-
+            BuildLocalizedApplicationBar();
             Loaded += LoadImages_Loaded;
+        }
+        // Build a localized ApplicationBar
+        private void BuildLocalizedApplicationBar()
+        {
+            ApplicationBar = new ApplicationBar();
+            ApplicationBar.BackgroundColor = App.GetColorFromHexString("FF08317B");
+            ApplicationBar.Mode = ApplicationBarMode.Default;
+            ApplicationBar.Opacity = 0.5;
+
+            LocalizedButtonBar("/Assets/AppBar/transport.play.png", AppResources.Start);           
+        }
+        private void LocalizedButtonBar(string imgpath, string text)
+        {
+            // Set the page's ApplicationBar to a new instance of ApplicationBar.
+            // Create a new button and set the text value to the localized string from AppResources.
+            ApplicationBarIconButton appBarButton =
+                new ApplicationBarIconButton(new
+                Uri(imgpath, UriKind.Relative));
+            appBarButton.Text = text;
+            appBarButton.Click += btnStart_Click;
+            ApplicationBar.Buttons.Add(appBarButton);
         }
 
         private void LoadImages_Loaded(object sender, System.Windows.RoutedEventArgs e)
@@ -49,6 +71,8 @@ namespace AutoChangeLockScreen
             }
 
             this.myList.ItemsSource = list;
+            ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
+            aibStart.IsEnabled = list.Count > 0 ? true : false;
         }
 
         private void btnStart_Click(object sender, EventArgs e)

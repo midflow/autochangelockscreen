@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using AutoChangeLockScreen.Models;
 using Microsoft.Phone.Scheduler;
 using Windows.Phone.System.UserProfile;
+using System.Windows.Media;
 
 namespace AutoChangeLockScreen
 {
@@ -25,7 +26,7 @@ namespace AutoChangeLockScreen
         public static string imgName = "";
         public static string FullImgName = "";
         public static bool blLoadIamge = false;
-        public static int isDefault = 0;
+        public static int isDefault = 0; //0 = defaul, 1 yours, 2 rss
         public static List<myImages> imageList = new List<myImages>();
         static PeriodicTask periodicTask;
         static string periodicTaskName = "PeriodicAgent";
@@ -75,7 +76,7 @@ namespace AutoChangeLockScreen
             switch (strSource)
             {
                 case "Default":
-                    LockScreenChange("wallpaper/Walleper_0.jpg", true);
+                    LockScreenChange("wallpaper/Wallpaper_0.jpg", true);
                     string path = Path.Combine(Environment.CurrentDirectory, "wallpaper");
                     files = Directory.GetFiles(path);
                     NumberImage = files.Length;
@@ -87,7 +88,7 @@ namespace AutoChangeLockScreen
                     NumberImage = files.Length - 1;
                     break;
                 case "Rss":
-                    LockScreenChange("download/DownloadedWallpaper_0.jpg", true);
+                    LockScreenChange("download/Wallpaper_0.jpg", false);
                     isoStore = IsolatedStorageFile.GetUserStoreForApplication();
                     files = isoStore.GetFileNames("download/*");
                     NumberImage = files.Length;
@@ -196,6 +197,38 @@ namespace AutoChangeLockScreen
             }
         }
 
+        public static Color GetColorFromHexString(string s)
+        {
+            // remove artifacts
+            s = s.Trim().TrimStart('#');
+
+            // only 8 (with alpha channel) or 6 symbols are allowed
+            if (s.Length != 8 && s.Length != 6)
+                throw new ArgumentException("Unknown string format!");
+
+            int startParseIndex = 0;
+            bool alphaChannelExists = s.Length == 8; // check if alpha canal exists            
+
+            // read alpha channel value
+            byte a = 255;
+            if (alphaChannelExists)
+            {
+                a = System.Convert.ToByte(s.Substring(0, 2), 16);
+                startParseIndex += 2;
+            }
+
+            // read r value
+            byte r = System.Convert.ToByte(s.Substring(startParseIndex, 2), 16);
+            startParseIndex += 2;
+            // read g value
+            byte g = System.Convert.ToByte(s.Substring(startParseIndex, 2), 16);
+            startParseIndex += 2;
+            // read b value
+            byte b = System.Convert.ToByte(s.Substring(startParseIndex, 2), 16);
+
+            return Color.FromArgb(a, r, g, b);
+        }
+        
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>

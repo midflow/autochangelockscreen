@@ -8,7 +8,7 @@
     xmlns:ViewModels="clr-namespace:AutoChangeLockScreen.ViewModels"
     xmlns:myUserControl="clr-namespace:AutoChangeLockScreen"
     xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
-    x:Class="AutoChangeLockScreen.LoadImages"
+    x:Class="AutoChangeLockScreen.LoadRssImages"
     mc:Ignorable="d"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
@@ -17,17 +17,17 @@
         <StaticResource ResourceKey="PhoneFontFamilyNormal"/>
     </phone:PhoneApplicationPage.FontFamily>
     <phone:PhoneApplicationPage.FontSize>
-        <StaticResource ResourceKey="PhoneFontSizeNormal"/>
+        <StaticResource ResourceKey="PhoneFontSizeNormal" />
     </phone:PhoneApplicationPage.FontSize>
     <phone:PhoneApplicationPage.Foreground>
         <StaticResource ResourceKey="PhoneForegroundBrush"/>
     </phone:PhoneApplicationPage.Foreground>
-    <phone:PhoneApplicationPage.ApplicationBar>
+    <phone:PhoneApplicationPage.ApplicationBar>        
         <shell:ApplicationBar BackgroundColor="#FF2648A2">
-        	<shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="Delete Selected" Click="btnMinus_Click"/>
                 <shell:ApplicationBarMenuItem Text="Delete All" Click="btnDeleteAll_Click"/>
-        	</shell:ApplicationBar.MenuItems>
+            </shell:ApplicationBar.MenuItems>
             <shell:ApplicationBarIconButton x:Name="abbStart" IconUri="/Assets/AppBar/transport.play.png" Text="Start" Click="btnStart_Click"/>
             <shell:ApplicationBarIconButton x:Name="abbADD" IconUri="/Assets/AppBar/add.png" Text="Add" Click="btnAdd_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/minus.png" Text="Remove" Click="btnMinus_Click"/>
@@ -52,7 +52,7 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="{Binding LocalizedResources.ImageSource, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="{Binding LocalizedResources.YourPhotos, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
@@ -81,8 +81,8 @@
                         	</VisualStateManager.CustomVisualStateManager>                            
                             <Image Height="70" Width="70" Source="{Binding ImageBinary}" Margin="12,0,9,0"/>
                             <Grid Width="311">
-                                <TextBlock Text="{Binding ImageName}"  TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="26.667" Margin="12,-2,12,34"/>
-                                <TextBlock Text="{Binding ImageSize}" TextWrapping="Wrap" Margin="12,36,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="18.667"/>
+                                <TextBlock Text="{Binding ImageName}"  TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="26.667" Margin="12,0,12,31"/>
+                                <TextBlock Text="{Binding ImageSize}" TextWrapping="Wrap" Margin="12,25,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="18.667"/>
                             </Grid>
                         </StackPanel>
                     </DataTemplate>

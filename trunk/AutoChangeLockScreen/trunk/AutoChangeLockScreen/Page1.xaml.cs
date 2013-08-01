@@ -18,6 +18,7 @@ using System.IO;
 using System.IO.IsolatedStorage;
 using AutoChangeLockScreen;
 using AutoChangeLockScreen.Models;
+using AutoChangeLockScreen.Resources;
 
 namespace Image_Tiles
 {
@@ -342,5 +343,27 @@ namespace Image_Tiles
                 NavigationService.Navigate(new Uri("/LoadImages.xaml", UriKind.Relative));
             });
         }
+
+        private void BuildLocalizedApplicationBar()
+        {
+            ApplicationBar = new ApplicationBar();
+
+            LocalizedButtonBar("/Assets/AppBar/edit.png", AppResources.Start, btn_Click);
+            LocalizedButtonBar("/Assets/AppBar/appbar.map.position.rest.png", AppResources.Start, btn_Click);
+            LocalizedButtonBar("/Assets/AppBar/photo.crop.png", AppResources.Start, Accept_Click);
+            LocalizedButtonBar("/Assets/AppBar/close.png", AppResources.Start, btnCancel_Click); 
+        }
+        private void LocalizedButtonBar(string imgpath, string text, EventHandler function)
+        {
+            // Set the page's ApplicationBar to a new instance of ApplicationBar.
+            // Create a new button and set the text value to the localized string from AppResources.
+            ApplicationBarIconButton appBarButton =
+                new ApplicationBarIconButton(new
+                Uri(imgpath, UriKind.Relative));
+            appBarButton.Text = text;
+            appBarButton.Click += function;
+            ApplicationBar.Buttons.Add(appBarButton);
+        }
+        
     }
 }
