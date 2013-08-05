@@ -52,9 +52,9 @@ namespace AutoChangeLockScreen
         private void BuildLocalizedApplicationBar()
         {            
             ApplicationBar = new ApplicationBar();
-            ApplicationBar.BackgroundColor = App.GetColorFromHexString("FF08317B");
+            ApplicationBar.BackgroundColor = App.GetColorFromHexString("FF2648A2");
             ApplicationBar.Mode = ApplicationBarMode.Default;
-            ApplicationBar.Opacity = 0.5;
+            ApplicationBar.Opacity = 0.8;
             LocalizedButtonBar("/Assets/AppBar/transport.play.png", AppResources.Start, btnStart_Click);
             LocalizedButtonBar("/Assets/AppBar/add.png", AppResources.Start, btnAdd_Click);
             LocalizedButtonBar("/Assets/AppBar/minus.png", AppResources.Start, btnMinus_Click);

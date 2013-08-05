@@ -44,5 +44,31 @@ namespace AutoChangeLockScreen
 
             marketplaceDetailTask.Show();
         }
+
+        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            WebBrowserTask webBrowserTask = new WebBrowserTask();
+            webBrowserTask.Uri = new Uri("http://www.facebook.com/midflow");
+            webBrowserTask.Show(); 
+        }
+
+        private void HyperlinkButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            WebBrowserTask webBrowserTask = new WebBrowserTask();
+            webBrowserTask.Uri = new Uri("http://www.mid-news.com");
+            webBrowserTask.Show(); 
+        }
+
+        private void hlbEmail_Click_1(object sender, RoutedEventArgs e)
+        {
+            EmailComposeTask emailComposeTask = new EmailComposeTask();
+
+            emailComposeTask.Subject = "Send from App";
+            emailComposeTask.Body = "";
+            emailComposeTask.To = "lttrungbk@yahoo.com";
+            emailComposeTask.Cc = "trunglt@live.com";
+
+            emailComposeTask.Show();
+        }
     }
 }

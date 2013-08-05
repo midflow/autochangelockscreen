@@ -120,6 +120,12 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="AboutMe" xml:space="preserve">
+    <value>About Me</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
   <data name="AppBarButtonText" xml:space="preserve">
     <value>add</value>
   </data>
@@ -132,11 +138,26 @@
   <data name="AutoChange" xml:space="preserve">
     <value>Auto Change</value>
   </data>
+  <data name="BirdYear" xml:space="preserve">
+    <value>1982</value>
+  </data>
+  <data name="Blog" xml:space="preserve">
+    <value>mid-news.com</value>
+  </data>
   <data name="BuyApp" xml:space="preserve">
     <value>Buy App</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="ChooseSource" xml:space="preserve">
     <value>Choose Source</value>
+  </data>
+  <data name="ClickNo" xml:space="preserve">
+    <value>Background cant be updated as you clicked no!!</value>
+  </data>
+  <data name="CompletedDownloading" xml:space="preserve">
+    <value>Completed downloading.</value>
   </data>
   <data name="Default" xml:space="preserve">
     <value>Default</value>
@@ -150,6 +171,24 @@
   <data name="DeleteAll" xml:space="preserve">
     <value>Delete All</value>
   </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Downloading" xml:space="preserve">
+    <value>Downloading.... please wait...</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>lttrungbk@yahoo.com</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Finished</value>
+  </data>
+  <data name="FlickerIntro" xml:space="preserve">
+    <value>Please write your tag of images you want to show at lock screen from Flicker.</value>
+  </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
   </data>
@@ -161,10 +200,25 @@
 4. Choose "Yes" if the App request your permission.</value>
   </data>
   <data name="HelpRss" xml:space="preserve">
-    <value>1. Chon nut Your photos 2. Chon nut Add de them photo 3. Chon photo tu thu vien hoac chup anh 4. Crop anh theo y muon 5. Lap lai voi nhung anh khac neu ban muon them 6. Chon anh neu ban muon xoa bot va nhan nut xoa 7. nhan nut start de bat dau 8. Chon Yes khi duoc hoi</value>
+    <value>1. Touch Your photos
+ 2. Touch Add Button to download images
+3. Write your tag you want to download
+ 4. Touch Show images to see images
+ 5. Touch Download to download images
+6. Touch Finished button when downloading is finished
+7. Select images and press Remove if you want to remove images
+8. Click start button to start
+ 9. Click Yes when being requested</value>
   </data>
   <data name="HelpYours" xml:space="preserve">
-    <value>1. Chon nut Your photos 2. Chon nut Add de them photo 3. Chon photo tu thu vien hoac chup anh 4. Crop anh theo y muon 5. Lap lai voi nhung anh khac neu ban muon them 6. Chon anh neu ban muon xoa bot va nhan nut xoa 7. nhan nut start de bat dau 8. Chon Yes khi duoc hoi</value>
+    <value>1. Touch Your photos
+ 2. Touch Add Button to add new Image
+3. Select from library or take a picture
+ 4. Crop as you want
+ 5. Repeat with others images
+ 6. Select images and press Remove if you want to remove images
+7. Touchstart button to start
+ 8. Touch Yes when being requested</value>
   </data>
   <data name="ImageSource" xml:space="preserve">
     <value>Image Source</value>
@@ -172,14 +226,50 @@
   <data name="IntervalTime" xml:space="preserve">
     <value>Interval time</value>
   </data>
+  <data name="IntroMySelf" xml:space="preserve">
+    <value>I'm a developer. Thanks so much for your supports. If you like this app, Rate it 5 star and recomment other to use it. If you have any suggestion, send it to lttrungbk@yahoo.com. Thanks!</value>
+  </data>
   <data name="LoadImages" xml:space="preserve">
     <value>Load Images</value>
+  </data>
+  <data name="LockScreenChanged" xml:space="preserve">
+    <value>Lock screen changed. Go to lock screen.</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Move</value>
   </data>
   <data name="MyApps" xml:space="preserve">
     <value>My Apps</value>
   </data>
+  <data name="myfacebook" xml:space="preserve">
+    <value>My Facebook</value>
+  </data>
+  <data name="MyName" xml:space="preserve">
+    <value>Le Thanh Trung</value>
+  </data>
+  <data name="Nationality" xml:space="preserve">
+    <value>Vietnam</value>
+  </data>
+  <data name="NoImageFoundForTag" xml:space="preserve">
+    <value>No image found for tag</value>
+  </data>
+  <data name="NoNetwork" xml:space="preserve">
+    <value>No network is available..</value>
+  </data>
+  <data name="NumberOfImages" xml:space="preserve">
+    <value>Number of images</value>
+  </data>
+  <data name="PleaseTryOtherTag" xml:space="preserve">
+    <value>Please try other tag name for image.</value>
+  </data>
+  <data name="PleaseWriteTag" xml:space="preserve">
+    <value>Please write your tag in textbox of images you want to show on lock screen</value>
+  </data>
   <data name="RateIt" xml:space="preserve">
     <value>Rate It</value>
+  </data>
+  <data name="Resize" xml:space="preserve">
+    <value>Resize</value>
   </data>
   <data name="ResourceFlowDirection" xml:space="preserve">
     <value>LeftToRight</value>
@@ -197,6 +287,9 @@
   </data>
   <data name="SetSource" xml:space="preserve">
     <value>Set Source</value>
+  </data>
+  <data name="ShowImages" xml:space="preserve">
+    <value>Show Images</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>

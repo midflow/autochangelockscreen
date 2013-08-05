@@ -116,9 +116,9 @@ namespace ScheduledTaskAgent1
             {
                 case "Default":
                     if (imgCount != NoImage.ToString())
-                        Imagename = "wallpaper/Walleper_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
+                        Imagename = "wallpaper/Wallpaper_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
                     else
-                        Imagename = "wallpaper/Walleper_0.jpg";
+                        Imagename = "wallpaper/Wallpaper_0.jpg";
                     break;
                 case "Your":
                     if (imgCount != NoImage.ToString())

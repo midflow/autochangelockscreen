@@ -19,23 +19,29 @@
 
     </phone:PhoneApplicationPage.ApplicationBar>-->
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+    	<Grid.Background>
+    		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    			<GradientStop Color="#FF223055" Offset="0"/>
+    			<GradientStop Color="#FF3F62BF" Offset="1"/>
+    		</LinearGradientBrush>
+    	</Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0,14,0,4">
-            <TextBlock Text="RSS" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+            <TextBlock Text="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
 
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Image Name="lockscreen" HorizontalAlignment="Left" Height="587" Margin="0,10,0,0" VerticalAlignment="Top" Width="446" />
-            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Please write your tag of images you want to show at lock screen from Flicker." VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding LocalizedResources.FlickerIntro,Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top"/>
             <TextBox HorizontalAlignment="Left" Height="72" Margin="0,73,0,0" TextWrapping="Wrap" Text="nature" VerticalAlignment="Top" Width="456" Name="txtTag"/>
-            <Button Name="btnDownload" Content="Download" HorizontalAlignment="Left" Margin="169,245,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.275,-0.389" Click="Button_Click_1" FontSize="20"/>
+            <Button Name="btnDownload" Content="{Binding LocalizedResources.Download,Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Margin="169,245,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.275,-0.389" Click="Button_Click_1" FontSize="20"/>
             <Image Name="DwldImg" HorizontalAlignment="Left" Height="358" Margin="10,326,0,0" VerticalAlignment="Top" Width="446"/>
             <ListBox Height="358" HorizontalAlignment="Left" Margin="10,318,0,0" Name="listBox1" VerticalAlignment="Top" Width="446">
                 <ListBox.ItemTemplate>
@@ -48,14 +54,14 @@
             </ListBox>
             <ProgressBar Name="progress" HorizontalAlignment="Left" Height="9" Margin="10,252,0,0" VerticalAlignment="Top" Width="436" RenderTransformOrigin="-1.21,-0.3" Background="#190425FB"/>
             <TextBlock Text="" Name="downloadPercentage" HorizontalAlignment="Center" Margin="10,225,9,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Width="437" Foreground="#FFF73C6F" FontStyle="Italic"/>
-            <Button Content="Show images" HorizontalAlignment="Left" Margin="1,245,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.275,-0.389" Click="Button_Click_3" FontSize="20"/>
+            <Button Content="{Binding LocalizedResources.ShowImages,Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Margin="1,245,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.275,-0.389" Click="Button_Click_3" FontSize="20"/>
             <RadioButton Name="rbt10" Content="10" HorizontalAlignment="Left" Margin="76,178,0,0" VerticalAlignment="Top" IsChecked="True"/>
             <RadioButton Name="rbt20" Content="20" HorizontalAlignment="Left" Margin="164,178,0,0" VerticalAlignment="Top"/>
             <RadioButton Name="rbt30" Content="30" HorizontalAlignment="Left" Margin="256,178,0,0" VerticalAlignment="Top"/>
             <RadioButton Name="rbt50" Content="50" HorizontalAlignment="Left" Margin="350,178,0,0" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,160,0,0" TextWrapping="Wrap" Text="Number of images" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,160,0,0" TextWrapping="Wrap" Text="{Binding LocalizedResources.NumberOfImages,Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top"/>
         </Grid>
-        <Button Name="btnFinished" Content="Finish" HorizontalAlignment="Left" Margin="320,244,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" Width="148" Click="btnFinished_Click"/>
+        <Button Name="btnFinished" Content="{Binding LocalizedResources.Finished,Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Margin="320,244,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" Width="148" Click="btnFinished_Click"/>
 
 
         <!--Uncomment to see an alignment grid to help ensure your controls are

@@ -39,7 +39,13 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+    	<Grid.Background>
+    		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    			<GradientStop Color="#FF16254B" Offset="0"/>
+    			<GradientStop Color="#FF3F62BF" Offset="1"/>
+    		</LinearGradientBrush>
+    	</Grid.Background>
 
 
         <Grid.RowDefinitions>

@@ -37,7 +37,7 @@ namespace AutoChangeLockScreen
             ApplicationBar = new ApplicationBar();
             ApplicationBar.BackgroundColor = App.GetColorFromHexString("FF08317B");
             ApplicationBar.Mode = ApplicationBarMode.Default;
-            ApplicationBar.Opacity = 0.5;
+            ApplicationBar.Opacity = 0.8;
 
             LocalizedButtonBar("/Assets/AppBar/transport.play.png", AppResources.Start);           
         }
