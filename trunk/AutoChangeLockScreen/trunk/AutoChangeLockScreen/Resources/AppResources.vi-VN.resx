@@ -117,42 +117,163 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>Thông tin</value>
+  </data>
+  <data name="AboutMe" xml:space="preserve">
+    <value>Giới thiệu</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Đồng ý</value>
+  </data>
   <data name="AppBarButtonText" xml:space="preserve">
-    <value>add</value>
+    <value>Thêm</value>
   </data>
   <data name="AppBarMenuItemText" xml:space="preserve">
     <value>Menu Item</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>Khóa màn hình</value>
+    <value>Màn hình khóa</value>
   </data>
   <data name="AutoChange" xml:space="preserve">
     <value>Tự thay đổi</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
+  <data name="BirdYear" xml:space="preserve">
+    <value>1982</value>
+  </data>
+  <data name="Blog" xml:space="preserve">
+    <value>mid-news.com</value>
+  </data>
   <data name="BuyApp" xml:space="preserve">
     <value>Mua ứng dụng </value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Hủy</value>
   </data>
   <data name="ChooseSource" xml:space="preserve">
     <value>Chọn Ảnh</value>
   </data>
+  <data name="ClickNo" xml:space="preserve">
+    <value>Hình nền có thẻ được cập nhật khi bạn nhấn "no"</value>
+  </data>
+  <data name="CompletedDownloading" xml:space="preserve">
+    <value>Tải xuống hoàn thành.</value>
+  </data>
   <data name="Default" xml:space="preserve">
     <value>Mặc định</value>
+  </data>
+  <data name="DefaultImages" xml:space="preserve">
+    <value>Ảnh mặc định</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Xóa</value>
+  </data>
+  <data name="DeleteAll" xml:space="preserve">
+    <value>Xóa tất cả</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Tải xuống</value>
+  </data>
+  <data name="Downloading" xml:space="preserve">
+    <value>Đang tải xuống ... vui lòng chờ...</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>lttrungbk@yahoo.com</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Lỗi</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Xong</value>
+  </data>
+  <data name="FlickerIntro" xml:space="preserve">
+    <value>Nhập tag mà bạn muốn để tải ảnh từ Flicker RSS</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Trợ giúp</value>
   </data>
+  <data name="HelpDefault" xml:space="preserve">
+    <value>Làm theo các bước sau:  
+1. Chọn nút "Mặc định"
+2. Bạn sẽ thấy ảnh mặc định
+3. Nhấn nút "Bắt đầu" để bắt đầu đặt ảnh màn hình
+4. Chọn "Đồng ys" nếu được hỏi</value>
+  </data>
+  <data name="HelpRss" xml:space="preserve">
+    <value>Làm theo các bước sau:  
+1. Chọn "Ảnh của bạn"
+ 2. Chọn nút "Thêm" để thêm ảnh
+3. Nhập flicker tag ảnh muốn tải
+ 4. Chọn nút "hiển thị" để xem ảnh
+ 5. Chọn nút "Tải xuống" để tải ảnh
+6. Chọn nút "Xong" để quay lại
+7. Chọn ảnh và nhấn nút "xóa" nếu bạn muốn xóa bớt ảnh
+8. Chọn nút "Bắt đầu" để bắt đầu đặt ảnh màn hình khóa tự động thay đổi sau 30 phút
+ 9. Chọn nút "Đồng ý" khi được hỏi</value>
+  </data>
+  <data name="HelpYours" xml:space="preserve">
+    <value>Làm theo các bước sau:  
+1. Chọn "Ảnh của bạn"
+ 2. Chọn nút "Thêm" để thêm ảnh
+3. Chọn ảnh từ thư viện hoặc chụp ảnh
+ 4. Cắt ảnh theo ý muốn
+ 5. Chọn "Đồng ý" để lưu ảnh
+6. Chọn nút "Xong" để quay lại
+7. Chọn ảnh và nhấn nút "xóa" nếu bạn muốn xóa bớt ảnh
+8. Chọn nút "Bắt đầu" để bắt đầu đặt ảnh màn hình khóa tự động thay đổi sau 30 phút
+ 9. Chọn nút "Đồng ý" khi được hỏi</value>
+  </data>
+  <data name="ImageSource" xml:space="preserve">
+    <value>Nguồn ảnh</value>
+  </data>
   <data name="IntervalTime" xml:space="preserve">
     <value>Khoảng thời gian</value>
+  </data>
+  <data name="IntroMySelf" xml:space="preserve">
+    <value>Mình là lập trình viên. Chân thành cảm ơn các bạn đã ủng hộ. Nếu thích ứng dụng này vui lòng Đánh giá 5* và giới thiệu cho mọi người giúp mình nha. Mọi ý kiến xin gửi vào email lttrungbk@yahoo.com. Chân thành cảm ơn!</value>
   </data>
   <data name="LoadImages" xml:space="preserve">
     <value>Chọn ảnh</value>
   </data>
+  <data name="LockScreenChanged" xml:space="preserve">
+    <value>Màn hình khóa đã thay đổi. Hãy khóa màn hình để xem</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Di chuyển</value>
+  </data>
   <data name="MyApps" xml:space="preserve">
     <value>Ứng dụng của tôi</value>
   </data>
+  <data name="myfacebook" xml:space="preserve">
+    <value>Facebook của tôi</value>
+  </data>
+  <data name="MyName" xml:space="preserve">
+    <value>Lê Thành Trung</value>
+  </data>
+  <data name="Nationality" xml:space="preserve">
+    <value>Vietnam</value>
+  </data>
+  <data name="NoImageFoundForTag" xml:space="preserve">
+    <value>Không tìm thấy ảnh</value>
+  </data>
+  <data name="NoNetwork" xml:space="preserve">
+    <value>Không có kết nối internet</value>
+  </data>
+  <data name="NumberOfImages" xml:space="preserve">
+    <value>Số lượng ảnh</value>
+  </data>
+  <data name="PleaseTryOtherTag" xml:space="preserve">
+    <value>Hãy nhập Tag mong muốn</value>
+  </data>
+  <data name="PleaseWriteTag" xml:space="preserve">
+    <value>Hãy nhật tag những ảnh mà bạn muốn đặt làm màn hình khóa</value>
+  </data>
   <data name="RateIt" xml:space="preserve">
     <value>Đánh giá</value>
+  </data>
+  <data name="Resize" xml:space="preserve">
+    <value>Sửa</value>
   </data>
   <data name="ResourceFlowDirection" xml:space="preserve">
     <value>LeftToRight</value>
@@ -162,11 +283,17 @@
     <value>en-US</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
+  <data name="Review" xml:space="preserve">
+    <value>Đánh giá</value>
+  </data>
   <data name="Rss" xml:space="preserve">
     <value>RSS</value>
   </data>
   <data name="SetSource" xml:space="preserve">
     <value>Chọn nguồn</value>
+  </data>
+  <data name="ShowImages" xml:space="preserve">
+    <value>Hiển thị</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Lưu</value>

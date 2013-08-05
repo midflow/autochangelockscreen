@@ -100,7 +100,7 @@ namespace AutoChangeLockScreen
 
                     progress.IsIndeterminate = false;
                     progress.Visibility = Visibility.Collapsed;
-                    downloadPercentage.Text = "Completed downloading.";                    
+                    downloadPercentage.Text = AppResources.CompletedDownloading;                    
                 }
 
                 if (imageCount < imgarray.Length - 1)
@@ -132,13 +132,13 @@ namespace AutoChangeLockScreen
                 }
                 else
                 {
-                    MessageBox.Show("No image found for tag " + txtTag.Text + ". Please try other tag name for image.");
+                    MessageBox.Show(AppResources.NoImageFoundForTag + txtTag.Text + ". " + AppResources.PleaseTryOtherTag);
                 }
 
             }
             else
             {
-                MessageBox.Show("No network is available..");
+                MessageBox.Show(AppResources.NoNetwork);
             }
         }
         #endregion
@@ -270,14 +270,14 @@ namespace AutoChangeLockScreen
                 btnFinished.IsEnabled = false;
                 progress.IsIndeterminate = true;
                 progress.Visibility = Visibility.Visible;
-                downloadPercentage.Text = "Downloading.... please wait...";
+                downloadPercentage.Text = AppResources.Downloading;
                 string url = "http://www.degraeve.com/flickr-rss/rss.php?tags=" + txtTag.Text + "&tagmode=all&sort=interestingness-desc&num=" + NoImage;
                 DownloadRSS(url);
                 btnDownload.IsEnabled = true;                                
             }
             else
             {
-                MessageBox.Show("Please write your tag in textbox of images you want to show on lock screen");
+                MessageBox.Show(AppResources.PleaseWriteTag);
             }
 
         }
@@ -303,7 +303,7 @@ namespace AutoChangeLockScreen
         {
             if (e.Error != null)
             {
-                MessageBox.Show("error");
+                MessageBox.Show(AppResources.Error);
 
             }
 

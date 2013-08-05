@@ -70,6 +70,24 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About Me.
+        /// </summary>
+        public static string AboutMe {
+            get {
+                return ResourceManager.GetString("AboutMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accept.
+        /// </summary>
+        public static string Accept {
+            get {
+                return ResourceManager.GetString("Accept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add.
         /// </summary>
         public static string AppBarButtonText {
@@ -106,6 +124,24 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1982.
+        /// </summary>
+        public static string BirdYear {
+            get {
+                return ResourceManager.GetString("BirdYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mid-news.com.
+        /// </summary>
+        public static string Blog {
+            get {
+                return ResourceManager.GetString("Blog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Buy App.
         /// </summary>
         public static string BuyApp {
@@ -115,11 +151,38 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose Source.
         /// </summary>
         public static string ChooseSource {
             get {
                 return ResourceManager.GetString("ChooseSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Background cant be updated as you clicked no!!.
+        /// </summary>
+        public static string ClickNo {
+            get {
+                return ResourceManager.GetString("ClickNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed downloading..
+        /// </summary>
+        public static string CompletedDownloading {
+            get {
+                return ResourceManager.GetString("CompletedDownloading", resourceCulture);
             }
         }
         
@@ -160,6 +223,60 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        public static string Download {
+            get {
+                return ResourceManager.GetString("Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloading.... please wait....
+        /// </summary>
+        public static string Downloading {
+            get {
+                return ResourceManager.GetString("Downloading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to lttrungbk@yahoo.com.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finished.
+        /// </summary>
+        public static string Finished {
+            get {
+                return ResourceManager.GetString("Finished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please write your tag of images you want to show at lock screen from Flicker..
+        /// </summary>
+        public static string FlickerIntro {
+            get {
+                return ResourceManager.GetString("FlickerIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string Help {
@@ -182,7 +299,15 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1. Chon nut Your photos ///2. Chon nut Add de them photo ///3. Chon photo tu thu vien hoac chup anh ///4. Crop anh theo y muon ///5. Lap lai voi nhung anh khac neu ban muon them ///6. Chon anh neu ban muon xoa bot va nhan nut xoa ///7. nhan nut start de bat dau ///8. Chon Yes khi duoc hoi.
+        ///   Looks up a localized string similar to 1. Touch Your photos
+        /// ///2. Touch Add Button to download images
+        ///3. Write your tag you want to download
+        /// ///4. Touch Show images to see images
+        /// ///5. Touch Download to download images
+        ///6. Touch Finished button when downloading is finished
+        ///7. Select images and press Remove if you want to remove images
+        ///8. Click start button to start
+        /// ///9. Click Yes when being requested.
         /// </summary>
         public static string HelpRss {
             get {
@@ -191,7 +316,14 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1. Chon nut Your photos ///2. Chon nut Add de them photo ///3. Chon photo tu thu vien hoac chup anh ///4. Crop anh theo y muon ///5. Lap lai voi nhung anh khac neu ban muon them ///6. Chon anh neu ban muon xoa bot va nhan nut xoa ///7. nhan nut start de bat dau ///8. Chon Yes khi duoc hoi.
+        ///   Looks up a localized string similar to 1. Touch Your photos
+        /// ///2. Touch Add Button to add new Image
+        ///3. Select from library or take a picture
+        /// ///4. Crop as you want
+        /// ///5. Repeat with others images
+        /// ///6. Select images and press Remove if you want to remove images
+        ///7. Touchstart button to start
+        /// ///8. Touch Yes when being requested.
         /// </summary>
         public static string HelpYours {
             get {
@@ -218,11 +350,38 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I&apos;m a developer. Thanks so much for your supports. If you like this app, Rate it 5 star and recomment other to use it. If you have any suggestion, send it to lttrungbk@yahoo.com. Thanks!.
+        /// </summary>
+        public static string IntroMySelf {
+            get {
+                return ResourceManager.GetString("IntroMySelf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Load Images.
         /// </summary>
         public static string LoadImages {
             get {
                 return ResourceManager.GetString("LoadImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lock screen changed. Go to lock screen..
+        /// </summary>
+        public static string LockScreenChanged {
+            get {
+                return ResourceManager.GetString("LockScreenChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move.
+        /// </summary>
+        public static string Move {
+            get {
+                return ResourceManager.GetString("Move", resourceCulture);
             }
         }
         
@@ -236,11 +395,92 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My Facebook.
+        /// </summary>
+        public static string myfacebook {
+            get {
+                return ResourceManager.GetString("myfacebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le Thanh Trung.
+        /// </summary>
+        public static string MyName {
+            get {
+                return ResourceManager.GetString("MyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vietnam.
+        /// </summary>
+        public static string Nationality {
+            get {
+                return ResourceManager.GetString("Nationality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No image found for tag.
+        /// </summary>
+        public static string NoImageFoundForTag {
+            get {
+                return ResourceManager.GetString("NoImageFoundForTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No network is available...
+        /// </summary>
+        public static string NoNetwork {
+            get {
+                return ResourceManager.GetString("NoNetwork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of images.
+        /// </summary>
+        public static string NumberOfImages {
+            get {
+                return ResourceManager.GetString("NumberOfImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please try other tag name for image..
+        /// </summary>
+        public static string PleaseTryOtherTag {
+            get {
+                return ResourceManager.GetString("PleaseTryOtherTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please write your tag in textbox of images you want to show on lock screen.
+        /// </summary>
+        public static string PleaseWriteTag {
+            get {
+                return ResourceManager.GetString("PleaseWriteTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rate It.
         /// </summary>
         public static string RateIt {
             get {
                 return ResourceManager.GetString("RateIt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resize.
+        /// </summary>
+        public static string Resize {
+            get {
+                return ResourceManager.GetString("Resize", resourceCulture);
             }
         }
         
@@ -286,6 +526,15 @@ namespace AutoChangeLockScreen.Resources {
         public static string SetSource {
             get {
                 return ResourceManager.GetString("SetSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Images.
+        /// </summary>
+        public static string ShowImages {
+            get {
+                return ResourceManager.GetString("ShowImages", resourceCulture);
             }
         }
         

@@ -11,7 +11,7 @@
     x:Class="AutoChangeLockScreen.LoadDefaultImages"
     mc:Ignorable="d"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" Foreground="{x:Null}">
 
     <phone:PhoneApplicationPage.FontFamily>
         <StaticResource ResourceKey="PhoneFontFamilyNormal"/>
@@ -19,9 +19,6 @@
     <phone:PhoneApplicationPage.FontSize>
         <StaticResource ResourceKey="PhoneFontSizeNormal"/>
     </phone:PhoneApplicationPage.FontSize>
-    <phone:PhoneApplicationPage.Foreground>
-        <StaticResource ResourceKey="PhoneForegroundBrush"/>
-    </phone:PhoneApplicationPage.Foreground>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar BackgroundColor="#FF2648A2">
             <shell:ApplicationBarIconButton x:Name="abbStart" IconUri="/Assets/AppBar/transport.play.png" Text="Start" Click="btnStart_Click"/>           
@@ -32,7 +29,13 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+    	<Grid.Background>
+    		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    			<GradientStop Color="#FF4464B9" Offset="0"/>
+    			<GradientStop Color="#FF537EF1" Offset="1"/>
+    		</LinearGradientBrush>
+    	</Grid.Background>
 
 
         <Grid.RowDefinitions>

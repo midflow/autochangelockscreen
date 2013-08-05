@@ -13,7 +13,13 @@
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+    	<Grid.Background>
+    		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    			<GradientStop Color="#FF1D2F61" Offset="0"/>
+    			<GradientStop Color="#FF3F62BF" Offset="1"/>
+    		</LinearGradientBrush>
+    	</Grid.Background>
         <Image Height="800" Width="480" Margin="0" Name="image1" Stretch="UniformToFill" HorizontalAlignment="Left" VerticalAlignment="Top" />
 
     </Grid>

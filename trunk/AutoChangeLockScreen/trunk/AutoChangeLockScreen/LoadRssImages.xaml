@@ -39,7 +39,14 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Opacity="0.8">
+    	<Grid.Background>
+    		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    			<GradientStop Color="#FF102457" Offset="0"/>
+    			<GradientStop Color="#FF4165C3" Offset="1"/>
+    			<GradientStop Color="#FF3F62BF" Offset="1"/>
+    		</LinearGradientBrush>
+    	</Grid.Background>
 
 
         <Grid.RowDefinitions>
@@ -82,7 +89,7 @@
                             <Image Height="70" Width="70" Source="{Binding ImageBinary}" Margin="12,0,9,0"/>
                             <Grid Width="311">
                                 <TextBlock Text="{Binding ImageName}"  TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="26.667" Margin="12,0,12,31"/>
-                                <TextBlock Text="{Binding ImageSize}" TextWrapping="Wrap" Margin="12,25,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="18.667"/>
+                                <TextBlock Text="{Binding ImageSize}" TextWrapping="Wrap" Margin="12,39,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="18.667"/>
                             </Grid>
                         </StackPanel>
                     </DataTemplate>

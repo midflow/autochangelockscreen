@@ -43,6 +43,7 @@ namespace Image_Tiles
         {
             InitializeComponent();
             ShowImageTask = false;
+            BuildLocalizedApplicationBar();
             IApplicationBarIconButton button;
             button = (IApplicationBarIconButton)ApplicationBar.Buttons[1];
             button.IsEnabled = !isMove;
@@ -347,11 +348,13 @@ namespace Image_Tiles
         private void BuildLocalizedApplicationBar()
         {
             ApplicationBar = new ApplicationBar();
-
-            LocalizedButtonBar("/Assets/AppBar/edit.png", AppResources.Start, btn_Click);
-            LocalizedButtonBar("/Assets/AppBar/appbar.map.position.rest.png", AppResources.Start, btn_Click);
-            LocalizedButtonBar("/Assets/AppBar/photo.crop.png", AppResources.Start, Accept_Click);
-            LocalizedButtonBar("/Assets/AppBar/close.png", AppResources.Start, btnCancel_Click); 
+            ApplicationBar.BackgroundColor = App.GetColorFromHexString("FF08317B");
+            ApplicationBar.Mode = ApplicationBarMode.Default;
+            ApplicationBar.Opacity = 0.8;
+            LocalizedButtonBar("/Assets/AppBar/edit.png", AppResources.Resize, btn_Click);
+            LocalizedButtonBar("/Assets/AppBar/appbar.map.position.rest.png", AppResources.Move, btn_Click);
+            LocalizedButtonBar("/Assets/AppBar/photo.crop.png", AppResources.Accept, Accept_Click);
+            LocalizedButtonBar("/Assets/AppBar/close.png", AppResources.Cancel, btnCancel_Click); 
         }
         private void LocalizedButtonBar(string imgpath, string text, EventHandler function)
         {
