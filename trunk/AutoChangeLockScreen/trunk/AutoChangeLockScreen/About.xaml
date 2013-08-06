@@ -35,7 +35,7 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="250"/>
+                <RowDefinition Height="300"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
@@ -47,14 +47,14 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Image  Grid.Column="0" Grid.Row="0" Source="/P10009031.jpg"/>
-            <TextBlock Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" Text="{Binding LocalizedResources.IntroMySelf,Source={StaticResource LocalizedStrings}}" MaxWidth="300" MaxHeight="250" HorizontalAlignment="Right" Width="220" />
+            <TextBlock Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" Text="{Binding LocalizedResources.IntroMySelf,Source={StaticResource LocalizedStrings}}" MaxWidth="300" MaxHeight="300" HorizontalAlignment="Right" Width="220" />
             <TextBlock Grid.Column="0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding LocalizedResources.MyName,Source={StaticResource LocalizedStrings}}" />
-            <Button x:Name="btnMyApps" Content="{Binding LocalizedResources.MyApps,Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Right"  Grid.Row="2" VerticalAlignment="Top"  Grid.RowSpan="2" Click="btnMyApps_Click" Height="72" Width="142" />
+            <Button x:Name="btnMyApps" Content="{Binding LocalizedResources.MyApps,Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="2" VerticalAlignment="Top"  Grid.RowSpan="2" Click="btnMyApps_Click" Height="72" />
             <TextBlock Grid.Column="0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding LocalizedResources.BirdYear,Source={StaticResource LocalizedStrings}}" />
-            <HyperlinkButton Grid.Column="0" Grid.Row="3" Content="{Binding LocalizedResources.Email,Source={StaticResource LocalizedStrings}}" Click="hlbEmail_Click_1"   />
-            <Button x:Name="btnRate" Content="{Binding LocalizedResources.RateIt,Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Right"  Grid.Row="1" VerticalAlignment="Top"  Grid.RowSpan="2" Click="btnRate_Click" Height="72" Width="118" />
-            <HyperlinkButton Grid.Column="0" Grid.Row="4"  Content="{Binding LocalizedResources.Blog,Source={StaticResource LocalizedStrings}}" Click="HyperlinkButton_Click_1"  />
-            <HyperlinkButton Grid.Column="1" Grid.Row="3"  Content="{Binding LocalizedResources.myfacebook,Source={StaticResource LocalizedStrings}}" Click="HyperlinkButton_Click"  />
+            <HyperlinkButton Grid.Column="0" Grid.Row="3" Content="{Binding LocalizedResources.Email,Source={StaticResource LocalizedStrings}}" Click="hlbEmail_Click_1" HorizontalAlignment="Left"  />
+            <Button x:Name="btnRate" Content="{Binding LocalizedResources.RateIt,Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="1" VerticalAlignment="Top"  Grid.RowSpan="2" Click="btnRate_Click" Height="72" />
+            <HyperlinkButton Grid.Column="0" Grid.Row="4"  Content="{Binding LocalizedResources.Blog,Source={StaticResource LocalizedStrings}}" Click="HyperlinkButton_Click_1" HorizontalAlignment="Left" />
+            <HyperlinkButton Grid.Column="1" Grid.Row="3"  Content="{Binding LocalizedResources.myfacebook,Source={StaticResource LocalizedStrings}}" Click="HyperlinkButton_Click"  HorizontalAlignment="Left"/>
         </Grid>
     </Grid>
 
