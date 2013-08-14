@@ -201,7 +201,7 @@
 4. Chọn "Đồng ys" nếu được hỏi</value>
   </data>
   <data name="HelpRss" xml:space="preserve">
-    <value>Làm theo các bước sau:  
+    <value>Làm theo các bước sau: 
 1. Chọn "Ảnh của bạn"
  2. Chọn nút "Thêm" để thêm ảnh
 3. Nhập flicker tag ảnh muốn tải
@@ -213,7 +213,7 @@
  9. Chọn nút "Đồng ý" khi được hỏi</value>
   </data>
   <data name="HelpYours" xml:space="preserve">
-    <value>Làm theo các bước sau:  
+    <value>Làm theo các bước sau: 
 1. Chọn "Ảnh của bạn"
  2. Chọn nút "Thêm" để thêm ảnh
 3. Chọn ảnh từ thư viện hoặc chụp ảnh
@@ -231,7 +231,7 @@
     <value>Khoảng thời gian</value>
   </data>
   <data name="IntroMySelf" xml:space="preserve">
-    <value>Mình là lập trình viên. Chân thành cảm ơn các bạn đã ủng hộ. Nếu thích ứng dụng này vui lòng Đánh giá 5* và giới thiệu cho mọi người giúp mình nha. Mọi ý kiến xin gửi vào email lttrungbk@yahoo.com. Chân thành cảm ơn!</value>
+    <value>Chân thành cảm ơn các bạn đã ủng hộ. Nếu thích ứng dụng này vui lòng đánh giá 5* và giới thiệu cho mọi người giúp mình nha. Mọi ý kiến xin gửi vào email lttrungbk@yahoo.com. Chân thành cảm ơn!</value>
   </data>
   <data name="LoadImages" xml:space="preserve">
     <value>Chọn ảnh</value>
@@ -296,7 +296,7 @@
     <value>Hiển thị</value>
   </data>
   <data name="Start" xml:space="preserve">
-    <value>Lưu</value>
+    <value>Bắt đầu</value>
   </data>
   <data name="YourPhotos" xml:space="preserve">
     <value>Ảnh của bạn</value>
