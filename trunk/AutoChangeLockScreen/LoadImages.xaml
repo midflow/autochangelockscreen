@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModels="clr-namespace:AutoChangeLockScreen.ViewModels"
-    xmlns:myUserControl="clr-namespace:AutoChangeLockScreen"
+    xmlns:local="using:IMAdViewFromXAML"
+    xmlns:Ad="clr-namespace:InMobi.WP.AdSDK;assembly=InMobiWPAdSDK"
     xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
     x:Class="AutoChangeLockScreen.LoadImages"
     mc:Ignorable="d"
@@ -48,21 +49,19 @@
     	</Grid.Background>
 
 
-        <Grid.RowDefinitions>
-
-            <RowDefinition Height="Auto"/>
-
-            <RowDefinition Height="*"/>
-
-        </Grid.RowDefinitions>
+       
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel x:Name="TitlePanel" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="{Binding LocalizedResources.ImageSource, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock x:Name="PageTitle" Text="{Binding LocalizedResources.YourPhotos, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <phone:LongListSelector Margin="0,0,-12,0" x:Name="myList" SelectionChanged="myList_SelectionChanged">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="70" ></RowDefinition>
+            </Grid.RowDefinitions>
+            <phone:LongListSelector Margin="0,0,-12,0" Grid.Row="0" x:Name="myList" SelectionChanged="myList_SelectionChanged">
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <StackPanel x:Name="stackPanel" Orientation="Horizontal" Margin="0,0,0,17">
@@ -94,7 +93,12 @@
                     </DataTemplate>
                 </phone:LongListSelector.ItemTemplate>
             </phone:LongListSelector>
-        </Grid>
+        <!--<Ad:IMAdView 
+                            Name="AdView"                            
+                            AdSize="15"                            
+                            AppId="7e6443a7bbbd4d5ab17a079ce12a8edb"                            Height="70" Width="480" VerticalAlignment="Bottom">
+        </Ad:IMAdView>-->
+        </Grid>        
     </Grid>
 
 </phone:PhoneApplicationPage>

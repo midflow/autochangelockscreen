@@ -40,6 +40,7 @@ namespace AutoChangeLockScreen
                 App.imageList = new List<myImages>();
                 foreach (string dirfile in files)
                 {
+                    if (dirfile.ToString().Substring(dirfile.Length - 3, 3) == "jpg")
                     App.imageList.Add(new myImages("download/" + dirfile.ToString(), false));
                 }
 

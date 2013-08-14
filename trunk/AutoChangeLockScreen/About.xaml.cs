@@ -35,16 +35,6 @@ namespace AutoChangeLockScreen
             review.Show();
         }
 
-        private void btnSupport_Click(object sender, RoutedEventArgs e)
-        {
-            MarketplaceDetailTask marketplaceDetailTask = new MarketplaceDetailTask();
-
-            marketplaceDetailTask.ContentIdentifier = "c743bdf5-620a-42ef-a493-4793aa400668";
-            marketplaceDetailTask.ContentType = MarketplaceContentType.Applications;
-
-            marketplaceDetailTask.Show();
-        }
-
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
             WebBrowserTask webBrowserTask = new WebBrowserTask();
@@ -69,6 +59,16 @@ namespace AutoChangeLockScreen
             emailComposeTask.Cc = "trunglt@live.com";
 
             emailComposeTask.Show();
+        }
+
+        private void btnBuy_Click(object sender, RoutedEventArgs e)
+        {
+            MarketplaceDetailTask marketplaceDetailTask = new MarketplaceDetailTask();
+
+            marketplaceDetailTask.ContentIdentifier = "ee8e9449-61b1-4049-9ca4-5407995234ab";
+            marketplaceDetailTask.ContentType = MarketplaceContentType.Applications;
+
+            marketplaceDetailTask.Show();
         }
     }
 }

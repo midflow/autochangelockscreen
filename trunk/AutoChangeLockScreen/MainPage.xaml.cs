@@ -32,33 +32,17 @@ namespace AutoChangeLockScreen
         public MainPage()
         {
             InitializeComponent();
-            LoadImages_Loaded();
+            //LoadImages_Loaded();
             //AppTitle.Text = AutoChangeLockScreen.Resources.AppResources.ApplicationTitle;
             // Sample code to localize the ApplicationBar
             BuildLocalizedApplicationBar();
 
-            //IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication();
-            //if (iso.FileExists("SetSource.ini"))
-            //{
-            //    IsolatedStorageFileStream fileStream = iso.OpenFile("SetSource.ini", FileMode.Open, FileAccess.Read);
-            //    using (StreamReader reader = new StreamReader(fileStream))
-            //    {
-            //        string strSource = reader.ReadLine().Split(' ')[0];
-            //        switch (strSource)
-            //        {
-            //            case "Default":
-            //                rbtDefault.IsChecked = true;
-            //                break;
-            //            case "Your":
-            //                rbtYourPhotos.IsChecked = true;
-            //                break;
-            //            case "Rss":
-            //                rbtRSS.IsChecked = true;
-            //                break;
-            //        }
-            //    }
-            //}
+            Loaded += new System.Windows.RoutedEventHandler(MainPage_Loaded);
+        }
 
+        void MainPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            adrotator.Invalidate();
         }
         // Build a localized ApplicationBar
         private void BuildLocalizedApplicationBar()
@@ -68,9 +52,9 @@ namespace AutoChangeLockScreen
             ApplicationBar.Mode = ApplicationBarMode.Default;
             ApplicationBar.Opacity = 0.5;
             LocalizedButtonBar("/Assets/AppBar/favs.png", AppResources.Review, ReviewButton_Click);
+            LocalizedButtonBar("/Assets/AppBar/appbar.share.rest.png", AppResources.BuyApp, BuyAppButton_Click);  
             LocalizedButtonBar("/Assets/AppBar/appbar.questionmark.rest.png", AppResources.Help, HelpButton_Click);
-            LocalizedButtonBar("/Assets/AppBar/appbar.status.rest.png", AppResources.About, AboutButton_Click);
-            LocalizedButtonBar("/Assets/AppBar/folder.png", AppResources.MyApps, MyAppsButton_Click);            
+            LocalizedButtonBar("/Assets/AppBar/appbar.status.rest.png", AppResources.About, AboutButton_Click);                      
         }
 
         protected static Color GetColorFromHexString(string s)
@@ -104,17 +88,17 @@ namespace AutoChangeLockScreen
 
             return Color.FromArgb(a, r, g, b);
         }
-        private void LoadImages_Loaded()
-        {
-            IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
-            string[] files = isoStore.GetFileNames("*");
-            App.imageList = new List<myImages>();
-            foreach (string dirfile in files)
-            {
-                if (dirfile.ToString() != "SetSource.ini")
-                    App.imageList.Add(new myImages(dirfile.ToString(), false));
-            }
-        }
+        //private void LoadImages_Loaded()
+        //{
+        //    IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
+        //    string[] files = isoStore.GetFileNames("*");
+        //    App.imageList = new List<myImages>();
+        //    foreach (string dirfile in files)
+        //    {
+        //        if (dirfile.ToString() != "SetSource.ini")
+        //            App.imageList.Add(new myImages(dirfile.ToString(), false));
+        //    }
+        //}
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
@@ -365,6 +349,16 @@ namespace AutoChangeLockScreen
             mkpSearch.SearchTerms = "trunglt";
 
             mkpSearch.Show();
+        }
+
+        private void BuyAppButton_Click(object sender, EventArgs e)
+        {
+            MarketplaceDetailTask marketplaceDetailTask = new MarketplaceDetailTask();
+
+            marketplaceDetailTask.ContentIdentifier = "ee8e9449-61b1-4049-9ca4-5407995234ab";
+            marketplaceDetailTask.ContentType = MarketplaceContentType.Applications;
+
+            marketplaceDetailTask.Show();
         }
 
     }
