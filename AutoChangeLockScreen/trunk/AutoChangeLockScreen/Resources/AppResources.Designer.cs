@@ -350,7 +350,7 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I&apos;m a developer. Thanks so much for your supports. If you like this app, Rate it 5 star and recomment other to use it. If you have any suggestion, send it to lttrungbk@yahoo.com. Thanks!.
+        ///   Looks up a localized string similar to Thanks so much for your supports. If you like this app, Rate it 5 star and recomment other to use it. If you have any suggestion, send it to lttrungbk@yahoo.com. Thanks!.
         /// </summary>
         public static string IntroMySelf {
             get {

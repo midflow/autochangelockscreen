@@ -62,7 +62,7 @@ namespace AutoChangeLockScreen
             //App.imageList = new List<myImages>();
             foreach (string dirfile in files)
             {
-                if (dirfile.ToString() != "SetSource.ini")
+                if (dirfile.ToString().Substring(dirfile.Length-3,3) == "jpg")
                 {
                     list.Add(new DefaultImage(dirfile.ToString()));
                     //img. =new Uri(dirfile.ToString());

@@ -40,7 +40,8 @@ namespace AutoChangeLockScreen
                 App.imageList = new List<myImages>();
                 foreach (string dirfile in files)
                 {
-                    App.imageList.Add(new myImages("download/" + dirfile.ToString(), false));
+                    if (dirfile.ToString().Substring(dirfile.Length - 3, 3) == "jpg")
+                        App.imageList.Add(new myImages("download/" + dirfile.ToString(), false));
                 }
 
                 this.myList.ItemsSource = App.imageList;
@@ -50,7 +51,7 @@ namespace AutoChangeLockScreen
         }
         // Build a localized ApplicationBar
         private void BuildLocalizedApplicationBar()
-        {            
+        {
             ApplicationBar = new ApplicationBar();
             ApplicationBar.BackgroundColor = App.GetColorFromHexString("FF2648A2");
             ApplicationBar.Mode = ApplicationBarMode.Default;
@@ -240,7 +241,7 @@ namespace AutoChangeLockScreen
                 //App.imageList.Remove(img);
 
             }
-            //ClearSelectedPanel();
+            ClearSelectedPanel();
             LoadImages_Loaded(null, null);
         }
 

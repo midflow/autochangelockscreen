@@ -32,7 +32,7 @@ namespace AutoChangeLockScreen
         public MainPage()
         {
             InitializeComponent();
-            LoadImages_Loaded();
+            //LoadImages_Loaded();
             //AppTitle.Text = AutoChangeLockScreen.Resources.AppResources.ApplicationTitle;
             // Sample code to localize the ApplicationBar
             BuildLocalizedApplicationBar();

@@ -39,7 +39,7 @@ namespace AutoChangeLockScreen
             App.imageList = new List<myImages>();
             foreach (string dirfile in files)
             {
-                if (dirfile.ToString() != "SetSource.ini")
+                if (dirfile.ToString().Substring(dirfile.Length-3,3) == "jpg")
                     App.imageList.Add(new myImages(dirfile.ToString(), false));
             }
 
@@ -226,15 +226,15 @@ namespace AutoChangeLockScreen
                 myImages img = (myImages)list[i];
 
                 IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
-                if (storage.FileExists("download/" + img.ImageName))
+                if (storage.FileExists(img.ImageName))
                 {
-                    storage.DeleteFile("download/" + img.ImageName);
+                    storage.DeleteFile(img.ImageName);
                     //RenameImage("download/" + img.ImageName, list, i);
                 }
                 //App.imageList.Remove(img);
 
             }
-            //ClearSelectedPanel();
+            ClearSelectedPanel();
             LoadImages_Loaded(null, null);
         }
     }

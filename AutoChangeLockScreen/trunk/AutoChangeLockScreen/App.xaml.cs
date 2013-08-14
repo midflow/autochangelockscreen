@@ -133,10 +133,10 @@ namespace AutoChangeLockScreen
                 // debug, so run in every 30 secs
 
 
-#if(DEBUG_AGENT)
-        ScheduledActionService.LaunchForTest(periodicTaskName, TimeSpan.FromSeconds(10));
-        System.Diagnostics.Debug.WriteLine("Periodic task is started: " + periodicTaskName);
-#endif
+//#if(DEBUG_AGENT)
+//        ScheduledActionService.LaunchForTest(periodicTaskName, TimeSpan.FromSeconds(10));
+//        System.Diagnostics.Debug.WriteLine("Periodic task is started: " + periodicTaskName);
+//#endif
 
             }
             catch (InvalidOperationException exception)
@@ -183,7 +183,7 @@ namespace AutoChangeLockScreen
 
                     // Get the URI of the lock screen background image.
                     var currentImage = LockScreen.GetImageUri();
-                    System.Diagnostics.Debug.WriteLine("The new lock screen background image is set to {0}", currentImage.ToString());
+                    //System.Diagnostics.Debug.WriteLine("The new lock screen background image is set to {0}", currentImage.ToString());
                     MessageBox.Show(AppResources.LockScreenChanged);
                 }
                 else

@@ -17,7 +17,7 @@ namespace ScheduledTaskAgent1
 {
     public class ScheduledAgent : ScheduledTaskAgent
     {
-        public static string strPath = "Wallpapers/*";
+        public static string strPath = "Wallpaper/*";
         public static bool isAppResource = false;
         public static int NoImage = 0;
         public static string strSource = "";
@@ -44,7 +44,7 @@ namespace ScheduledTaskAgent1
                     switch (strSource)
                     {
                         case "Default":
-                            strPath = "Wallpapers/*";
+                            strPath = "wallpaper/*";
                             isAppResource = true;
                             break;
                         case "Your":
@@ -52,7 +52,8 @@ namespace ScheduledTaskAgent1
                             isAppResource = false;
                             break;
                         case "Rss":
-
+                            strPath = "download/*";
+                            isAppResource = false;
                             break;
                     }
                     //LoadImages_Loaded(strPath);
@@ -93,18 +94,15 @@ namespace ScheduledTaskAgent1
 
                 // If debugging is enabled, launch the agent again in one minute.
                 // debug, so run in every 30 secs
-#if(DEBUG_AGENT)
-                ScheduledActionService.LaunchForTest(task.Name, TimeSpan.FromSeconds(10));
-                System.Diagnostics.Debug.WriteLine("Periodic task is started again: " + task.Name);
-#endif
+                //#if(DEBUG_AGENT)
+                //                ScheduledActionService.LaunchForTest(task.Name, TimeSpan.FromSeconds(10));
+                //                System.Diagnostics.Debug.WriteLine("Periodic task is started again: " + task.Name);
+                //#endif
 
                 // Call NotifyComplete to let the system know the agent is done working.
                 NotifyComplete();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            finally { }       
         }
 
         private string GetNextImage(string currentImage)
@@ -171,7 +169,7 @@ namespace ScheduledTaskAgent1
 
                 // Get the URI of the lock screen background image.
                 var currentImage = LockScreen.GetImageUri();
-                System.Diagnostics.Debug.WriteLine("The new lock screen background image is set to {0}", currentImage.ToString());
+                //System.Diagnostics.Debug.WriteLine("The new lock screen background image is set to {0}", currentImage.ToString());
             }
         }
     }
