@@ -31,8 +31,8 @@ namespace AutoChangeLockScreen
 
         private void btnRate_Click(object sender, RoutedEventArgs e)
         {
-            MarketplaceReviewTask review = new MarketplaceReviewTask();
-            review.Show();
+            //MarketplaceReviewTask review = new MarketplaceReviewTask();
+            //review.Show();
         }
 
         private void btnSupport_Click(object sender, RoutedEventArgs e)

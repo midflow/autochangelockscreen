@@ -67,7 +67,7 @@ namespace AutoChangeLockScreen
             ApplicationBar.BackgroundColor = App.GetColorFromHexString("FF08317B");
             ApplicationBar.Mode = ApplicationBarMode.Default;
             ApplicationBar.Opacity = 0.5;
-            LocalizedButtonBar("/Assets/AppBar/favs.png", AppResources.Review, ReviewButton_Click);
+            //LocalizedButtonBar("/Assets/AppBar/favs.png", AppResources.Review, ReviewButton_Click);
             LocalizedButtonBar("/Assets/AppBar/appbar.questionmark.rest.png", AppResources.Help, HelpButton_Click);
             LocalizedButtonBar("/Assets/AppBar/appbar.status.rest.png", AppResources.About, AboutButton_Click);
             LocalizedButtonBar("/Assets/AppBar/folder.png", AppResources.MyApps, MyAppsButton_Click);            
@@ -341,8 +341,8 @@ namespace AutoChangeLockScreen
 
         private void ReviewButton_Click(object sender, EventArgs e)
         {
-            MarketplaceReviewTask review = new MarketplaceReviewTask();
-            review.Show();
+            //MarketplaceReviewTask review = new MarketplaceReviewTask();
+            //review.Show();
         }
         private void HelpButton_Click(object sender, EventArgs e)
         {
