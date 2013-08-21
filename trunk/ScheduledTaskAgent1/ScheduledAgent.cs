@@ -91,14 +91,7 @@ namespace ScheduledTaskAgent1
                 Imagename = GetNextImage(currentImage.ToString());
 
                 LockScreenChange(Imagename, isAppResource);
-
-                // If debugging is enabled, launch the agent again in one minute.
-                // debug, so run in every 30 secs
-                //#if(DEBUG_AGENT)
-                //                ScheduledActionService.LaunchForTest(task.Name, TimeSpan.FromSeconds(10));
-                //                System.Diagnostics.Debug.WriteLine("Periodic task is started again: " + task.Name);
-                //#endif
-
+               
                 // Call NotifyComplete to let the system know the agent is done working.
                 NotifyComplete();
             }

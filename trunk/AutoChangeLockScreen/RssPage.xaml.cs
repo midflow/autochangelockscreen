@@ -24,9 +24,9 @@ namespace AutoChangeLockScreen
 {
     public partial class RssPage : PhoneApplicationPage
     {
-        PeriodicTask periodicTask;
-        string periodicTaskName = "PeriodicAgent";
-        public bool agentsAreEnabled = true;
+        //PeriodicTask periodicTask;
+        //string periodicTaskName = "PeriodicAgent";
+        //public bool agentsAreEnabled = true;
 
         // Global count
         public int imageCount = 0;
@@ -142,121 +142,7 @@ namespace AutoChangeLockScreen
             }
         }
         #endregion
-
-        #region LockScreen Methods
-        private async void LockScreenChange(string filePathOfTheImage, bool isAppResource)
-        {
-            if (!LockScreenManager.IsProvidedByCurrentApplication)
-            {
-                // If you're not the provider, this call will prompt the user for permission.
-                // Calling RequestAccessAsync from a background agent is not allowed.
-                await LockScreenManager.RequestAccessAsync();
-            }
-
-            // Only do further work if the access is granted.
-            if (LockScreenManager.IsProvidedByCurrentApplication)
-            {
-                // At this stage, the app is the active lock screen background provider.
-                // The following code example shows the new URI schema.
-                // ms-appdata points to the root of the local app data folder.
-                // ms-appx points to the Local app install folder, to reference resources bundled in the XAP package
-                var schema = isAppResource ? "ms-appx:///" : "ms-appdata:///Local/";
-                var uri = new Uri(schema + filePathOfTheImage, UriKind.Absolute);
-
-                // Set the lock screen background image.
-                LockScreen.SetImageUri(uri);
-
-                // Get the URI of the lock screen background image.
-                var currentImage = LockScreen.GetImageUri();
-                System.Diagnostics.Debug.WriteLine("The new lock screen background image is set to {0}", currentImage.ToString());
-                MessageBox.Show("Lock screen changed. Click F12 or go to lock screen.");
-            }
-            else
-            {
-                MessageBox.Show("Background cant be updated as you clicked no!!");
-            }
-        }
-        private void StartPeriodicAgent()
-        {
-            // is old task running, remove it
-            periodicTask = ScheduledActionService.Find(periodicTaskName) as PeriodicTask;
-            if (periodicTask != null)
-            {
-                try
-                {
-                    ScheduledActionService.Remove(periodicTaskName);
-                }
-                catch (Exception)
-                {
-                }
-            }
-            // create a new task
-            periodicTask = new PeriodicTask(periodicTaskName);
-            // load description from localized strings
-            periodicTask.Description = "This is Lockscreen image provider app.";
-            // set expiration days
-            periodicTask.ExpirationTime = DateTime.Now.AddDays(14);
-            try
-            {
-                // add thas to scheduled action service
-                ScheduledActionService.Add(periodicTask);
-                // debug, so run in every 30 secs
-#if(DEBUG_AGENT)
-                ScheduledActionService.LaunchForTest(periodicTaskName, TimeSpan.FromSeconds(30));
-                System.Diagnostics.Debug.WriteLine("Periodic task is started: " + periodicTaskName);
-#endif
-
-            }
-            catch (InvalidOperationException exception)
-            {
-                if (exception.Message.Contains("BNS Error: The action is disabled"))
-                {
-                    // load error text from localized strings
-                    MessageBox.Show("Background agents for this application have been disabled by the user.");
-                }
-                if (exception.Message.Contains("BNS Error: The maximum number of ScheduledActions of this type have already been added."))
-                {
-                    // No user action required. The system prompts the user when the hard limit of periodic tasks has been reached.
-                }
-            }
-            catch (SchedulerServiceException)
-            {
-                // No user action required.
-            }
-        }
-        //private void ChangeLockscreen()
-        //{
-        //    try
-        //    {
-        //        var currentImage = LockScreen.GetImageUri();
-        //        string Imagename = string.Empty;
-
-        //        string imgCount = currentImage.ToString().Substring(currentImage.ToString().IndexOf('_') + 1, currentImage.ToString().Length - (currentImage.ToString().IndexOf('_') + 1)).Replace(".jpg", "");
-
-        //        if (imgCount != "24")
-        //            Imagename = "DownloadedWalleper_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
-        //        else
-        //            Imagename = "DownloadedWalleper_0.jpg";
-
-        //        LockScreenChange(Imagename, false);
-        //        BitmapImage Bit_Img = new BitmapImage();
-        //        using (IsolatedStorageFile ISF = IsolatedStorageFile.GetUserStoreForApplication())
-        //        {
-        //            using (IsolatedStorageFileStream FS = ISF.OpenFile(Imagename, FileMode.Open, FileAccess.Read))
-        //            {
-        //                Bit_Img.SetSource(FS);
-        //            }
-        //        }
-        //        this.DwldImg.Source = Bit_Img;
-        //        //DwldImg.Source = new BitmapImage(new Uri("ms-appdata:///Local/" + Imagename, UriKind.RelativeOrAbsolute));
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.ToString());
-        //    }
-        //}
-        #endregion
-
+       
         #region Methods
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

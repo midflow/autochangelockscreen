@@ -17,6 +17,7 @@ using AutoChangeLockScreen.Models;
 using Microsoft.Phone.Scheduler;
 using Windows.Phone.System.UserProfile;
 using System.Windows.Media;
+using Windows.ApplicationModel;
 
 namespace AutoChangeLockScreen
 {
@@ -77,7 +78,9 @@ namespace AutoChangeLockScreen
             {
                 case "Default":
                     LockScreenChange("wallpaper/Wallpaper_0.jpg", true);
-                    string path = Path.Combine(Environment.CurrentDirectory, "wallpaper");
+                    string folder = Package.Current.InstalledLocation.Path;
+                    string path = folder + "\\wallpaper";
+                    //string path = Path.Combine(Environment.CurrentDirectory, "wallpaper");
                     files = Directory.GetFiles(path);
                     NumberImage = files.Length;
                     break;
@@ -130,13 +133,6 @@ namespace AutoChangeLockScreen
             {
                 // add thas to scheduled action service
                 ScheduledActionService.Add(periodicTask);
-                // debug, so run in every 30 secs
-
-
-//#if(DEBUG_AGENT)
-//        ScheduledActionService.LaunchForTest(periodicTaskName, TimeSpan.FromSeconds(10));
-//        System.Diagnostics.Debug.WriteLine("Periodic task is started: " + periodicTaskName);
-//#endif
 
             }
             catch (InvalidOperationException exception)
@@ -228,7 +224,7 @@ namespace AutoChangeLockScreen
 
             return Color.FromArgb(a, r, g, b);
         }
-        
+
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
