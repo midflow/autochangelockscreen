@@ -33,6 +33,8 @@ namespace AutoChangeLockScreen
         }
         private void LoadImages_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
+            ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
+            aibStart.IsEnabled = false;
             IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
             if (isoStore.DirectoryExists("download"))
             {
@@ -45,7 +47,7 @@ namespace AutoChangeLockScreen
                 }
 
                 this.myList.ItemsSource = App.imageList;
-                ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
+                //ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
                 aibStart.IsEnabled = App.imageList.Count > 0 ? true : false;
             }
         }
@@ -82,7 +84,6 @@ namespace AutoChangeLockScreen
             appBarMenuItem.Click += function;
             ApplicationBar.MenuItems.Add(appBarMenuItem);
         }
-
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);

@@ -183,6 +183,7 @@
   <ItemGroup>
     <Content Include="AdsSettings.xml">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\ACWallpaper.png" />
     <Content Include="Assets\AppBar\add.png" />
@@ -214,7 +215,9 @@
     <Content Include="Assets\Tiles\IconicTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="defaultAdSettings.xml" />
+    <Resource Include="defaultAdSettings.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="P10009031.jpg" />
     <None Include="ReadMe-AdRotator-XAML.txt" />
     <Content Include="ReadMe.Coding4Fun.Toolkit.txt" />

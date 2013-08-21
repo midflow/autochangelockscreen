@@ -18,6 +18,7 @@ using Windows.Storage;
 using System.Windows.Media;
 using Microsoft.Expression.Interactivity.Core;
 using AutoChangeLockScreen.Resources;
+using Windows.ApplicationModel;
 
 
 namespace AutoChangeLockScreen
@@ -55,8 +56,13 @@ namespace AutoChangeLockScreen
 
         private void LoadImages_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
+            ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
+            aibStart.IsEnabled = false;
             //IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
-            string path = Path.Combine(Environment.CurrentDirectory, "wallpaper");
+            //string path = Path.Combine(Environment.CurrentDirectory, "wallpaper");
+
+            string folder = Package.Current.InstalledLocation.Path;
+            string path = folder + "\\wallpaper";
             string[] files = Directory.GetFiles(path);
             List<DefaultImage> list = new List<DefaultImage>();
             //App.imageList = new List<myImages>();
@@ -71,7 +77,7 @@ namespace AutoChangeLockScreen
             }
 
             this.myList.ItemsSource = list;
-            ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
+            
             aibStart.IsEnabled = list.Count > 0 ? true : false;
         }
 
