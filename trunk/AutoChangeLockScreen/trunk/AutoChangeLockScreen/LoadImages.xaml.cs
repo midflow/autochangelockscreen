@@ -34,6 +34,8 @@ namespace AutoChangeLockScreen
         }
         private void LoadImages_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
+            ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
+            aibStart.IsEnabled = false;
             IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
             string[] files = isoStore.GetFileNames("*");
             App.imageList = new List<myImages>();
@@ -44,7 +46,7 @@ namespace AutoChangeLockScreen
             }
 
             this.myList.ItemsSource = App.imageList;
-            ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
+            
             aibStart.IsEnabled = App.imageList.Count > 0 ? true : false;
         }
 

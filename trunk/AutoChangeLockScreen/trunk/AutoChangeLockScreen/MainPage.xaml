@@ -15,7 +15,7 @@
     shell:SystemTray.IsVisible="True" Opacity="0.9" BorderThickness="0">
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar BackgroundColor="#FF08317B" Mode="Default" Opacity="0.5">
-			<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/favs.png" Text="Review" Click="ReviewButton_Click"/>
+			<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/favs.png" Text="Review" IsEnabled="False" Click="ReviewButton_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.questionmark.rest.png" Text="Help" Click="HelpButton_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.status.rest.png" Text="About" Click="AboutButton_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/folder.png" Text="My Apps" Click="MyAppsButton_Click"/>

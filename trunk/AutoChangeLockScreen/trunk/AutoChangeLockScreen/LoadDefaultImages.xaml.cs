@@ -18,6 +18,7 @@ using Windows.Storage;
 using System.Windows.Media;
 using Microsoft.Expression.Interactivity.Core;
 using AutoChangeLockScreen.Resources;
+using Windows.ApplicationModel;
 
 
 namespace AutoChangeLockScreen
@@ -55,24 +56,34 @@ namespace AutoChangeLockScreen
 
         private void LoadImages_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            //IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
-            string path = Path.Combine(Environment.CurrentDirectory, "wallpaper");
-            string[] files = Directory.GetFiles(path);
-            List<DefaultImage> list = new List<DefaultImage>();
-            //App.imageList = new List<myImages>();
-            foreach (string dirfile in files)
+            try
             {
-                if (dirfile.ToString().Substring(dirfile.Length-3,3) == "jpg")
+                //IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
+                //string path = Path.Combine(Environment.CurrentDirectory, "wallpaper");
+                string folder = Package.Current.InstalledLocation.Path;
+                string path = folder + "\\wallpaper";
+                string[] files = Directory.GetFiles(path);
+                List<DefaultImage> list = new List<DefaultImage>();
+                //App.imageList = new List<myImages>();
+                foreach (string dirfile in files)
                 {
-                    list.Add(new DefaultImage(dirfile.ToString()));
-                    //img. =new Uri(dirfile.ToString());
-                    //this.myList.ItemsSource
+                    if (dirfile.ToString().Substring(dirfile.Length - 3, 3) == "jpg")
+                    {
+                        list.Add(new DefaultImage(dirfile.ToString()));
+                        //img. =new Uri(dirfile.ToString());
+                        //this.myList.ItemsSource
+                    }
                 }
-            }
 
-            this.myList.ItemsSource = list;
-            ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
-            aibStart.IsEnabled = list.Count > 0 ? true : false;
+                this.myList.ItemsSource = list;
+                ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
+                aibStart.IsEnabled = list.Count > 0 ? true : false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+           
         }
 
         private void btnStart_Click(object sender, EventArgs e)
