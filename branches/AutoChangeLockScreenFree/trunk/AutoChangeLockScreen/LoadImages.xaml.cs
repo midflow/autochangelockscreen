@@ -45,6 +45,8 @@ namespace AutoChangeLockScreen
 
             this.myList.ItemsSource = App.imageList;
             ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
+            ApplicationBarMenuItem aibDeleteAll = (ApplicationBarMenuItem)ApplicationBar.MenuItems[0];
+            aibDeleteAll.IsEnabled = App.imageList.Count > 0 ? true : false;
             aibStart.IsEnabled = App.imageList.Count > 0 ? true : false;
         }
 
@@ -56,11 +58,11 @@ namespace AutoChangeLockScreen
             ApplicationBar.Opacity = 0.8;
 
             LocalizedButtonBar("/Assets/AppBar/transport.play.png", AppResources.Start, btnStart_Click);
-            LocalizedButtonBar("/Assets/AppBar/add.png", AppResources.Start, btnAdd_Click);
-            LocalizedButtonBar("/Assets/AppBar/minus.png", AppResources.Start, btnMinus_Click);
+            LocalizedButtonBar("/Assets/AppBar/add.png", AppResources.Add, btnAdd_Click);
+            LocalizedButtonBar("/Assets/AppBar/minus.png", AppResources.Delete, btnMinus_Click);
 
             LocalizedMenuBar(AppResources.DeleteAll, btnDeleteAll_Click);
-            LocalizedMenuBar(AppResources.Delete, btnMinus_Click);
+            //LocalizedMenuBar(AppResources.Delete, btnMinus_Click);
         }
         private void LocalizedButtonBar(string imgpath, string text, EventHandler function)
         {
@@ -132,23 +134,25 @@ namespace AutoChangeLockScreen
         private void btnMinus_Click(object sender, EventArgs e)
         {
             var list = myList.ItemsSource;
-
-            for (int i = 0; i < list.Count; i++)
+            if (list != null && list.Count > 0)
             {
-                myImages img = (myImages)list[i];
-                if (img.ImageSeclected)
+                for (int i = 0; i < list.Count; i++)
                 {
-                    IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
-                    if (storage.FileExists(img.ImageName))
+                    myImages img = (myImages)list[i];
+                    if (img.ImageSeclected)
                     {
-                        storage.DeleteFile(img.ImageName);
-                        RenameImage(img.ImageName, list, i);
+                        IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
+                        if (storage.FileExists(img.ImageName))
+                        {
+                            storage.DeleteFile(img.ImageName);
+                            RenameImage(img.ImageName, list, i);
+                        }
+                        //App.imageList.Remove(img);
                     }
-                    //App.imageList.Remove(img);
                 }
+                ClearSelectedPanel();
+                LoadImages_Loaded(null, null);
             }
-            ClearSelectedPanel();
-            LoadImages_Loaded(null, null);
         }
 
         private void RenameImage(string p, System.Collections.IList list, int j)
@@ -220,22 +224,24 @@ namespace AutoChangeLockScreen
         private void btnDeleteAll_Click(object sender, EventArgs e)
         {
             var list = myList.ItemsSource;
-
-            for (int i = 0; i < list.Count; i++)
+            if (list != null && list.Count > 0)
             {
-                myImages img = (myImages)list[i];
-
-                IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
-                if (storage.FileExists(img.ImageName))
+                for (int i = 0; i < list.Count; i++)
                 {
-                    storage.DeleteFile(img.ImageName);
-                    //RenameImage("download/" + img.ImageName, list, i);
-                }
-                //App.imageList.Remove(img);
+                    myImages img = (myImages)list[i];
 
+                    IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
+                    if (storage.FileExists(img.ImageName))
+                    {
+                        storage.DeleteFile(img.ImageName);
+                        //RenameImage("download/" + img.ImageName, list, i);
+                    }
+                    //App.imageList.Remove(img);
+
+                }
+                ClearSelectedPanel();
+                LoadImages_Loaded(null, null);
             }
-            ClearSelectedPanel();
-            LoadImages_Loaded(null, null);
         }
     }
 }

@@ -53,45 +53,44 @@ namespace AutoChangeLockScreen
             appBarButton.Click += btnStart_Click;
             ApplicationBar.Buttons.Add(appBarButton);
         }
-
         private void LoadImages_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
-            aibStart.IsEnabled = false;
-            //IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
-            //string path = Path.Combine(Environment.CurrentDirectory, "wallpaper");
-
-            string folder = Package.Current.InstalledLocation.Path;
-            string path = folder + "\\wallpaper";
-            string[] files = Directory.GetFiles(path);
-            List<DefaultImage> list = new List<DefaultImage>();
-            //App.imageList = new List<myImages>();
-            foreach (string dirfile in files)
+            try
             {
-                if (dirfile.ToString().Substring(dirfile.Length - 3, 3) == "jpg")
+                ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
+                aibStart.IsEnabled = false;
+                //IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
+                //string path = Path.Combine(Environment.CurrentDirectory, "wallpaper");
+
+                string[] files = new string[] { "wallpaper/Wallpaper_0.jpg", "wallpaper/Wallpaper_1.jpg", "wallpaper/Wallpaper_2.jpg", "wallpaper/Wallpaper_3.jpg", 
+                    "wallpaper/Wallpaper_4.jpg","wallpaper/Wallpaper_5.jpg","wallpaper/Wallpaper_6.jpg","wallpaper/Wallpaper_7.jpg","wallpaper/Wallpaper_8.jpg",
+                "wallpaper/Wallpaper_9.jpg","wallpaper/Wallpaper_10.jpg"}; ;
+                List<DefaultImage> list = new List<DefaultImage>();
+                //App.imageList = new List<myImages>();
+                foreach (string dirfile in files)
                 {
                     list.Add(new DefaultImage(dirfile.ToString()));
-                    //img. =new Uri(dirfile.ToString());
-                    //this.myList.ItemsSource
                 }
+
+                this.myList.ItemsSource = list;
+
+                aibStart.IsEnabled = list.Count > 0 ? true : false;
             }
-
-            this.myList.ItemsSource = list;
-            
-            aibStart.IsEnabled = list.Count > 0 ? true : false;
+            catch 
+            {
+                MessageBox.Show("Error on Load image");
+            }
         }
-
         private void btnStart_Click(object sender, EventArgs e)
         {
             App.isDefault = 0;
             App.StartAgent();
         }
-
     }
 
     public class DefaultImage
     {
-         public BitmapImage ImageBinary
+        public BitmapImage ImageBinary
         {
             get { return m_ImageBinary; }
             set { m_ImageBinary = value; }
@@ -101,31 +100,35 @@ namespace AutoChangeLockScreen
             get { return m_ImageName; }
             set { m_ImageName = value; }
         }
-
         public string ImageSize
         {
             get { return m_ImageSize; }
             set { m_ImageSize = value; }
         }
-
-       
-
         private string m_ImageName;        
         private string m_ImageSize;
         private BitmapImage m_ImageBinary;
         public DefaultImage(string strImageName)
         {
-            this.ImageName = strImageName.Split('\\')[6];           
-            //*** Image Binary ***'
-            BitmapImage image = new BitmapImage(new Uri(strImageName));
-            //IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
-            //string isoFilename = strImageName;
-            Stream stream = File.Open(strImageName, System.IO.FileMode.Open);
-            image.SetSource(stream);
-            this.ImageBinary = image;
-            //*** Image Size ***'
-            this.ImageSize = stream.Length + " Bytes";
-            stream.Close();
+            try
+            {
+                this.ImageName = strImageName.Split('/')[1];
+                //*** Image Binary ***'
+                var uri = new Uri("ms-appx:///" + strImageName, UriKind.Absolute);
+                BitmapImage image = new BitmapImage(uri);
+                //IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
+                //string isoFilename = strImageName;
+                Stream stream = File.Open(strImageName, System.IO.FileMode.Open);
+                image.SetSource(stream);
+                this.ImageBinary = image;
+                //*** Image Size ***'
+                this.ImageSize = stream.Length + " Bytes";
+                stream.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Error on Default image function");
+            }
         }      
     }
 }
