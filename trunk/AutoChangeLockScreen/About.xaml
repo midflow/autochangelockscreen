@@ -52,11 +52,11 @@
             <Button x:Name="btnMyApps" Content="{Binding LocalizedResources.MyApps, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="2" VerticalAlignment="Top"  Grid.RowSpan="3" Click="btnMyApps_Click" Height="72" Margin="0,60,0,0" />
             <TextBlock Grid.Column="0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding LocalizedResources.BirdYear, Source={StaticResource LocalizedStrings}}" />
             <HyperlinkButton Grid.Column="0" Grid.Row="3" Content="{Binding LocalizedResources.Email, Source={StaticResource LocalizedStrings}}" Click="hlbEmail_Click_1" HorizontalAlignment="Left"  />
-            <Button x:Name="btnRate" Content="{Binding LocalizedResources.RateIt, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="1" VerticalAlignment="Top" IsEnabled="False" Grid.RowSpan="2" Click="btnRate_Click" Height="72" />
+            <Button x:Name="btnRate" Content="{Binding LocalizedResources.RateIt, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="1" VerticalAlignment="Top" Grid.RowSpan="2" Click="btnRate_Click" Height="72" />
             <HyperlinkButton Grid.Column="0" Grid.Row="4"  Content="{Binding LocalizedResources.Blog, Source={StaticResource LocalizedStrings}}" Click="HyperlinkButton_Click_1" HorizontalAlignment="Left" />
             <HyperlinkButton Grid.Column="1" Grid.Row="4"  Content="{Binding LocalizedResources.myfacebook, Source={StaticResource LocalizedStrings}}" Click="HyperlinkButton_Click"  HorizontalAlignment="Left" Margin="0,1,0,75" Grid.RowSpan="2"/>
 
-            <Button x:Name="btnBuy" Content="{Binding LocalizedResources.BuyApp, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Right" IsEnabled="False"  Grid.Row="1" VerticalAlignment="Top"  Grid.RowSpan="2" Click="btnBuy_Click" Height="72" Margin="0,68,97,0"  />
+            <Button x:Name="btnBuy" Content="{Binding LocalizedResources.BuyApp, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="1" VerticalAlignment="Top"  Grid.RowSpan="2" Click="btnBuy_Click" Height="72" Margin="0,68,10,0" />
             <SOMAWP8:SomaAdViewer  Grid.ColumnSpan="2" HorizontalAlignment="Left"  Grid.Row="5" Height="70"   VerticalAlignment="Bottom" Adspace="65812700" Pub="923870769"/>
         </Grid>
     </Grid>

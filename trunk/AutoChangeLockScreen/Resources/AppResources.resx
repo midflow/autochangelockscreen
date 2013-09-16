@@ -297,4 +297,7 @@
   <data name="YourPhotos" xml:space="preserve">
     <value>Your Photos</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
 </root>

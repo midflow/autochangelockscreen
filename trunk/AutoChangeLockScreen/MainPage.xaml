@@ -16,8 +16,8 @@
     shell:SystemTray.IsVisible="True" Opacity="0.9" BorderThickness="0">
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar BackgroundColor="#FF08317B" Mode="Default" Opacity="0.5">
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/favs.png" Text="Review" Click="ReviewButton_Click" IsEnabled="False"/>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.share.rest.png" Text="Buy" Click="BuyAppButton_Click" IsEnabled="False"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/favs.png" Text="Review" Click="ReviewButton_Click" />
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.share.rest.png" Text="Buy" Click="BuyAppButton_Click" />
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.questionmark.rest.png" Text="Help" Click="HelpButton_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.status.rest.png" Text="About" Click="AboutButton_Click"/>            
         </shell:ApplicationBar>
@@ -48,7 +48,7 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" >
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.ChooseSource, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" Foreground="#FF110505" FontWeight="Bold" FontFamily="Tahoma" FontSize="26.667" TextDecorations="Underline"/>
         </Grid>
-        <Button x:Name="btnDefault" Content="{Binding LocalizedResources.Default, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Bottom"  Foreground="#FFF9F9F9" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="1" Width="180" Background="#FF589DCD" BorderThickness="1" RenderTransformOrigin="0,0" Click="btnDefault_Click" />
+        <Button x:Name="btnDefault" IsEnabled="False" Content="{Binding LocalizedResources.Default, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Bottom"  Foreground="#FFF9F9F9" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="1" Width="180" Background="#FF589DCD" BorderThickness="1" RenderTransformOrigin="0,0" Click="btnDefault_Click" />
         <Button x:Name="btnYour" Content="{Binding LocalizedResources.YourPhotos, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="3" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnYour_Click"  />
         <Button x:Name="btnRSS" Content="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnRSS_Click" />
         <AdRotator:AdRotatorControl Name="adrotator" Height="70" Grid.Row="5"  Grid.ColumnSpan="2" VerticalAlignment="Stretch" DefaultSettingsFileUri="defaultAdSettings.xml"

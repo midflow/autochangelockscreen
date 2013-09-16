@@ -31,8 +31,8 @@ namespace AutoChangeLockScreen
 
         private void btnRate_Click(object sender, RoutedEventArgs e)
         {
-            //MarketplaceReviewTask review = new MarketplaceReviewTask();
-            //review.Show();
+            MarketplaceReviewTask review = new MarketplaceReviewTask();
+            review.Show();
         }
 
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
@@ -63,12 +63,12 @@ namespace AutoChangeLockScreen
 
         private void btnBuy_Click(object sender, RoutedEventArgs e)
         {
-            //MarketplaceDetailTask marketplaceDetailTask = new MarketplaceDetailTask();
+            MarketplaceDetailTask marketplaceDetailTask = new MarketplaceDetailTask();
 
-            //marketplaceDetailTask.ContentIdentifier = "ee8e9449-61b1-4049-9ca4-5407995234ab";
-            //marketplaceDetailTask.ContentType = MarketplaceContentType.Applications;
+            marketplaceDetailTask.ContentIdentifier = "ee8e9449-61b1-4049-9ca4-5407995234ab";
+            marketplaceDetailTask.ContentType = MarketplaceContentType.Applications;
 
-            //marketplaceDetailTask.Show();
+            marketplaceDetailTask.Show();
         }
     }
 }
