@@ -19,8 +19,13 @@
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/favs.png" Text="Review" Click="ReviewButton_Click" />
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.share.rest.png" Text="Buy" Click="BuyAppButton_Click" />
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.questionmark.rest.png" Text="Help" Click="HelpButton_Click"/>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.status.rest.png" Text="About" Click="AboutButton_Click"/>            
-        </shell:ApplicationBar>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.status.rest.png" Text="About" Click="AboutButton_Click"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem IsEnabled="True" Text="Share this" Click="ShareThis_Click"/>
+                <shell:ApplicationBarMenuItem IsEnabled="True" Text="SMS this" Click="SMSThis_Click" />
+                <shell:ApplicationBarMenuItem IsEnabled="True" Text="Email this" Click="EmailThis_Click"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>        
     </phone:PhoneApplicationPage.ApplicationBar>
     <Grid x:Name="LayoutRoot">
         <Grid.Background>

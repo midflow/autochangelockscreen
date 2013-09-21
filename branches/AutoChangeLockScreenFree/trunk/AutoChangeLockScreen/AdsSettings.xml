@@ -2,31 +2,31 @@
 <AdSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <CultureDescriptors>
 <AdCultureDescriptor CultureName="en-US">
-<Probabilities Probability="16" AdType="Smaato" AppID="65754722" SecondaryID="923855310"/>
-<Probabilities Probability="16" AdType="AdMob" AppID="a14e5b8669ef367"/>
+<Probabilities Probability="40" AdType="Smaato" AppID="65754722" SecondaryID="923855310"/>
+<Probabilities Probability="10" AdType="AdMob" AppID="a14e5b8669ef367"/>
 <Probabilities Probability="15" AdType="Inmobi" AppID="DavideCleopadre_ClockAlarmNightLight_WP7" />
 <Probabilities Probability="15" AdType="MobFox" AppID="1d59fb0a677336d8cd4cbd5c7c117f9d" IsTest="false"/>
-<Probabilities Probability="40" AdType="PubCenter" AppID="6e9635da-30c1-4c7d-8552-bb3d11884114" SecondaryID="134719" />
+<Probabilities Probability="20" AdType="PubCenter" AppID="6e9635da-30c1-4c7d-8552-bb3d11884114" SecondaryID="134719" />
 </AdCultureDescriptor>
 <AdCultureDescriptor CultureName="en-GB">
-<Probabilities Probability="20" AdType="Smaato" AppID="65754722" SecondaryID="923855310"/>
+<Probabilities Probability="30" AdType="Smaato" AppID="65754722" SecondaryID="923855310"/>
 <Probabilities Probability="10" AdType="InnerActive" AppID="DavideCleopadre_ClockAlarmNightLight_WP7" />
 <Probabilities Probability="10" AdType="MobFox" AppID="1d59fb0a677336d8cd4cbd5c7c117f9d" IsTest="false"/>
 <Probabilities Probability="10" AdType="Inmobi" AppID="2859"/>
-<Probabilities Probability="20" AdType="AdMob" AppID="a14e5b8669ef367"/>
+<Probabilities Probability="10" AdType="AdMob" AppID="a14e5b8669ef367"/>
 </AdCultureDescriptor>
 <AdCultureDescriptor CultureName="vi-VN">
-<Probabilities Probability="25" AdType="Smaato" AppID="65754722" SecondaryID="923855310"/>
+<Probabilities Probability="40" AdType="Smaato" AppID="65754722" SecondaryID="923855310"/>
 <Probabilities Probability="25" AdType="PubCenter" AppID="test_client" SecondaryID="Image480_80" />
 <Probabilities Probability="10" AdType="Inmobi" AppID="2859"/>
-<Probabilities Probability="25" AdType="AdMob" AppID="a14e5b8669ef367"/>
+<Probabilities Probability="10" AdType="AdMob" AppID="a14e5b8669ef367"/>
 </AdCultureDescriptor>
 <AdCultureDescriptor CultureName="default">
-<Probabilities Probability="16" AdType="Smaato" AppID="65754722" SecondaryID="923855310"/>
-<Probabilities Probability="16" AdType="AdMob" AppID="a14e5b8669ef367"/>
-<Probabilities Probability="16" AdType="Inmobi" AppID="DavideCleopadre_ClockAlarmNightLight_WP7" />
-<Probabilities Probability="16" AdType="MobFox" AppID="1d59fb0a677336d8cd4cbd5c7c117f9d" IsTest="false"/>
-<Probabilities Probability="16" AdType="PubCenter" AppID="test_client" SecondaryID="Image480_80" />
+<Probabilities Probability="40" AdType="Smaato" AppID="65754722" SecondaryID="923855310"/>
+<Probabilities Probability="10" AdType="AdMob" AppID="a14e5b8669ef367"/>
+<Probabilities Probability="20" AdType="Inmobi" AppID="DavideCleopadre_ClockAlarmNightLight_WP7" />
+<Probabilities Probability="10" AdType="MobFox" AppID="1d59fb0a677336d8cd4cbd5c7c117f9d" IsTest="false"/>
+<Probabilities Probability="10" AdType="PubCenter" AppID="test_client" SecondaryID="Image480_80" />
 </AdCultureDescriptor>
 </CultureDescriptors>
 </AdSettings>

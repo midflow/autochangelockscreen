@@ -304,4 +304,13 @@
   <data name="Add" xml:space="preserve">
     <value>Thêm</value>
   </data>
+  <data name="EmailThis" xml:space="preserve">
+    <value>Chia sẻ qua email</value>
+  </data>
+  <data name="ShareThis" xml:space="preserve">
+    <value>Chia sẻ ứng dụng</value>
+  </data>
+  <data name="SMSThis" xml:space="preserve">
+    <value>Chia sẻ qua SMS</value>
+  </data>
 </root>

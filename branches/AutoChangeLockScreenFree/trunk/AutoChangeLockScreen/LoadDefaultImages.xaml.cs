@@ -114,7 +114,8 @@ namespace AutoChangeLockScreen
             {
                 this.ImageName = strImageName.Split('/')[1];
                 //*** Image Binary ***'
-                var uri = new Uri("ms-appx:///" + strImageName, UriKind.Absolute);
+                //var uri = new Uri("ms-appx:///" + strImageName, UriKind.Absolute);
+                var uri = new Uri(strImageName, UriKind.Relative);
                 BitmapImage image = new BitmapImage(uri);
                 //IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
                 //string isoFilename = strImageName;

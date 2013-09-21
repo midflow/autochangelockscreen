@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:SOMAWP8="clr-namespace:SOMAWP8;assembly=SOMAWP8"
+    xmlns:AdRotator="clr-namespace:AdRotator;assembly=AdRotator"
     x:Class="AutoChangeLockScreen.About"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -57,7 +58,10 @@
             <HyperlinkButton Grid.Column="1" Grid.Row="4"  Content="{Binding LocalizedResources.myfacebook, Source={StaticResource LocalizedStrings}}" Click="HyperlinkButton_Click"  HorizontalAlignment="Left" Margin="0,1,0,75" Grid.RowSpan="2"/>
 
             <Button x:Name="btnBuy" Content="{Binding LocalizedResources.BuyApp, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="1" VerticalAlignment="Top"  Grid.RowSpan="2" Click="btnBuy_Click" Height="72" Margin="0,68,10,0" />
-            <SOMAWP8:SomaAdViewer  Grid.ColumnSpan="2" HorizontalAlignment="Left"  Grid.Row="5" Height="70"   VerticalAlignment="Bottom" Adspace="65812700" Pub="923870769"/>
+            <!--<SOMAWP8:SomaAdViewer  Grid.ColumnSpan="2" HorizontalAlignment="Left"  Grid.Row="5" Height="70"   VerticalAlignment="Bottom" Adspace="65812700" Pub="923870769"/>-->
+            <AdRotator:AdRotatorControl Name="adrotator" Height="70" Grid.Row="5"  Grid.ColumnSpan="2" VerticalAlignment="Stretch" DefaultSettingsFileUri="defaultAdSettings.xml"
+    SettingsUrl="http://www.dongnamtourist.com/defaultAdSettings.xml"
+    Margin="1" Background="#FF4F8DB9" Opacity="0.8" SmaatoAppId="65812700" SmaatoPublisherId="923870769" PubCenterAdUnitId="134719" PubCenterAppId="6e9635da-30c1-4c7d-8552-bb3d11884114" AdDuplexAppId="45179" InneractiveAppId="DNT_ACWallpaper_WP" />
         </Grid>
     </Grid>
 
