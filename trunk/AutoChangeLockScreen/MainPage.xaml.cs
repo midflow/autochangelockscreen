@@ -52,9 +52,13 @@ namespace AutoChangeLockScreen
             ApplicationBar.Mode = ApplicationBarMode.Default;
             ApplicationBar.Opacity = 0.5;
             LocalizedButtonBar("/Assets/AppBar/favs.png", AppResources.Review, ReviewButton_Click);
-            LocalizedButtonBar("/Assets/AppBar/appbar.share.rest.png", AppResources.BuyApp, BuyAppButton_Click);  
+            LocalizedButtonBar("/Assets/AppBar/appbar.share.rest.png", AppResources.BuyApp, BuyAppButton_Click);
             LocalizedButtonBar("/Assets/AppBar/appbar.questionmark.rest.png", AppResources.Help, HelpButton_Click);
-            LocalizedButtonBar("/Assets/AppBar/appbar.status.rest.png", AppResources.About, AboutButton_Click);                      
+            LocalizedButtonBar("/Assets/AppBar/appbar.status.rest.png", AppResources.About, AboutButton_Click);
+
+            LocalizedMenuBar(AppResources.ShareThis, ShareThis_Click);
+            LocalizedMenuBar(AppResources.SMSThis, SMSThis_Click);
+            LocalizedMenuBar(AppResources.EmailThis, EmailThis_Click);
         }
 
         protected static Color GetColorFromHexString(string s)
@@ -88,7 +92,7 @@ namespace AutoChangeLockScreen
 
             return Color.FromArgb(a, r, g, b);
         }
-      
+
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -97,12 +101,9 @@ namespace AutoChangeLockScreen
                 this.NavigationService.RemoveBackEntry();
             }
         }
-
         private void LocalizedButtonBar(string imgpath, string text, EventHandler function)
         {
             // Set the page's ApplicationBar to a new instance of ApplicationBar.
-
-
             // Create a new button and set the text value to the localized string from AppResources.
             ApplicationBarIconButton appBarButton =
                 new ApplicationBarIconButton(new
@@ -118,15 +119,13 @@ namespace AutoChangeLockScreen
                 NavigationService.Navigate(new Uri("/LoadDefaultImages.xaml", UriKind.Relative));
             });
         }
-
         private void btnYour_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             Dispatcher.BeginInvoke(() =>
             {
                 NavigationService.Navigate(new Uri("/LoadImages.xaml", UriKind.Relative));
             });
         }
-
         private void btnRSS_Click(object sender, RoutedEventArgs e)
         {
             Dispatcher.BeginInvoke(() =>
@@ -134,7 +133,14 @@ namespace AutoChangeLockScreen
                 NavigationService.Navigate(new Uri("/LoadRssImages.xaml", UriKind.Relative));
             });
         }
-
+        private void LocalizedMenuBar(string text, EventHandler function)
+        {
+            // Create a new menu item with the localized string from AppResources.
+            ApplicationBarMenuItem appBarMenuItem =
+                new ApplicationBarMenuItem(text);
+            appBarMenuItem.Click += function;
+            ApplicationBar.MenuItems.Add(appBarMenuItem);
+        }
         private void ReviewButton_Click(object sender, EventArgs e)
         {
             MarketplaceReviewTask review = new MarketplaceReviewTask();
@@ -162,7 +168,6 @@ namespace AutoChangeLockScreen
 
             mkpSearch.Show();
         }
-
         private void BuyAppButton_Click(object sender, EventArgs e)
         {
             MarketplaceDetailTask marketplaceDetailTask = new MarketplaceDetailTask();
@@ -171,6 +176,30 @@ namespace AutoChangeLockScreen
             marketplaceDetailTask.ContentType = MarketplaceContentType.Applications;
 
             marketplaceDetailTask.Show();
+        }
+        private void ShareThis_Click(object sender, EventArgs e)
+        {
+            ShareLinkTask shareLinkTask = new ShareLinkTask();
+
+            shareLinkTask.Title = "Auto change wallpaper";
+            shareLinkTask.LinkUri = new Uri("http://www.windowsphone.com/en-us/store/app/ac-wallpaper-free/7cf1bb63-69f0-4280-9484-f09c8586f4ca", UriKind.Absolute);
+            shareLinkTask.Message = "Here are a nice app to set dynamic wallpaper for Windows Phone.";
+
+            shareLinkTask.Show();
+        }
+        private void SMSThis_Click(object sender, EventArgs e)
+        {
+            SmsComposeTask smsComposeTask = new SmsComposeTask();
+            smsComposeTask.Body = "Here are a nice app to set dynamic wallpaper for Windows Phone. Click for detail: http://www.windowsphone.com/en-us/store/app/ac-wallpaper-free/7cf1bb63-69f0-4280-9484-f09c8586f4ca";
+            smsComposeTask.Show();
+        }
+        private void EmailThis_Click(object sender, EventArgs e)
+        {
+            EmailComposeTask emailtask = new EmailComposeTask();
+            emailtask.Subject = "Pin your image to home screen";
+            emailtask.Body = "Here are a nice app to set dynamic wallpaper for Windows Phone. Click for detail: http://www.windowsphone.com/en-us/store/app/ac-wallpaper-free/7cf1bb63-69f0-4280-9484-f09c8586f4ca";
+            emailtask.Bcc = "lttrungbk@yahoo.com";
+            emailtask.Show();
         }
 
     }
