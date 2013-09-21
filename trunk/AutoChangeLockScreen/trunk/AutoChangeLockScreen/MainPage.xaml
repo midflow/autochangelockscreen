@@ -19,6 +19,11 @@
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.questionmark.rest.png" Text="Help" Click="HelpButton_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.status.rest.png" Text="About" Click="AboutButton_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/folder.png" Text="My Apps" Click="MyAppsButton_Click"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem IsEnabled="True" Text="Share this" Click="ShareThis_Click"/>
+                <shell:ApplicationBarMenuItem IsEnabled="True" Text="SMS this" Click="SMSThis_Click" />
+                <shell:ApplicationBarMenuItem IsEnabled="True" Text="Email this" Click="EmailThis_Click"/>
+            </shell:ApplicationBar.MenuItems>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
     <!--<phone:PhoneApplicationPage.ApplicationBar>

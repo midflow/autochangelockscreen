@@ -88,6 +88,15 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add.
         /// </summary>
         public static string AppBarButtonText {
@@ -250,6 +259,15 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email this.
+        /// </summary>
+        public static string EmailThis {
+            get {
+                return ResourceManager.GetString("EmailThis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string Error {
@@ -350,7 +368,7 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thanks so much for your supports. If you like this app, Rate it 5 star and recomment other to use it. If you have any suggestion, send it to lttrungbk@yahoo.com. Thanks!.
+        ///   Looks up a localized string similar to Thanks so much for your supports. If you like this app, Rate it 5 stars and recomment other to use it. If you have any suggestion, send it to lttrungbk@yahoo.com. Thanks!.
         /// </summary>
         public static string IntroMySelf {
             get {
@@ -530,11 +548,29 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Share this.
+        /// </summary>
+        public static string ShareThis {
+            get {
+                return ResourceManager.GetString("ShareThis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show Images.
         /// </summary>
         public static string ShowImages {
             get {
                 return ResourceManager.GetString("ShowImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SMS this.
+        /// </summary>
+        public static string SMSThis {
+            get {
+                return ResourceManager.GetString("SMSThis", resourceCulture);
             }
         }
         

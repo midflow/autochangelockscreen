@@ -37,6 +37,12 @@ namespace AutoChangeLockScreen.Models
             set { m_ImageSeclected = value; }
         }
 
+        public bool IsContextMenu
+        {
+            get { return m_IsContextMenu; }
+            set { m_IsContextMenu = value; }
+        }
+        private bool m_IsContextMenu;
         private string m_ImageName;
         private bool m_ImageSeclected;
         private string m_ImageSize;

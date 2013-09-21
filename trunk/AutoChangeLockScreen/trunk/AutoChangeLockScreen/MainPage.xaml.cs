@@ -67,12 +67,23 @@ namespace AutoChangeLockScreen
             ApplicationBar.BackgroundColor = App.GetColorFromHexString("FF08317B");
             ApplicationBar.Mode = ApplicationBarMode.Default;
             ApplicationBar.Opacity = 0.5;
-            //LocalizedButtonBar("/Assets/AppBar/favs.png", AppResources.Review, ReviewButton_Click);
+            LocalizedButtonBar("/Assets/AppBar/favs.png", AppResources.Review, ReviewButton_Click);
             LocalizedButtonBar("/Assets/AppBar/appbar.questionmark.rest.png", AppResources.Help, HelpButton_Click);
             LocalizedButtonBar("/Assets/AppBar/appbar.status.rest.png", AppResources.About, AboutButton_Click);
-            LocalizedButtonBar("/Assets/AppBar/folder.png", AppResources.MyApps, MyAppsButton_Click);            
-        }
+            LocalizedButtonBar("/Assets/AppBar/folder.png", AppResources.MyApps, MyAppsButton_Click);
 
+            LocalizedMenuBar(AppResources.ShareThis, ShareThis_Click);
+            LocalizedMenuBar(AppResources.SMSThis, SMSThis_Click);
+            LocalizedMenuBar(AppResources.EmailThis, EmailThis_Click);
+        }
+        private void LocalizedMenuBar(string text, EventHandler function)
+        {
+            // Create a new menu item with the localized string from AppResources.
+            ApplicationBarMenuItem appBarMenuItem =
+                new ApplicationBarMenuItem(text);
+            appBarMenuItem.Click += function;
+            ApplicationBar.MenuItems.Add(appBarMenuItem);
+        }
         protected static Color GetColorFromHexString(string s)
         {
             // remove artifacts
@@ -341,8 +352,8 @@ namespace AutoChangeLockScreen
 
         private void ReviewButton_Click(object sender, EventArgs e)
         {
-            //MarketplaceReviewTask review = new MarketplaceReviewTask();
-            //review.Show();
+            MarketplaceReviewTask review = new MarketplaceReviewTask();
+            review.Show();
         }
         private void HelpButton_Click(object sender, EventArgs e)
         {
@@ -365,6 +376,30 @@ namespace AutoChangeLockScreen
             mkpSearch.SearchTerms = "trunglt";
 
             mkpSearch.Show();
+        }
+        private void ShareThis_Click(object sender, EventArgs e)
+        {
+            ShareLinkTask shareLinkTask = new ShareLinkTask();
+
+            shareLinkTask.Title = "Auto change wallpaper";
+            shareLinkTask.LinkUri = new Uri("http://www.windowsphone.com/en-us/store/app/ac-wallpaper-free/7cf1bb63-69f0-4280-9484-f09c8586f4ca", UriKind.Absolute);
+            shareLinkTask.Message = "Here are a nice app to set dynamic wallpaper for Windows Phone.";
+
+            shareLinkTask.Show();
+        }
+        private void SMSThis_Click(object sender, EventArgs e)
+        {
+            SmsComposeTask smsComposeTask = new SmsComposeTask();
+            smsComposeTask.Body = "Here are a nice app to set dynamic wallpaper for Windows Phone. Click for detail: http://www.windowsphone.com/en-us/store/app/ac-wallpaper-free/7cf1bb63-69f0-4280-9484-f09c8586f4ca";
+            smsComposeTask.Show();
+        }
+        private void EmailThis_Click(object sender, EventArgs e)
+        {
+            EmailComposeTask emailtask = new EmailComposeTask();
+            emailtask.Subject = "Pin your image to home screen";
+            emailtask.Body = "Here are a nice app to set dynamic wallpaper for Windows Phone. Click for detail: http://www.windowsphone.com/en-us/store/app/ac-wallpaper-free/7cf1bb63-69f0-4280-9484-f09c8586f4ca";
+            emailtask.Bcc = "lttrungbk@yahoo.com";
+            emailtask.Show();
         }
 
     }

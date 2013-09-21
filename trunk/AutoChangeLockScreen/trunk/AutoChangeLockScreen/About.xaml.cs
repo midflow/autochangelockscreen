@@ -31,19 +31,19 @@ namespace AutoChangeLockScreen
 
         private void btnRate_Click(object sender, RoutedEventArgs e)
         {
-            //MarketplaceReviewTask review = new MarketplaceReviewTask();
-            //review.Show();
+            MarketplaceReviewTask review = new MarketplaceReviewTask();
+            review.Show();
         }
 
-        private void btnSupport_Click(object sender, RoutedEventArgs e)
-        {
-            MarketplaceDetailTask marketplaceDetailTask = new MarketplaceDetailTask();
+        //private void btnSupport_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MarketplaceDetailTask marketplaceDetailTask = new MarketplaceDetailTask();
 
-            marketplaceDetailTask.ContentIdentifier = "c743bdf5-620a-42ef-a493-4793aa400668";
-            marketplaceDetailTask.ContentType = MarketplaceContentType.Applications;
+        //    marketplaceDetailTask.ContentIdentifier = "c743bdf5-620a-42ef-a493-4793aa400668";
+        //    marketplaceDetailTask.ContentType = MarketplaceContentType.Applications;
 
-            marketplaceDetailTask.Show();
-        }
+        //    marketplaceDetailTask.Show();
+        //}
 
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {

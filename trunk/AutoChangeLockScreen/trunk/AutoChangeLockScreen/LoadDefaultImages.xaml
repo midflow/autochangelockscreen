@@ -56,10 +56,14 @@
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <StackPanel x:Name="stackPanel" Orientation="Horizontal" Margin="0,0,0,17">                       	                            
-                            <Image Height="150" Width="150" Source="{Binding ImageBinary}" Margin="12,0,9,0"/>
+                            <Image Height="150" Width="150"  Margin="12,0,9,0">
+                                <Image.Source>
+                                    <BitmapImage UriSource="{Binding ImageSource}" CreateOptions="BackgroundCreation"/>
+                                </Image.Source>
+                            </Image>
                             <Grid Width="311">
                                 <TextBlock Text="{Binding ImageName}"  TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="26.667" Margin="12,0,12,76"/>
-                                <TextBlock Text="{Binding ImageSize}" TextWrapping="Wrap" Margin="12,79,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="18.667"/>
+                                <!--<TextBlock Text="{Binding ImageSize}" TextWrapping="Wrap" Margin="12,79,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="18.667"/>-->
                             </Grid>
                         </StackPanel>
                     </DataTemplate>
