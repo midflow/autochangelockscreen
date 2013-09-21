@@ -59,29 +59,28 @@ namespace AutoChangeLockScreen
             try
             {
                 //IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
+                //string path = "ms-appx:///Wallpaper";
                 //string path = Path.Combine(Environment.CurrentDirectory, "wallpaper");
-                string folder = Package.Current.InstalledLocation.Path;
-                string path = folder + "\\wallpaper";
-                string[] files = Directory.GetFiles(path);
+                //string folder = Package.Current.InstalledLocation.Path;
+                //string path = folder + "\\wallpaper";                                
+
+                string[] files = new string[] { "wallpaper/Wallpaper_0.jpg", "wallpaper/Wallpaper_1.jpg", "wallpaper/Wallpaper_2.jpg", "wallpaper/Wallpaper_3.jpg", 
+                    "wallpaper/Wallpaper_4.jpg","wallpaper/Wallpaper_5.jpg","wallpaper/Wallpaper_6.jpg","wallpaper/Wallpaper_7.jpg","wallpaper/Wallpaper_8.jpg",
+                "wallpaper/Wallpaper_9.jpg","wallpaper/Wallpaper_10.jpg"}; 
                 List<DefaultImage> list = new List<DefaultImage>();
                 //App.imageList = new List<myImages>();
                 foreach (string dirfile in files)
                 {
-                    if (dirfile.ToString().Substring(dirfile.Length - 3, 3) == "jpg")
-                    {
-                        list.Add(new DefaultImage(dirfile.ToString()));
-                        //img. =new Uri(dirfile.ToString());
-                        //this.myList.ItemsSource
-                    }
+                   list.Add(new DefaultImage(dirfile.ToString()));                     
                 }
 
                 this.myList.ItemsSource = list;
                 ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
                 aibStart.IsEnabled = list.Count > 0 ? true : false;
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Error on load image");
             }
            
         }
@@ -96,41 +95,48 @@ namespace AutoChangeLockScreen
 
     public class DefaultImage
     {
-         public BitmapImage ImageBinary
-        {
-            get { return m_ImageBinary; }
-            set { m_ImageBinary = value; }
-        }
+        // public BitmapImage ImageBinary
+        //{
+        //    get { return m_ImageBinary; }
+        //    set { m_ImageBinary = value; }
+        //}
         public string ImageName
         {
             get { return m_ImageName; }
             set { m_ImageName = value; }
         }
-
+        public Uri ImageSource { get; set; }
         public string ImageSize
         {
             get { return m_ImageSize; }
             set { m_ImageSize = value; }
-        }
-
-       
+        }  
 
         private string m_ImageName;        
         private string m_ImageSize;
-        private BitmapImage m_ImageBinary;
+        //private BitmapImage m_ImageBinary;
         public DefaultImage(string strImageName)
         {
-            this.ImageName = strImageName.Split('\\')[6];           
-            //*** Image Binary ***'
-            BitmapImage image = new BitmapImage(new Uri(strImageName));
-            //IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
-            //string isoFilename = strImageName;
-            Stream stream = File.Open(strImageName, System.IO.FileMode.Open);
-            image.SetSource(stream);
-            this.ImageBinary = image;
-            //*** Image Size ***'
-            this.ImageSize = stream.Length + " Bytes";
-            stream.Close();
+            try
+            {
+                this.ImageName = strImageName.Split('/')[1];
+                this.ImageSource = new Uri(strImageName, UriKind.Relative);
+                //*** Image Binary ***'
+                //var uri = new Uri("ms-appx:///" + strImageName, UriKind.Absolute);
+                //BitmapImage image = new BitmapImage(uri);
+                ////IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
+                ////string isoFilename = strImageName;
+                //Stream stream = File.Open(strImageName, System.IO.FileMode.Open);
+                //image.SetSource(stream);
+                //this.ImageBinary = image;
+                //*** Image Size ***'
+                //this.ImageSize = stream.Length + " Bytes";
+                //stream.Close();
+            }
+            catch 
+            {
+                MessageBox.Show("Error on new default image function");
+            }
         }      
     }
 }

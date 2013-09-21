@@ -227,7 +227,7 @@
     <value>Interval time</value>
   </data>
   <data name="IntroMySelf" xml:space="preserve">
-    <value>Thanks so much for your supports. If you like this app, Rate it 5 star and recomment other to use it. If you have any suggestion, send it to lttrungbk@yahoo.com. Thanks!</value>
+    <value>Thanks so much for your supports. If you like this app, Rate it 5 stars and recomment other to use it. If you have any suggestion, send it to lttrungbk@yahoo.com. Thanks!</value>
   </data>
   <data name="LoadImages" xml:space="preserve">
     <value>Load Images</value>
@@ -296,5 +296,17 @@
   </data>
   <data name="YourPhotos" xml:space="preserve">
     <value>Your Photos</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="EmailThis" xml:space="preserve">
+    <value>Email this</value>
+  </data>
+  <data name="ShareThis" xml:space="preserve">
+    <value>Share this</value>
+  </data>
+  <data name="SMSThis" xml:space="preserve">
+    <value>SMS this</value>
   </data>
 </root>

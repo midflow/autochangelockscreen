@@ -5,7 +5,7 @@
     <Language code="vi" />
     <Language code="vi-VN" />
   </Languages>
-  <App xmlns="" ProductID="{9e210bba-9a80-4f2c-9601-d3f926d160ac}" Title="AC Wallpaper" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="trunglt" Description="Sample description" Publisher="trunglt" PublisherID="{cde9748e-d1f2-4067-b8cc-f4e0d758d2fd}">
+  <App xmlns="" ProductID="{ee8e9449-61b1-4049-9ca4-5407995234ab}" Title="Auto Wallpaper" RuntimeType="Silverlight" Version="1.0.0.1" Genre="apps.normal" Author="trunglt" Description="Sample description" Publisher="trunglt" PublisherID="{cde9748e-d1f2-4067-b8cc-f4e0d758d2fd}">
     <IconPath IsRelative="true" IsResource="false">Assets\ACWallpaper.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -17,7 +17,7 @@
       <Capability Name="ID_CAP_ISV_CAMERA" />
     </Capabilities>
     <Tasks>
-      <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
+      <DefaultTask Name="_default" NavigationPage="MainPage.xaml"  ActivationPolicy="Resume" />
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="AutoChangeLockScreenToken" TaskName="_default">

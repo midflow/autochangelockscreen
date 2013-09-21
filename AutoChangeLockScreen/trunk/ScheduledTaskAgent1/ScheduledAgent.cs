@@ -113,19 +113,19 @@ namespace ScheduledTaskAgent1
             switch (strSource)
             {
                 case "Default":
-                    if (imgCount != NoImage.ToString())
+                    if (imgCount != (NoImage - 1).ToString())
                         Imagename = "wallpaper/Wallpaper_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
                     else
                         Imagename = "wallpaper/Wallpaper_0.jpg";
                     break;
                 case "Your":
-                    if (imgCount != NoImage.ToString())
+                    if (imgCount != (NoImage - 1).ToString())
                         Imagename = "image_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
                     else
                         Imagename = "image_0.jpg";
                     break;
                 case "Rss":
-                    if (imgCount != NoImage.ToString())
+                    if (imgCount != (NoImage - 1).ToString())
                         Imagename = "download/Wallpaper_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
                     else
                         Imagename = "download/Wallpaper_0.jpg";
