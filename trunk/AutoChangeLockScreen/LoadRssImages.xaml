@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModels="clr-namespace:AutoChangeLockScreen.ViewModels"
     xmlns:myUserControl="clr-namespace:AutoChangeLockScreen"
+    xmlns:Ad="clr-namespace:InMobi.WP.AdSDK;assembly=InMobiWPAdSDK"
     xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
     x:Class="AutoChangeLockScreen.LoadRssImages"
     mc:Ignorable="d"
@@ -62,8 +63,13 @@
             <TextBlock x:Name="PageTitle" Text="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <phone:LongListSelector Margin="0,0,-12,0" x:Name="myList" SelectionChanged="myList_SelectionChanged">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="142"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer Grid.Row="0" >
+                <phone:LongListSelector Margin="0,0,-12,73" x:Name="myList" SelectionChanged="myList_SelectionChanged">
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <StackPanel x:Name="stackPanel" Orientation="Horizontal" Margin="0,0,0,17">
@@ -94,8 +100,15 @@
                         </StackPanel>
                     </DataTemplate>
                 </phone:LongListSelector.ItemTemplate>
-            </phone:LongListSelector>
+                </phone:LongListSelector>
+            </ScrollViewer>
+            <Ad:IMAdView Grid.Row="1"
+                            Name="AdView"                            
+                            AdSize="15"                            
+                            AppId="7e6443a7bbbd4d5ab17a079ce12a8edb"                            Height="70" Width="auto" VerticalAlignment="Top">
+            </Ad:IMAdView>
         </Grid>
+ 
     </Grid>
 
 </phone:PhoneApplicationPage>

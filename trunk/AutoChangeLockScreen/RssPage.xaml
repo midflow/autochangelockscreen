@@ -29,6 +29,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="142"/>
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0,14,0,4">
@@ -62,10 +63,10 @@
             <TextBlock HorizontalAlignment="Left" Margin="10,160,0,0" TextWrapping="Wrap" Text="{Binding LocalizedResources.NumberOfImages,Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top"/>
         </Grid>
         <Button Name="btnFinished" Content="{Binding LocalizedResources.Finished,Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Margin="320,244,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" Width="148" Click="btnFinished_Click"/>
-        <AdSDK:IMAdView Grid.Row="1"
+        <AdSDK:IMAdView Grid.Row="2"
                             Name="AdView"                            
                             AdSize="15"                            
-                            AppId="7e6443a7bbbd4d5ab17a079ce12a8edb"                            Height="70" Width="480" VerticalAlignment="Bottom">
+                            AppId="7e6443a7bbbd4d5ab17a079ce12a8edb"                            Height="70" Width="480" VerticalAlignment="Top">
             </AdSDK:IMAdView>
     </Grid>
 

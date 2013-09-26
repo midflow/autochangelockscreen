@@ -4,19 +4,19 @@
     <AdCultureDescriptor CultureName="en-US">
       <Probabilities Probability="40" AdType="Smaato" AppID="65812700" SecondaryID="923870769"/>
       <Probabilities Probability="10" AdType="PubCenter" AppID="6e9635da-30c1-4c7d-8552-bb3d11884114" SecondaryID="134719" />      
-      <Probabilities Probability="20" AdType="AdDuplex" AppID="45179"/>            
+      <Probabilities Probability="20" AdType="AdDuplex" AppID="45659"/>            
       <Probabilities Probability="20" AdType="InnerActive" AppID="DNT_ACWallpaper_WP" />
     </AdCultureDescriptor>
     <AdCultureDescriptor CultureName="vi-VN">
       <Probabilities Probability="40" AdType="Smaato"  AppID="65812700" SecondaryID="923870769"/>
       <Probabilities Probability="10" AdType="PubCenter" AppID="6e9635da-30c1-4c7d-8552-bb3d11884114" SecondaryID="134719" />
-      <Probabilities Probability="20" AdType="AdDuplex" AppID="45179"/>          
+      <Probabilities Probability="20" AdType="AdDuplex" AppID="45659"/>          
       <Probabilities Probability="20" AdType="InnerActive" AppID="DNT_ACWallpaper_WP" />
     </AdCultureDescriptor>    
 		<AdCultureDescriptor CultureName="default">
       <Probabilities Probability="40" AdType="Smaato" AppID="65812700" SecondaryID="923870769"/>      
       <Probabilities Probability="10" AdType="PubCenter" AppID="6e9635da-30c1-4c7d-8552-bb3d11884114" SecondaryID="134719" />
-      <Probabilities Probability="20" AdType="AdDuplex" AppID="45179"/>            
+      <Probabilities Probability="20" AdType="AdDuplex" AppID="45659"/>            
       <Probabilities Probability="20" AdType="InnerActive" AppID="DNT_ACWallpaper_WP" />
     </AdCultureDescriptor>
 	</CultureDescriptors>

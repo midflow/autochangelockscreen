@@ -57,8 +57,15 @@
         </StackPanel>
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Margin="12,162,12,0">
+            <Grid.RowDefinitions>
 
-            <phone:LongListSelector Margin="0,0,-12,0"  x:Name="myList" SelectionChanged="myList_SelectionChanged">
+                <RowDefinition Height="*"/>
+
+                <RowDefinition Height="142"/>
+
+            </Grid.RowDefinitions>
+            <ScrollViewer Grid.Row="0">
+            <phone:LongListSelector  Margin="0,0,-12,70"  x:Name="myList" SelectionChanged="myList_SelectionChanged">
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <StackPanel x:Name="stackPanel" Orientation="Horizontal" Margin="0,0,0,17">
@@ -89,13 +96,13 @@
                         </StackPanel>
                     </DataTemplate>
                 </phone:LongListSelector.ItemTemplate>
-            </phone:LongListSelector>
-            <!--<Ad:IMAdView 
+                </phone:LongListSelector>
+            </ScrollViewer>
+            <Ad:IMAdView Grid.Row="1"
                             Name="AdView"                            
                             AdSize="15"                            
-                            AppId="7e6443a7bbbd4d5ab17a079ce12a8edb"                            Height="70" Width="480" VerticalAlignment="Bottom">
-        </Ad:IMAdView>-->
-        </Grid>
+                            AppId="7e6443a7bbbd4d5ab17a079ce12a8edb"                            Height="70" Width="auto" VerticalAlignment="top"  Margin="0,0,-12,0"/>
+        </Grid>        
     </Grid>
 
 </phone:PhoneApplicationPage>
