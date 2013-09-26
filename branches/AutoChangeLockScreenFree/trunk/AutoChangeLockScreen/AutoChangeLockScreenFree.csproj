@@ -181,6 +181,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AC Wallpaper.png" />
     <Content Include="AdsSettings.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

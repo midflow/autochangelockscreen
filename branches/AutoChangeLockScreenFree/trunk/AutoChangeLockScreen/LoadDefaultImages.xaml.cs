@@ -97,7 +97,7 @@ namespace AutoChangeLockScreen
         }
         public Uri ImageSource { get; set; }
         private string m_ImageName;        
-        private string m_ImageSize;       
+        //private string m_ImageSize;       
         public DefaultImage(string strImageName)
         {
             try
