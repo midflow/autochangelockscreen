@@ -1,5 +1,5 @@
 ﻿
-#define DEBUG_AGENT
+//#define DEBUG_AGENT
 using System;
 using System.Diagnostics;
 using System.Resources;
@@ -69,36 +69,79 @@ namespace AutoChangeLockScreen
         {
             string strSource = isDefault == 0 ? "Default" : (isDefault == 2 ? "Rss" : "Your");
             string[] files;
+            bool isRandom = false;
+            int intImageInit = 0;
+            string is30 = "False";
             IsolatedStorageFile isoStore;
             isoStore = IsolatedStorageFile.GetUserStoreForApplication();
 
             IsolatedStorageFileStream fileStream = isoStore.OpenFile("SetSource.ini", FileMode.Create, FileAccess.Write);
 
+            if (IsolatedStorageSettings.ApplicationSettings.Contains("Random"))
+            {
+                isRandom = bool.Parse(IsolatedStorageSettings.ApplicationSettings["Random"] as string);
+            }
+            if (IsolatedStorageSettings.ApplicationSettings.Contains("Interval"))
+            {
+                is30 = IsolatedStorageSettings.ApplicationSettings["Interval"] as string;
+            }
+            
             switch (strSource)
             {
                 case "Default":
-                    LockScreenChange("wallpaper/Wallpaper_0.jpg", true);
-                    //string path = Path.Combine(Environment.CurrentDirectory, "wallpaper");
-                    string folder = Package.Current.InstalledLocation.Path;
-                    string path = folder + "\\wallpaper";
-                    files = Directory.GetFiles(path);
-                    NumberImage = files.Length;
+                    //string path = Path.Combine(Environment.CurrentDirectory, "wallpaper");                    
+                    NumberImage = 17;
+                    if (isRandom)
+                    {
+                        Random rand = new Random();
+                        intImageInit = rand.Next(0, NumberImage-1);
+                    }
+                    else
+                    {
+                        intImageInit = 0;
+                    }
+                    LockScreenChange("wallpaper/Wallpaper_" + intImageInit.ToString() + ".jpg", true);
+                    
                     break;
                 case "Your":
-                    LockScreenChange(App.imageList[0].ImageName, false);
                     isoStore = IsolatedStorageFile.GetUserStoreForApplication();
                     files = isoStore.GetFileNames("*");
                     NumberImage = files.Length - 1;
+
+                    if (isRandom)
+                    {
+                        Random rand = new Random();
+                        intImageInit = rand.Next(0, NumberImage-1);
+                    }
+                    else
+                    {
+                        intImageInit = 0;
+                    }
+                    LockScreenChange(App.imageList[intImageInit].ImageName, false);
+                    
                     break;
                 case "Rss":
-                    LockScreenChange("download/Wallpaper_0.jpg", false);
                     isoStore = IsolatedStorageFile.GetUserStoreForApplication();
                     files = isoStore.GetFileNames("download/*");
                     NumberImage = files.Length;
+                    if (isRandom)
+                    {
+                        Random rand = new Random();
+                        intImageInit = rand.Next(0, NumberImage-1);
+                    }
+                    else
+                    {
+                        intImageInit = 0;
+                    }
+                    LockScreenChange("download/Wallpaper_"+intImageInit.ToString()+".jpg", false);
+                    
                     break;
             }
 
             strSource += " " + NumberImage.ToString();
+            strSource += " " + isRandom.ToString();
+            strSource += " " + is30.ToString();
+            strSource += " " + "0";
 
             using (StreamWriter writer = new StreamWriter(fileStream))
             {
@@ -136,10 +179,10 @@ namespace AutoChangeLockScreen
                 // debug, so run in every 30 secs
 
 
-                //#if(DEBUG_AGENT)
-                //        ScheduledActionService.LaunchForTest(periodicTaskName, TimeSpan.FromSeconds(10));
-                //        System.Diagnostics.Debug.WriteLine("Periodic task is started: " + periodicTaskName);
-                //#endif
+//#if(DEBUG_AGENT)
+//                ScheduledActionService.LaunchForTest(periodicTaskName, TimeSpan.FromSeconds(10));
+//                System.Diagnostics.Debug.WriteLine("Periodic task is started: " + periodicTaskName);
+//#endif
 
             }
             catch (InvalidOperationException exception)
