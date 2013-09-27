@@ -224,7 +224,7 @@
     <value>Image Source</value>
   </data>
   <data name="IntervalTime" xml:space="preserve">
-    <value>Interval time</value>
+    <value>Interval</value>
   </data>
   <data name="IntroMySelf" xml:space="preserve">
     <value>Thanks so much for your supports. If you like this app, Rate it 5 stars and recomment other to use it. If you have any suggestion, send it to lttrungbk@yahoo.com. Thanks!</value>
@@ -308,5 +308,20 @@
   </data>
   <data name="SMSThis" xml:space="preserve">
     <value>SMS this</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Random" xml:space="preserve">
+    <value>Random</value>
+  </data>
+  <data name="Sixty" xml:space="preserve">
+    <value>60 minutes</value>
+  </data>
+  <data name="Thirdty" xml:space="preserve">
+    <value>30 minutes</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
   </data>
 </root>

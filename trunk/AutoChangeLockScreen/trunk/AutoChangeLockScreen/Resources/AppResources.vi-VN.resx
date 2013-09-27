@@ -228,7 +228,7 @@
     <value>Nguồn ảnh</value>
   </data>
   <data name="IntervalTime" xml:space="preserve">
-    <value>Khoảng thời gian</value>
+    <value>Thời gian</value>
   </data>
   <data name="IntroMySelf" xml:space="preserve">
     <value>Chân thành cảm ơn các bạn đã ủng hộ. Nếu thích ứng dụng này vui lòng đánh giá 5* và giới thiệu cho mọi người giúp mình nha. Mọi ý kiến xin gửi vào email lttrungbk@yahoo.com. Chân thành cảm ơn!</value>
@@ -312,5 +312,20 @@
   </data>
   <data name="SMSThis" xml:space="preserve">
     <value>Chia sẻ qua tin nhắn</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Cài đặt</value>
+  </data>
+  <data name="Random" xml:space="preserve">
+    <value>Ngẫu nhiên</value>
+  </data>
+  <data name="Sixty" xml:space="preserve">
+    <value>60 phút</value>
+  </data>
+  <data name="Thirdty" xml:space="preserve">
+    <value>30 phút</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Lưu</value>
   </data>
 </root>

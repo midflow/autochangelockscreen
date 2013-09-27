@@ -66,7 +66,8 @@ namespace AutoChangeLockScreen
 
                 string[] files = new string[] { "wallpaper/Wallpaper_0.jpg", "wallpaper/Wallpaper_1.jpg", "wallpaper/Wallpaper_2.jpg", "wallpaper/Wallpaper_3.jpg", 
                     "wallpaper/Wallpaper_4.jpg","wallpaper/Wallpaper_5.jpg","wallpaper/Wallpaper_6.jpg","wallpaper/Wallpaper_7.jpg","wallpaper/Wallpaper_8.jpg",
-                "wallpaper/Wallpaper_9.jpg","wallpaper/Wallpaper_10.jpg","wallpaper/Wallpaper_11.jpg","wallpaper/Wallpaper_12.jpg"}; 
+                "wallpaper/Wallpaper_9.jpg","wallpaper/Wallpaper_10.jpg","wallpaper/Wallpaper_11.jpg","wallpaper/Wallpaper_12.jpg","wallpaper/Wallpaper_13.jpg",
+                "wallpaper/Wallpaper_14.jpg","wallpaper/Wallpaper_15.jpg","wallpaper/Wallpaper_16.jpg"}; 
                 List<DefaultImage> list = new List<DefaultImage>();
                 //App.imageList = new List<myImages>();
                 foreach (string dirfile in files)

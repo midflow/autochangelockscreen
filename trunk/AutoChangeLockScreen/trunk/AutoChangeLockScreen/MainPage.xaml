@@ -13,9 +13,12 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True" Opacity="0.9" BorderThickness="0">
-	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar BackgroundColor="#FF08317B" Mode="Default" Opacity="0.5">
-			<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/favs.png" Text="Review" IsEnabled="False" Click="ReviewButton_Click"/>
+    <phone:PhoneApplicationPage.Background>
+        <ImageBrush Stretch="Fill" ImageSource="Background.png"/>
+    </phone:PhoneApplicationPage.Background>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar BackgroundColor="#FF08317B" Mode="Default" Opacity="0.5">
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/favs.png" Text="Review" IsEnabled="False" Click="ReviewButton_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.questionmark.rest.png" Text="Help" Click="HelpButton_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.status.rest.png" Text="About" Click="AboutButton_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/folder.png" Text="My Apps" Click="MyAppsButton_Click"/>
@@ -24,59 +27,75 @@
                 <shell:ApplicationBarMenuItem IsEnabled="True" Text="SMS this" Click="SMSThis_Click" />
                 <shell:ApplicationBarMenuItem IsEnabled="True" Text="Email this" Click="EmailThis_Click"/>
             </shell:ApplicationBar.MenuItems>
-		</shell:ApplicationBar>
-	</phone:PhoneApplicationPage.ApplicationBar>
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar BackgroundColor="#FF2648A2">
-            <shell:ApplicationBarIconButton x:Name="abbStart" IconUri="/Assets/AppBar/check.png" Text="Start" Click="ApplicationBarIconButton_Click"></shell:ApplicationBarIconButton>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/edit.png" Text="Set Source" Click="ApplicationBarIconButton_Click"></shell:ApplicationBarIconButton>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/favs.png" Text="Rate It"></shell:ApplicationBarIconButton>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.share.rest.png" Text="Buy"></shell:ApplicationBarIconButton>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem  Text="Start" Click="ApplicationBarMenuItem_Click" />
-                <shell:ApplicationBarMenuItem  Text="My Apps" />
-                <shell:ApplicationBarMenuItem  Text="Buy no ads App" />
-            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
-
-    </phone:PhoneApplicationPage.ApplicationBar>-->
-
-    <Grid x:Name="LayoutRoot">
-        <Grid.Background>
+    <phone:Panorama>
+        <phone:Panorama.Background>
             <ImageBrush Stretch="Fill" ImageSource="Background.png"/>
-        </Grid.Background>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        </phone:Panorama.Background>
+        <phone:PanoramaItem Header="{Binding LocalizedResources.ChooseSource, Source={StaticResource LocalizedStrings}}" Foreground="#FF110505" FontSize="30">
+            <phone:PanoramaItem.Background>
+                <ImageBrush Stretch="Fill"/>
+            </phone:PanoramaItem.Background>
+            <Grid x:Name="LayoutRoot">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
-            <TextBlock Text="{Binding LocalizedResources.AutoChange, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF110505" FontWeight="Bold" FontSize="26.667" />
-            <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle1Style}" x:Name="AppTitle" Foreground="#FF2C2726" FontWeight="Bold" FontSize="60"/>
-        </StackPanel>
+                <!--TitlePanel contains the name of the application and page title-->
+                <StackPanel x:Name="TitlePanel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
+                    <TextBlock Text="{Binding LocalizedResources.AutoChange, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF110505" FontWeight="Bold" FontSize="26.667" />
+                    <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle1Style}" x:Name="AppTitle" Foreground="#FF2C2726" FontWeight="Bold" FontSize="50"/>
+                </StackPanel>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1" >
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.ChooseSource, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" Foreground="#FF110505" FontWeight="Bold" FontFamily="Tahoma" FontSize="26.667" TextDecorations="Underline"/>
+                <!--<Grid x:Name="ContentPanel" Grid.Row="1" >
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.ChooseSource, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" Foreground="#FF110505" FontWeight="Bold" FontFamily="Tahoma" FontSize="26.667" TextDecorations="Underline"/>
 
-        </Grid>
-        <!--<RadioButton Name="rbtDefault" Content="{Binding LocalizedResources.Default, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Bottom" IsChecked="True" Foreground="#FFF9F9F9" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="1" />
-        <RadioButton Name="rbtYourPhotos" Content="{Binding LocalizedResources.YourPhotos, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="3" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold"  />
-        <RadioButton Name="rbtRSS" Content="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold"  />-->
-        <Button Name="btnDefault" Content="{Binding LocalizedResources.Default, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Bottom"  Foreground="#FFF9F9F9" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="1" Width="180" Background="#FF589DCD" BorderThickness="1" RenderTransformOrigin="0,0" Click="btnDefault_Click" />
-        <Button Name="btnYour" Content="{Binding LocalizedResources.YourPhotos, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="3" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnYour_Click"  />
-        <Button Name="btnRSS" Content="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnRSS_Click" />
-    </Grid>
+                </Grid>-->
+                <Button Name="btnDefault" Content="{Binding LocalizedResources.Default, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Bottom"  Foreground="#FFF9F9F9" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="1" Width="180" Background="#FF589DCD" BorderThickness="1" RenderTransformOrigin="0,0" Click="btnDefault_Click" />
+                <Button Name="btnYour" Content="{Binding LocalizedResources.YourPhotos, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="3" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnYour_Click"  />
 
+                <Button Name="btnRSS" Content="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnRSS_Click" />
+            </Grid>
+        </phone:PanoramaItem>
+        <phone:PanoramaItem Header="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}" Foreground="#FF110505" FontSize="30">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+
+                <!--TitlePanel contains the name of the application and page title-->
+                <StackPanel  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
+                    <TextBlock Text="{Binding LocalizedResources.AutoChange, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF110505" FontWeight="Bold" FontSize="26.667" />
+                    <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle1Style}"  Foreground="#FF2C2726" FontWeight="Bold" FontSize="50"/>
+                </StackPanel>
+                <CheckBox Name="chkRandom" Content="{Binding LocalizedResources.Random, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding LocalizedResources.IntervalTime, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle1Style}"   FontSize="30" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Grid.Row="2" />
+                <RadioButton Name="rbt30" Content="{Binding LocalizedResources.Thirdty, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="2" VerticalAlignment="Top" IsChecked="True" />
+                <RadioButton Name="rbt60" Content="{Binding LocalizedResources.Sixty, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="3" VerticalAlignment="Top"/>
+                <Button Name="btnSave" Content="{Binding LocalizedResources.Save, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Top" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnSave_Click" />
+            </Grid>
+        </phone:PanoramaItem>
+    </phone:Panorama>
 </phone:PhoneApplicationPage>

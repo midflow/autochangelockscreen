@@ -359,7 +359,7 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Interval time.
+        ///   Looks up a localized string similar to Interval.
         /// </summary>
         public static string IntervalTime {
             get {
@@ -485,6 +485,15 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Random.
+        /// </summary>
+        public static string Random {
+            get {
+                return ResourceManager.GetString("Random", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rate It.
         /// </summary>
         public static string RateIt {
@@ -539,11 +548,29 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set Source.
         /// </summary>
         public static string SetSource {
             get {
                 return ResourceManager.GetString("SetSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         
@@ -566,6 +593,15 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 60 minutes.
+        /// </summary>
+        public static string Sixty {
+            get {
+                return ResourceManager.GetString("Sixty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SMS this.
         /// </summary>
         public static string SMSThis {
@@ -580,6 +616,15 @@ namespace AutoChangeLockScreen.Resources {
         public static string Start {
             get {
                 return ResourceManager.GetString("Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 30 minutes.
+        /// </summary>
+        public static string Thirdty {
+            get {
+                return ResourceManager.GetString("Thirdty", resourceCulture);
             }
         }
         
