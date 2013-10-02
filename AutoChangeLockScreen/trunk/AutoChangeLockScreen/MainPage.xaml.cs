@@ -194,7 +194,7 @@ namespace AutoChangeLockScreen
             ShareLinkTask shareLinkTask = new ShareLinkTask();
 
             shareLinkTask.Title = "Auto change wallpaper";
-            shareLinkTask.LinkUri = new Uri("http://www.windowsphone.com/en-us/store/app/ac-wallpaper-free/7cf1bb63-69f0-4280-9484-f09c8586f4ca", UriKind.Absolute);
+            shareLinkTask.LinkUri = new Uri("http://www.windowsphone.com/s?appid=ee8e9449-61b1-4049-9ca4-5407995234ab", UriKind.Absolute);
             shareLinkTask.Message = "Here are a nice app to set dynamic wallpaper for Windows Phone.";
 
             shareLinkTask.Show();
@@ -202,14 +202,14 @@ namespace AutoChangeLockScreen
         private void SMSThis_Click(object sender, EventArgs e)
         {
             SmsComposeTask smsComposeTask = new SmsComposeTask();
-            smsComposeTask.Body = "Here are a nice app to set dynamic wallpaper for Windows Phone. Click for detail: http://www.windowsphone.com/en-us/store/app/ac-wallpaper-free/7cf1bb63-69f0-4280-9484-f09c8586f4ca";
+            smsComposeTask.Body = "Here are a nice app to set dynamic wallpaper for Windows Phone. Click for detail: http://www.windowsphone.com/s?appid=ee8e9449-61b1-4049-9ca4-5407995234ab";
             smsComposeTask.Show();
         }
         private void EmailThis_Click(object sender, EventArgs e)
         {
             EmailComposeTask emailtask = new EmailComposeTask();
             emailtask.Subject = "Pin your image to home screen";
-            emailtask.Body = "Here are a nice app to set dynamic wallpaper for Windows Phone. Click for detail: http://www.windowsphone.com/en-us/store/app/ac-wallpaper-free/7cf1bb63-69f0-4280-9484-f09c8586f4ca";
+            emailtask.Body = "Here are a nice app to set dynamic wallpaper for Windows Phone. Click for detail: http://www.windowsphone.com/s?appid=ee8e9449-61b1-4049-9ca4-5407995234ab";
             emailtask.Bcc = "lttrungbk@yahoo.com";
             emailtask.Show();
         }
