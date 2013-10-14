@@ -313,4 +313,25 @@
   <data name="SMSThis" xml:space="preserve">
     <value>Chia sẻ qua SMS</value>
   </data>
+  <data name="PaidApp" xml:space="preserve">
+    <value>Bản trả tiền</value>
+  </data>
+  <data name="PaidAppFeatures" xml:space="preserve">
+    <value>Bản này kèm theo quảng cáo, hãy mua phiên bản trả tiền để loại bỏ quảng cáo. Những tính năng có thêm trên bản trả tiền là"
+- Wallpapers ngẫu nhiên
+- Đặt thời gian đổi là 30ph hoặc 1h
+- Có thêm ảnh đẹp</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Cài đặt (bản trả tiền)</value>
+  </data>
+  <data name="m30" xml:space="preserve">
+    <value>30ph</value>
+  </data>
+  <data name="m60" xml:space="preserve">
+    <value>60ph</value>
+  </data>
+  <data name="Random" xml:space="preserve">
+    <value>Ngẫu nhiên</value>
+  </data>
 </root>

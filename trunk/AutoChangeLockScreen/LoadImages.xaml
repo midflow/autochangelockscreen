@@ -101,7 +101,7 @@
             <Ad:IMAdView Grid.Row="1"
                             Name="AdView"                            
                             AdSize="15"                            
-                            AppId="7e6443a7bbbd4d5ab17a079ce12a8edb"                            Height="70" Width="auto" VerticalAlignment="top"  Margin="0,0,-12,0"/>
+                            AppId="7e6443a7bbbd4d5ab17a079ce12a8edb"                            Height="70" Width="auto" VerticalAlignment="top"   AnimationType="CURL_UP"/>
         </Grid>        
     </Grid>
 

@@ -395,6 +395,24 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 30m.
+        /// </summary>
+        public static string m30 {
+            get {
+                return ResourceManager.GetString("m30", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 60m.
+        /// </summary>
+        public static string m60 {
+            get {
+                return ResourceManager.GetString("m60", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Move.
         /// </summary>
         public static string Move {
@@ -467,6 +485,27 @@ namespace AutoChangeLockScreen.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paid app.
+        /// </summary>
+        public static string PaidApp {
+            get {
+                return ResourceManager.GetString("PaidApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This version has ads, to remove it, you can find Paid version Auto Wallpaper. In current version of Auto Wallpaper (paid):
+        ///- Random wallpaper
+        ///- Set interval time is 30m or 60m
+        ///- More beautiful wallpapers.
+        /// </summary>
+        public static string PaidAppFeatures {
+            get {
+                return ResourceManager.GetString("PaidAppFeatures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please try other tag name for image..
         /// </summary>
         public static string PleaseTryOtherTag {
@@ -481,6 +520,15 @@ namespace AutoChangeLockScreen.Resources {
         public static string PleaseWriteTag {
             get {
                 return ResourceManager.GetString("PleaseWriteTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Random.
+        /// </summary>
+        public static string Random {
+            get {
+                return ResourceManager.GetString("Random", resourceCulture);
             }
         }
         
@@ -544,6 +592,15 @@ namespace AutoChangeLockScreen.Resources {
         public static string SetSource {
             get {
                 return ResourceManager.GetString("SetSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings (paid version).
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         
