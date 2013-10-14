@@ -37,9 +37,10 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="120"/>
-            <RowDefinition Height="120"/>
-            <RowDefinition Height="120"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>            
             <RowDefinition Height="142"/>
         </Grid.RowDefinitions>
@@ -56,8 +57,12 @@
         <Button x:Name="btnDefault" Content="{Binding LocalizedResources.Default, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top"  Foreground="#FFF9F9F9" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="1" Width="180" Background="#FF589DCD" BorderThickness="1" RenderTransformOrigin="0,0" Click="btnDefault_Click" />
         <Button x:Name="btnYour" Content="{Binding LocalizedResources.YourPhotos, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="3" VerticalAlignment="Top" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnYour_Click"  />
         <Button x:Name="btnRSS" Content="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Top" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnRSS_Click" />
-        <AdRotator:AdRotatorControl Name="adrotator" Height="70" Grid.Row="5"  Grid.ColumnSpan="2" VerticalAlignment="Top" DefaultSettingsFileUri="defaultAdSettings.xml"
+        <AdRotator:AdRotatorControl Name="adrotator" Height="70" Grid.Row="6"  Grid.ColumnSpan="2" VerticalAlignment="Top" DefaultSettingsFileUri="defaultAdSettings.xml"
     SettingsUrl="http://www.dongnamtourist.com/defaultAdSettings.xml"
-    Margin="1" Background="#FF4F8DB9" Opacity="0.8" SmaatoAppId="65812700" SmaatoPublisherId="923870769" PubCenterAdUnitId="134719" PubCenterAppId="6e9635da-30c1-4c7d-8552-bb3d11884114" AdDuplexAppId="45179" InneractiveAppId="DNT_ACWallpaper_WP" />
+    Margin="1" Background="#FF4F8DB9" Opacity="0.8" SmaatoAppId="65812700" SmaatoPublisherId="923870769" PubCenterAdUnitId="134719" PubCenterAppId="6e9635da-30c1-4c7d-8552-bb3d11884114" AdDuplexAppId="45659" InneractiveAppId="DNT_ACWallpaper_WP" />
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Foreground="#FF110505" FontWeight="Bold" FontFamily="Tahoma" FontSize="26.667" TextDecorations="Underline"  Grid.Row="5"/>
+        <CheckBox Content="{Binding LocalizedResources.Random, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Top" IsEnabled="False"/>
+        <RadioButton Content="{Binding LocalizedResources.m30, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="5" VerticalAlignment="Bottom"/>
+        <RadioButton Content="{Binding LocalizedResources.m60, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Right" IsEnabled="False"  Grid.Row="5" VerticalAlignment="Bottom"/>
     </Grid>
 </phone:PhoneApplicationPage>

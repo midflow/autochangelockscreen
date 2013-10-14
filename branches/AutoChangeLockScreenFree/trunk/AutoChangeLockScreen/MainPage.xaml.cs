@@ -182,22 +182,22 @@ namespace AutoChangeLockScreen
             ShareLinkTask shareLinkTask = new ShareLinkTask();
 
             shareLinkTask.Title = "Auto change wallpaper";
-            shareLinkTask.LinkUri = new Uri("http://www.windowsphone.com/en-us/store/app/ac-wallpaper-free/7cf1bb63-69f0-4280-9484-f09c8586f4ca", UriKind.Absolute);
-            shareLinkTask.Message = "Here are a nice app to set dynamic wallpaper for Windows Phone.";
+            shareLinkTask.LinkUri = new Uri("http://www.windowsphone.com/s?appid=7cf1bb63-69f0-4280-9484-f09c8586f4ca", UriKind.Absolute);
+            shareLinkTask.Message = "This is a nice app to set dynamic wallpaper for Windows Phone.";
 
             shareLinkTask.Show();
         }
         private void SMSThis_Click(object sender, EventArgs e)
         {
             SmsComposeTask smsComposeTask = new SmsComposeTask();
-            smsComposeTask.Body = "Here are a nice app to set dynamic wallpaper for Windows Phone. Click for detail: http://www.windowsphone.com/en-us/store/app/ac-wallpaper-free/7cf1bb63-69f0-4280-9484-f09c8586f4ca";
+            smsComposeTask.Body = "This is a nice app to set dynamic wallpaper for Windows Phone. Check it: http://www.windowsphone.com/s?appid=7cf1bb63-69f0-4280-9484-f09c8586f4ca";
             smsComposeTask.Show();
         }
         private void EmailThis_Click(object sender, EventArgs e)
         {
             EmailComposeTask emailtask = new EmailComposeTask();
-            emailtask.Subject = "Pin your image to home screen";
-            emailtask.Body = "Here are a nice app to set dynamic wallpaper for Windows Phone. Click for detail: http://www.windowsphone.com/en-us/store/app/ac-wallpaper-free/7cf1bb63-69f0-4280-9484-f09c8586f4ca";
+            emailtask.Subject = "Auto change wallpaper";
+            emailtask.Body = "This is a nice app to set dynamic wallpaper for Windows Phone. Click for detail: http://www.windowsphone.com/s?appid=7cf1bb63-69f0-4280-9484-f09c8586f4ca";
             emailtask.Bcc = "lttrungbk@yahoo.com";
             emailtask.Show();
         }

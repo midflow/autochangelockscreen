@@ -41,6 +41,12 @@
             <phone:PivotItem Header="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}">
                 <TextBlock HorizontalAlignment="Left" Height="603" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" Text="{Binding LocalizedResources.HelpRss, Source={StaticResource LocalizedStrings}}"/>                
             </phone:PivotItem>
+            <phone:PivotItem Header="{Binding LocalizedResources.PaidApp, Source={StaticResource LocalizedStrings}}">
+                <StackPanel>
+                <TextBlock HorizontalAlignment="Left" Height="400" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" Text="{Binding LocalizedResources.PaidAppFeatures, Source={StaticResource LocalizedStrings}}"/>
+                    <Button x:Name="btnBuy" Content="{Binding LocalizedResources.BuyApp, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="1" VerticalAlignment="Top"  Grid.RowSpan="2" Click="btnBuy_Click" Height="72"  />
+                </StackPanel>
+            </phone:PivotItem>
         </phone:Pivot>
         <Ad:InneractiveAd AppID="DNT_ACWallpaper_WP"
                 AdType="IaAdType_Banner"

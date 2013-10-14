@@ -309,4 +309,25 @@
   <data name="SMSThis" xml:space="preserve">
     <value>SMS this</value>
   </data>
+  <data name="PaidApp" xml:space="preserve">
+    <value>Paid app</value>
+  </data>
+  <data name="PaidAppFeatures" xml:space="preserve">
+    <value>This version has ads, to remove it, you can find Paid version Auto Wallpaper. In current version of Auto Wallpaper (paid):
+- Random wallpaper
+- Set interval time is 30m or 60m
+- More beautiful wallpapers</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings (paid version)</value>
+  </data>
+  <data name="m30" xml:space="preserve">
+    <value>30m</value>
+  </data>
+  <data name="m60" xml:space="preserve">
+    <value>60m</value>
+  </data>
+  <data name="Random" xml:space="preserve">
+    <value>Random</value>
+  </data>
 </root>
