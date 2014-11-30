@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2014/deployment" AppPlatformVersion="8.1">
   <DefaultLanguage xmlns="" code="en-US" />
   <Languages xmlns="">
     <Language code="vi" />
     <Language code="vi-VN" />
   </Languages>
-  <App xmlns="" ProductID="{7cf1bb63-69f0-4280-9484-f09c8586f4ca}" Title="Auto Wallpaper Free" RuntimeType="Silverlight" Version="1.0.1.0" Genre="apps.normal" Author="trunglt" Description="Sample description" Publisher="trunglt" PublisherID="{cde9748e-d1f2-4067-b8cc-f4e0d758d2fd}">
-    <IconPath IsRelative="true" IsResource="false">Assets\ACWallpaper.png</IconPath>
+  <App xmlns="" ProductID="{7cf1bb63-69f0-4280-9484-f09c8586f4ca}" Title="Auto Wallpaper Free" RuntimeType="Silverlight" Version="1.1.2.1" Genre="apps.normal" Author="trunglt" Description="Sample description" Publisher="trunglt" PublisherID="{603D864D-3FE7-4540-80EE-4A7826975F5F}">
+    <IconPath IsRelative="true" IsResource="false">AutoWallpaper.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
@@ -16,6 +16,8 @@
       <Capability Name="ID_CAP_IDENTITY_DEVICE" />
       <Capability Name="ID_CAP_LOCATION" />
       <Capability Name="ID_CAP_ISV_CAMERA" />
+      <Capability Name="ID_CAP_IDENTITY_USER" />
+      <Capability Name="ID_CAP_MEDIALIB_PHOTO" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" ActivationPolicy="Resume" />
@@ -23,9 +25,9 @@
     <Tokens>
       <PrimaryToken TokenID="AutoChangeLockScreenToken" TaskName="_default">
         <TemplateFlip>
-          <SmallImageURI IsRelative="true" IsResource="false">Assets\ACWallpaper.png</SmallImageURI>
+          <SmallImageURI IsRelative="true" IsResource="false">AutoWallpaper.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\ACWallpaper.png</BackgroundImageURI>
+          <BackgroundImageURI IsRelative="true" IsResource="false">AutoWallpaper.png</BackgroundImageURI>
           <Title>Auto Wallpaper</Title>
           <BackContent>
           </BackContent>
@@ -33,7 +35,7 @@
           </BackBackgroundImageURI>
           <BackTitle>
           </BackTitle>
-          <LargeBackgroundImageURI IsRelative="true" IsResource="false">AC Wallpaper.png</LargeBackgroundImageURI>
+          <LargeBackgroundImageURI IsRelative="true" IsResource="false">AutoWallpaper-wide.png</LargeBackgroundImageURI>
           <LargeBackContent />
           <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
           </LargeBackBackgroundImageURI>

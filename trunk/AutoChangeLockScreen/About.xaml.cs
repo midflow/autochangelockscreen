@@ -18,8 +18,34 @@ namespace AutoChangeLockScreen
             InitializeComponent();
             App.imgName = "";
             App.blLoadIamge = true;
+            if (!Utils.ShowAds)
+            {
+                btnBuy.Visibility = System.Windows.Visibility.Collapsed;
+                RowAds.Height = new GridLength(0);
+            }
         }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
 
+            UpdateAd();
+        }
+        public void UpdateAd()
+        {
+            AdView.Visibility = Utils.ShowAds ? Visibility.Visible : Visibility.Collapsed;
+
+            // if we add more of these, we'll need to be more clever here
+            if (!Utils.ShowAds)
+            {
+                //ApplicationBar.MenuItems.RemoveAt(0);
+                RowAds.Height = new GridLength(0);
+            }
+            //else
+            //{
+            //    //Render_Ad();
+            //    Display_Ad();
+            //}
+        }
         private void btnMyApps_Click(object sender, RoutedEventArgs e)
         {
             MarketplaceSearchTask mkpSearch = new MarketplaceSearchTask();

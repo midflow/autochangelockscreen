@@ -30,6 +30,33 @@ namespace AutoChangeLockScreen
             InitializeComponent();
             BuildLocalizedApplicationBar();
             Loaded += LoadImages_Loaded;
+            if (!Utils.ShowAds)
+            {
+                //ApplicationBar.MenuItems.RemoveAt(0);
+                RowAds.Height = new GridLength(0);
+            }
+        }
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            LoadImages_Loaded(null, null);
+            UpdateAd();
+        }
+        public void UpdateAd()
+        {
+            AdView.Visibility = Utils.ShowAds ? Visibility.Visible : Visibility.Collapsed;
+
+            // if we add more of these, we'll need to be more clever here
+            if (!Utils.ShowAds)
+            {
+                //ApplicationBar.MenuItems.RemoveAt(0);
+                RowAds.Height = new GridLength(0);
+            }
+            //else
+            //{
+            //    //Render_Ad();
+            //    Display_Ad();
+            //}
         }
         private void LoadImages_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -88,11 +115,7 @@ namespace AutoChangeLockScreen
             appBarMenuItem.Click += function;
             ApplicationBar.MenuItems.Add(appBarMenuItem);
         }
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            LoadImages_Loaded(null, null);
-        }
+    
         private void myList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             List<StackPanel> listItems = new List<StackPanel>();

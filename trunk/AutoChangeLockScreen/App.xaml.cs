@@ -1,5 +1,5 @@
 ﻿
-#define DEBUG_AGENT
+//#define DEBUG_AGENT
 using System;
 using System.Diagnostics;
 using System.Resources;
@@ -32,6 +32,7 @@ namespace AutoChangeLockScreen
         static PeriodicTask periodicTask;
         static string periodicTaskName = "PeriodicAgent";
         public static bool agentsAreEnabled = true;
+        public static bool ShowVserv_Main = true;
 
         //user
         //load file from storage
@@ -69,36 +70,79 @@ namespace AutoChangeLockScreen
         {
             string strSource = isDefault == 0 ? "Default" : (isDefault == 2 ? "Rss" : "Your");
             string[] files;
+            bool isRandom = false;
+            int intImageInit = 0;
+            int intInterval = 30;
             IsolatedStorageFile isoStore;
             isoStore = IsolatedStorageFile.GetUserStoreForApplication();
 
             IsolatedStorageFileStream fileStream = isoStore.OpenFile("SetSource.ini", FileMode.Create, FileAccess.Write);
 
+            if (IsolatedStorageSettings.ApplicationSettings.Contains("Random"))
+            {
+                isRandom = bool.Parse(IsolatedStorageSettings.ApplicationSettings["Random"] as string);
+            }
+            if (IsolatedStorageSettings.ApplicationSettings.Contains("Interval"))
+            {
+                intInterval = int.Parse(IsolatedStorageSettings.ApplicationSettings["Interval"].ToString());
+            }
+
             switch (strSource)
             {
                 case "Default":
-                    LockScreenChange("wallpaper/Wallpaper_0.jpg", true);
-                    string folder = Package.Current.InstalledLocation.Path;
-                    string path = folder + "\\wallpaper";
-                    //string path = Path.Combine(Environment.CurrentDirectory, "wallpaper");
-                    files = Directory.GetFiles(path);
-                    NumberImage = files.Length;
+                    //string path = Path.Combine(Environment.CurrentDirectory, "wallpaper");                    
+                    NumberImage = 17;
+                    if (isRandom)
+                    {
+                        Random rand = new Random();
+                        intImageInit = rand.Next(0, NumberImage - 1);
+                    }
+                    else
+                    {
+                        intImageInit = 0;
+                    }
+                    LockScreenChange("wallpaper/Wallpaper_" + intImageInit.ToString() + ".jpg", true);
+
                     break;
                 case "Your":
-                    LockScreenChange(App.imageList[0].ImageName, false);
                     isoStore = IsolatedStorageFile.GetUserStoreForApplication();
                     files = isoStore.GetFileNames("*");
                     NumberImage = files.Length - 1;
+
+                    if (isRandom)
+                    {
+                        Random rand = new Random();
+                        intImageInit = rand.Next(0, NumberImage - 1);
+                    }
+                    else
+                    {
+                        intImageInit = 0;
+                    }
+                    LockScreenChange(App.imageList[intImageInit].ImageName, false);
+
                     break;
                 case "Rss":
-                    LockScreenChange("download/Wallpaper_0.jpg", false);
                     isoStore = IsolatedStorageFile.GetUserStoreForApplication();
                     files = isoStore.GetFileNames("download/*");
                     NumberImage = files.Length;
+                    if (isRandom)
+                    {
+                        Random rand = new Random();
+                        intImageInit = rand.Next(0, NumberImage - 1);
+                    }
+                    else
+                    {
+                        intImageInit = 0;
+                    }
+                    LockScreenChange("download/Wallpaper_" + intImageInit.ToString() + ".jpg", false);
+
                     break;
             }
 
             strSource += " " + NumberImage.ToString();
+            strSource += " " + isRandom.ToString();
+            strSource += " " + intInterval.ToString();
+            strSource += " " + "0";
 
             using (StreamWriter writer = new StreamWriter(fileStream))
             {
@@ -133,6 +177,13 @@ namespace AutoChangeLockScreen
             {
                 // add thas to scheduled action service
                 ScheduledActionService.Add(periodicTask);
+                // debug, so run in every 30 secs
+
+
+                //#if(DEBUG_AGENT)
+                //                ScheduledActionService.LaunchForTest(periodicTaskName, TimeSpan.FromSeconds(10));
+                //                System.Diagnostics.Debug.WriteLine("Periodic task is started: " + periodicTaskName);
+                //#endif
 
             }
             catch (InvalidOperationException exception)
@@ -267,19 +318,23 @@ namespace AutoChangeLockScreen
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-
+            RootFrame.Navigated += RootFrame_Navigated;
         }
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            // Call this on launch to initialise the feedback helper
+            Utils.UpdateInAppPurchases();
+            AutoChangeLockScreen.Helpers.FeedbackHelper.Default.Launching();
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            Utils.UpdateInAppPurchases();
         }
 
         // Code to execute when the application is deactivated (sent to background)
@@ -293,10 +348,17 @@ namespace AutoChangeLockScreen
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
         }
-
+        private void RootFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            if (e.Content != null)
+            {
+                GoogleAnalytics.EasyTracker.GetTracker().SendView(e.Content.ToString());
+            }
+        }
         // Code to execute if a navigation fails
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
+            GoogleAnalytics.EasyTracker.GetTracker().SendException(e.Exception.Message, false);
             if (Debugger.IsAttached)
             {
                 // A navigation has failed; break into the debugger
@@ -307,6 +369,7 @@ namespace AutoChangeLockScreen
         // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
+            GoogleAnalytics.EasyTracker.GetTracker().SendException(e.ExceptionObject.Message, false);
             if (Debugger.IsAttached)
             {
                 // An unhandled exception has occurred; break into the debugger

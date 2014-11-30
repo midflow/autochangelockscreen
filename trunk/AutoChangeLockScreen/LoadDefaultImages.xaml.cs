@@ -31,6 +31,32 @@ namespace AutoChangeLockScreen
             InitializeComponent();
             BuildLocalizedApplicationBar();
             Loaded += LoadImages_Loaded;
+            if (!Utils.ShowAds && ApplicationBar.MenuItems.Count > 4)
+            {
+                ApplicationBar.MenuItems.RemoveAt(0);
+                RowAds.Height = new GridLength(0);
+            }
+        }
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            UpdateAd();
+        }
+        public void UpdateAd()
+        {
+            AdView.Visibility = Utils.ShowAds ? Visibility.Visible : Visibility.Collapsed;
+
+            // if we add more of these, we'll need to be more clever here
+            if (!Utils.ShowAds && ApplicationBar.MenuItems.Count > 4)
+            {
+                ApplicationBar.MenuItems.RemoveAt(0);
+                RowAds.Height = new GridLength(0);
+            }
+            //else
+            //{
+            //    //Render_Ad();
+            //    Display_Ad();
+            //}
         }
         // Build a localized ApplicationBar
         private void BuildLocalizedApplicationBar()
@@ -57,28 +83,30 @@ namespace AutoChangeLockScreen
         {
             try
             {
-                ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
-                aibStart.IsEnabled = false;
                 //IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
+                //string path = "ms-appx:///Wallpaper";
                 //string path = Path.Combine(Environment.CurrentDirectory, "wallpaper");
+                //string folder = Package.Current.InstalledLocation.Path;
+                //string path = folder + "\\wallpaper";                                
 
                 string[] files = new string[] { "wallpaper/Wallpaper_0.jpg", "wallpaper/Wallpaper_1.jpg", "wallpaper/Wallpaper_2.jpg", "wallpaper/Wallpaper_3.jpg", 
                     "wallpaper/Wallpaper_4.jpg","wallpaper/Wallpaper_5.jpg","wallpaper/Wallpaper_6.jpg","wallpaper/Wallpaper_7.jpg","wallpaper/Wallpaper_8.jpg",
-                "wallpaper/Wallpaper_9.jpg","wallpaper/Wallpaper_10.jpg","wallpaper/Wallpaper_11.jpg","wallpaper/Wallpaper_12.jpg"}; 
+                "wallpaper/Wallpaper_9.jpg","wallpaper/Wallpaper_10.jpg","wallpaper/Wallpaper_11.jpg","wallpaper/Wallpaper_12.jpg","wallpaper/Wallpaper_13.jpg",
+                "wallpaper/Wallpaper_14.jpg","wallpaper/Wallpaper_15.jpg","wallpaper/Wallpaper_16.jpg"};
                 List<DefaultImage> list = new List<DefaultImage>();
                 //App.imageList = new List<myImages>();
                 foreach (string dirfile in files)
                 {
                     list.Add(new DefaultImage(dirfile.ToString()));
-                }
+                } 
 
                 this.myList.ItemsSource = list;
-
+                ApplicationBarIconButton aibStart = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
                 aibStart.IsEnabled = list.Count > 0 ? true : false;
             }
-            catch 
+            catch
             {
-                MessageBox.Show("Error on Load image");
+                MessageBox.Show("Error on load image");
             }
         }
         private void btnStart_Click(object sender, EventArgs e)

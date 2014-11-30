@@ -1,4 +1,4 @@
-﻿#define DEBUG_AGENT
+﻿//#define DEBUG_AGENT
 
 using System.Diagnostics;
 using System.Windows;
@@ -19,8 +19,11 @@ namespace ScheduledTaskAgent1
     {
         public static string strPath = "Wallpaper/*";
         public static bool isAppResource = false;
+        public static bool isRandom = false;
+        public static int intInterval = 30;
         public static int NoImage = 0;
         public static string strSource = "";
+        public static int counter = 0;
         /// <remarks>
         /// ScheduledAgent constructor, initializes the UnhandledException handler
         /// </remarks>
@@ -31,6 +34,12 @@ namespace ScheduledTaskAgent1
             {
                 Application.Current.UnhandledException += UnhandledException;
             });
+
+            //if (IsolatedStorageSettings.ApplicationSettings.Contains("Interval"))
+            //{
+            //    is30 = bool.Parse(IsolatedStorageSettings.ApplicationSettings["Interval"] as string);
+            //}
+
             IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication();
             if (iso.FileExists("SetSource.ini"))
             {
@@ -40,6 +49,9 @@ namespace ScheduledTaskAgent1
                     String strContent = reader.ReadLine();
                     strSource = strContent.Split(' ')[0];
                     NoImage = int.Parse("0" + strContent.Split(' ')[1]);
+                    isRandom = bool.Parse(strContent.Split(' ')[2]);
+                    intInterval = int.Parse(strContent.Split(' ')[3]);
+                    counter = int.Parse(strContent.Split(' ')[4]);
 
                     switch (strSource)
                     {
@@ -84,45 +96,126 @@ namespace ScheduledTaskAgent1
         {
             try
             {
-                // Get the URI of the lock screen background image.
-                var currentImage = LockScreen.GetImageUri();
-                string Imagename = string.Empty;
+                //if (intInterval != 30)
+                //{
+                counter++;
 
-                Imagename = GetNextImage(currentImage.ToString());
+                IsolatedStorageFile isoStore;
+                isoStore = IsolatedStorageFile.GetUserStoreForApplication();
+                IsolatedStorageFileStream fileStream = isoStore.OpenFile("SetSource.ini", FileMode.Create, FileAccess.Write);
+                string strContent = strSource;
+                strContent += " " + NoImage.ToString();
+                strContent += " " + isRandom.ToString();
+                strContent += " " + intInterval.ToString();
+                strContent += " " + counter.ToString();
+                using (StreamWriter writer = new StreamWriter(fileStream))
+                {
+                    writer.Write(strContent);
+                    writer.Close();
+                }
+                if (counter % (intInterval / 30) == 0)
+                {
+                    // Get the URI of the lock screen background image.
+                    var currentImage = LockScreen.GetImageUri();
+                    string Imagename = string.Empty;
 
-                LockScreenChange(Imagename, isAppResource);
-               
+                    Imagename = GetNextImage(currentImage.ToString());
+
+                    LockScreenChange(Imagename, isAppResource);
+                }
+                // If debugging is enabled, launch the agent again in one minute.
+                // debug, so run in every 30 secs
+                //#if(DEBUG_AGENT)
+                //                        ScheduledActionService.LaunchForTest(task.Name, TimeSpan.FromSeconds(10));
+                //                        System.Diagnostics.Debug.WriteLine("Periodic task is started again: " + task.Name);
+                //#endif
+
                 // Call NotifyComplete to let the system know the agent is done working.
                 NotifyComplete();
+
+                //}
+                //else
+                //{
+                //    // Get the URI of the lock screen background image.
+                //    var currentImage = LockScreen.GetImageUri();
+                //    string Imagename = string.Empty;
+
+                //    Imagename = GetNextImage(currentImage.ToString());
+
+                //    LockScreenChange(Imagename, isAppResource);
+
+                //    // If debugging is enabled, launch the agent again in one minute.
+                //    // debug, so run in every 30 secs
+                //    //#if(DEBUG_AGENT)
+                //    //                    ScheduledActionService.LaunchForTest(task.Name, TimeSpan.FromSeconds(10));
+                //    //                    System.Diagnostics.Debug.WriteLine("Periodic task is started again: " + task.Name);
+                //    //#endif
+
+                //    // Call NotifyComplete to let the system know the agent is done working.
+                //    NotifyComplete();
+                //}
             }
-            finally { }       
+            finally { }
         }
 
         private string GetNextImage(string currentImage)
         {
             string Imagename = "";
             string imgCount = currentImage.ToString().Substring(currentImage.ToString().IndexOf('_') + 1, currentImage.ToString().Length - (currentImage.ToString().IndexOf('_') + 1)).Replace(".jpg", "");
- 
-            switch (strSource)
+
+            if (isRandom)
             {
-                case "Default":
-                    if (imgCount != (NoImage-1).ToString())
-                        Imagename = "wallpaper/Wallpaper_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
-                    else
-                        Imagename = "wallpaper/Wallpaper_0.jpg";
-                    break;
-                case "Your":
-                    if (imgCount != (NoImage - 1).ToString())
-                        Imagename = "image_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
-                    else
-                        Imagename = "image_0.jpg";
-                    break;
-                case "Rss":
-                    if (imgCount != (NoImage - 1).ToString())
-                        Imagename = "download/Wallpaper_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
-                    else
-                        Imagename = "download/Wallpaper_0.jpg";
-                    break;
+                Random ran = new Random();
+                int iran = ran.Next(0, NoImage);
+                switch (strSource)
+                {
+                    case "Default":
+                        //if (imgCount != (NoImage - 1).ToString())
+                        //    Imagename = "wallpaper/Wallpaper_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
+                        //else
+                        //    Imagename = "wallpaper/Wallpaper_0.jpg";
+                        //break;
+                        Imagename = "wallpaper/Wallpaper_" + Convert.ToString(iran) + ".jpg";
+                        break;
+                    case "Your":
+                        //if (imgCount != (NoImage - 1).ToString())
+                        //    Imagename = "image_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
+                        //else
+                        //    Imagename = "image_0.jpg";
+                        Imagename = "image_" + Convert.ToString(iran) + ".jpg";
+                        break;
+                    case "Rss":
+                        //if (imgCount != (NoImage - 1).ToString())
+                        //    Imagename = "download/Wallpaper_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
+                        //else
+                        //    Imagename = "download/Wallpaper_0.jpg";
+                        Imagename = "download/Wallpaper_" + Convert.ToString(iran) + ".jpg";
+                        break;
+                }
+            }
+            else
+            {
+                switch (strSource)
+                {
+                    case "Default":
+                        if (imgCount != (NoImage - 1).ToString())
+                            Imagename = "wallpaper/Wallpaper_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
+                        else
+                            Imagename = "wallpaper/Wallpaper_0.jpg";
+                        break;
+                    case "Your":
+                        if (imgCount != (NoImage - 1).ToString())
+                            Imagename = "image_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
+                        else
+                            Imagename = "image_0.jpg";
+                        break;
+                    case "Rss":
+                        if (imgCount != (NoImage - 1).ToString())
+                            Imagename = "download/Wallpaper_" + Convert.ToString(Convert.ToUInt32(imgCount) + 1) + ".jpg";
+                        else
+                            Imagename = "download/Wallpaper_0.jpg";
+                        break;
+                }
             }
             return Imagename;
         }
@@ -166,5 +259,5 @@ namespace ScheduledTaskAgent1
             }
         }
     }
-  
+
 }

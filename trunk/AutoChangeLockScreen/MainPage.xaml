@@ -1,68 +1,308 @@
-﻿<phone:PhoneApplicationPage
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:AdRotator="clr-namespace:AdRotator;assembly=AdRotator"
-    x:Class="AutoChangeLockScreen.MainPage"
-    mc:Ignorable="d"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True" Opacity="0.9" BorderThickness="0">
+﻿<phone:PhoneApplicationPage x:Class="AutoChangeLockScreen.MainPage"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:ctrl="clr-namespace:AutoChangeLockScreen.Controls"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:googleAds="clr-namespace:GoogleAds;assembly=GoogleAds"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            BorderThickness="0"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            Opacity="0.9"
+                            Orientation="Portrait"
+                            SupportedOrientations="Portrait"
+                            shell:SystemTray.IsVisible="True"
+                            mc:Ignorable="d">
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar BackgroundColor="#FF08317B" Mode="Default" Opacity="0.5">
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/favs.png" Text="Review" Click="ReviewButton_Click" />
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.share.rest.png" Text="Buy" Click="BuyAppButton_Click" />
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.questionmark.rest.png" Text="Help" Click="HelpButton_Click"/>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.status.rest.png" Text="About" Click="AboutButton_Click"/>
+        <shell:ApplicationBar BackgroundColor="#FF08317B"
+                              Mode="Default"
+                              Opacity="0.5">
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem IsEnabled="True" Text="Share this" Click="ShareThis_Click"/>
-                <shell:ApplicationBarMenuItem IsEnabled="True" Text="SMS this" Click="SMSThis_Click" />
-                <shell:ApplicationBarMenuItem IsEnabled="True" Text="Email this" Click="EmailThis_Click"/>
+                <shell:ApplicationBarMenuItem Click="ShareThis_Click"
+                                              IsEnabled="True"
+                                              Text="Share this" />
+                <shell:ApplicationBarMenuItem Click="SMSThis_Click"
+                                              IsEnabled="True"
+                                              Text="SMS this" />
+                <shell:ApplicationBarMenuItem Click="EmailThis_Click"
+                                              IsEnabled="True"
+                                              Text="Email this" />
             </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>        
+            <shell:ApplicationBarIconButton Click="ReviewButton_Click"
+                                            IconUri="/Assets/AppBar/favs.png"
+                                            Text="Review" />
+            <shell:ApplicationBarIconButton Click="BuyAppButton_Click"
+                                            IconUri="/Assets/AppBar/appbar.share.rest.png"
+                                            Text="Buy" />
+            <shell:ApplicationBarIconButton Click="HelpButton_Click"
+                                            IconUri="/Assets/AppBar/appbar.questionmark.rest.png"
+                                            Text="Help" />
+            <shell:ApplicationBarIconButton Click="AboutButton_Click"
+                                            IconUri="/Assets/AppBar/appbar.status.rest.png"
+                                            Text="About" />
+        </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
-    <Grid x:Name="LayoutRoot">
+    <!--
+        <Grid x:Name="LayoutRoot">
         <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Background.png"/>
+        <ImageBrush Stretch="Fill" ImageSource="Background.png"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
-            <ColumnDefinition/>
+        <ColumnDefinition Width="200" />
+        <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="*"/>            
-            <RowDefinition Height="142"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="80"/>
+        <RowDefinition Height="100"/>
+        <RowDefinition Height="100"/>
+        <RowDefinition Height="100"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="142"/>
         </Grid.RowDefinitions>
+    -->
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
-            <TextBlock Text="{Binding LocalizedResources.AutoChange, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF110505" FontWeight="Bold" FontSize="26.667" />
-            <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle1Style}" x:Name="AppTitle" Foreground="#FF2C2726" FontWeight="Bold" FontSize="60"/>
-        </StackPanel>
-
-        <Grid x:Name="ContentPanel" Grid.Row="1" >
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.ChooseSource, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" Foreground="#FF110505" FontWeight="Bold" FontFamily="Tahoma" FontSize="26.667" TextDecorations="Underline"/>
+    <!--
+        <ctrl:FeedbackOverlay EnableAnimation="True" Grid.ColumnSpan="2" Canvas.ZIndex="999"   />
+        
+        <Ad:IMAdView xmlns:Ad="clr-namespace:InMobi.WP.AdSDK;assembly=InMobiWPAdSDK" Grid.Row="6"
+        Grid.ColumnSpan="2"                 Name="AdView"
+        AdSize="15"
+        AppId="d82660c8d4d84c6f8b89c531da1b62d0"                            Height="70" Width="auto" VerticalAlignment="Top" RefreshInterval="20" AnimationType="CURL_UP" >
+        </Ad:IMAdView>
         </Grid>
-        <Button x:Name="btnDefault" Content="{Binding LocalizedResources.Default, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top"  Foreground="#FFF9F9F9" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="1" Width="180" Background="#FF589DCD" BorderThickness="1" RenderTransformOrigin="0,0" Click="btnDefault_Click" />
-        <Button x:Name="btnYour" Content="{Binding LocalizedResources.YourPhotos, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="3" VerticalAlignment="Top" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnYour_Click"  />
-        <Button x:Name="btnRSS" Content="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Top" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnRSS_Click" />
-        <AdRotator:AdRotatorControl Name="adrotator" Height="70" Grid.Row="6"  Grid.ColumnSpan="2" VerticalAlignment="Top" DefaultSettingsFileUri="defaultAdSettings.xml"
-    SettingsUrl="http://www.dongnamtourist.com/defaultAdSettings.xml"
-    Margin="1" Background="#FF4F8DB9" Opacity="0.8" SmaatoAppId="65812700" SmaatoPublisherId="923870769" PubCenterAdUnitId="134719" PubCenterAppId="6e9635da-30c1-4c7d-8552-bb3d11884114" AdDuplexAppId="45659" InneractiveAppId="DNT_ACWallpaper_WP" />
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Foreground="#FF110505" FontWeight="Bold" FontFamily="Tahoma" FontSize="26.667" TextDecorations="Underline"  Grid.Row="5"/>
-        <CheckBox Content="{Binding LocalizedResources.Random, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Top" IsEnabled="False"/>
-        <RadioButton Content="{Binding LocalizedResources.m30, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Grid.Row="5" VerticalAlignment="Bottom"/>
-        <RadioButton Content="{Binding LocalizedResources.m60, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Right" IsEnabled="False"  Grid.Row="5" VerticalAlignment="Bottom"/>
+    -->
+    <Grid x:Name="LayoutRoot">
+        <phone:Panorama>
+            <phone:Panorama.Background>
+                <ImageBrush ImageSource="Background.png" Stretch="Fill" />
+            </phone:Panorama.Background>
+            <phone:PanoramaItem FontSize="30"
+                                Foreground="#FF110505"
+                                Header="{Binding LocalizedResources.ChooseSource,
+                                                 Source={StaticResource LocalizedStrings}}">
+                <phone:PanoramaItem.Background>
+                    <ImageBrush Stretch="Fill" />
+                </phone:PanoramaItem.Background>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="80" />
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition x:Name="RowAds" Height="142" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel x:Name="TitlePanel"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2">
+                        <TextBlock FontSize="26.667"
+                                   FontWeight="Bold"
+                                   Foreground="#FF110505"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Text="{Binding LocalizedResources.AutoChange,
+                                                  Source={StaticResource LocalizedStrings}}" />
+                        <TextBlock x:Name="AppTitle"
+                                   FontSize="50"
+                                   FontWeight="Bold"
+                                   Foreground="#FF2C2726"
+                                   Style="{StaticResource PhoneTextTitle1Style}"
+                                   Text="{Binding LocalizedResources.ApplicationTitle,
+                                                  Source={StaticResource LocalizedStrings}}" />
+                    </StackPanel>
+                    <Button x:Name="btnDefault"
+                            Grid.Row="2"
+                            Grid.RowSpan="1"
+                            Grid.Column="1"
+                            Width="180"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Background="#FF589DCD"
+                            BorderThickness="1"
+                            Click="btnDefault_Click"
+                            Content="{Binding LocalizedResources.Default,
+                                              Source={StaticResource LocalizedStrings}}"
+                            FontWeight="Bold"
+                            Foreground="#FFF9F9F9"
+                            RenderTransformOrigin="0,0" />
+                    <Button x:Name="btnYour"
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Width="180"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Background="#FF589DCD"
+                            BorderThickness="1"
+                            Click="btnYour_Click"
+                            Content="{Binding LocalizedResources.YourPhotos,
+                                              Source={StaticResource LocalizedStrings}}"
+                            FontWeight="Bold"
+                            Foreground="#FFF9F9F9" />
+
+                    <Button x:Name="btnRSS"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Width="180"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Background="#FF589DCD"
+                            BorderThickness="1"
+                            Click="btnRSS_Click"
+                            Content="{Binding LocalizedResources.Rss,
+                                              Source={StaticResource LocalizedStrings}}"
+                            FontWeight="Bold"
+                            Foreground="#FFF9F9F9" />
+                    <googleAds:AdView x:Name="AdView"
+                                      Grid.Row="6"
+                                      Grid.Column="0"
+                                      Grid.ColumnSpan="2"
+                                      HorizontalAlignment="Left"
+                                      VerticalAlignment="Top"
+                                      AdUnitID="ca-app-pub-2360101082795294/1534884796"
+                                      Format="Banner"
+                                      IsHitTestVisible="True" />
+                    <!--
+                        <Ad:IMAdView xmlns:Ad="clr-namespace:InMobi.WP.AdSDK;assembly=InMobiWPAdSDK"
+                        Name="AdView"
+                        Grid.Row="6"
+                        Grid.ColumnSpan="2"
+                        Width="auto"
+                        Height="70"
+                        VerticalAlignment="Top"
+                        AdSize="15"
+                        AnimationType="CURL_UP"
+                        AppId="d82660c8d4d84c6f8b89c531da1b62d0"
+                        RefreshInterval="20" />
+                    -->
+                </Grid>
+            </phone:PanoramaItem>
+            <phone:PanoramaItem FontSize="30"
+                                Foreground="#FF110505"
+                                Header="{Binding LocalizedResources.Settings,
+                                                 Source={StaticResource LocalizedStrings}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition x:Name="RowAds1" Height="142" />
+                    </Grid.RowDefinitions>
+
+
+                    <!--  TitlePanel contains the name of the application and page title  -->
+                    <StackPanel Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2">
+                        <TextBlock FontSize="26.667"
+                                   FontWeight="Bold"
+                                   Foreground="#FF110505"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Text="{Binding LocalizedResources.AutoChange,
+                                                  Source={StaticResource LocalizedStrings}}" />
+                        <TextBlock FontSize="50"
+                                   FontWeight="Bold"
+                                   Foreground="#FF2C2726"
+                                   Style="{StaticResource PhoneTextTitle1Style}"
+                                   Text="{Binding LocalizedResources.ApplicationTitle,
+                                                  Source={StaticResource LocalizedStrings}}" />
+                    </StackPanel>
+                    <CheckBox x:Name="chkRandom"
+                              Grid.Row="1"
+                              Grid.Column="1"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              Checked="chkRandom_Checked"
+                              Content="{Binding LocalizedResources.Random,
+                                                Source={StaticResource LocalizedStrings}}"
+                              Unchecked="chkRandom_Unchecked" />
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="0"
+                               Height="60"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               FontSize="30"
+                               FontWeight="Bold"
+                               Style="{StaticResource PhoneTextTitle1Style}"
+                               Text="{Binding LocalizedResources.IntervalTime,
+                                              Source={StaticResource LocalizedStrings}}" />
+                    <Button x:Name="btnSave"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Width="180"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Background="#FF589DCD"
+                            BorderThickness="1"
+                            Click="btnSave_Click"
+                            Content="{Binding LocalizedResources.SavePaid,
+                                              Source={StaticResource LocalizedStrings}}"
+                            FontWeight="Bold"
+                            Foreground="#FFF9F9F9"
+                            IsEnabled="True" />
+                    <TextBlock x:Name="txtPaidMsg"
+                               Grid.Row="4"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Height="auto"
+                               Margin="12,55,0,0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               FontSize="20"
+                               Style="{StaticResource PhoneTextTitle1Style}"
+                               Text="{Binding LocalizedResources.PaidWarning,
+                                              Source={StaticResource LocalizedStrings}}"
+                               TextWrapping="Wrap" />
+                    <telerikInput:RadListPicker x:Name="lstInterval"
+                                                Grid.Row="2"
+                                                Grid.Column="1"
+                                                Width="180"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top"
+                                                InlineModeThreshold="5"
+                                                SelectionChanged="LstInterval_OnSelectionChanged">
+                        <telerikInput:RadListPickerItem Content="{Binding LocalizedResources.Thirdty, Source={StaticResource LocalizedStrings}}" />
+                        <telerikInput:RadListPickerItem Content="{Binding LocalizedResources.Sixty, Source={StaticResource LocalizedStrings}}" />
+                        <telerikInput:RadListPickerItem Content="{Binding LocalizedResources.TwoHours, Source={StaticResource LocalizedStrings}}" />
+                        <telerikInput:RadListPickerItem Content="{Binding LocalizedResources.HalfDay, Source={StaticResource LocalizedStrings}}" />
+                        <telerikInput:RadListPickerItem Content="{Binding LocalizedResources.OneDay, Source={StaticResource LocalizedStrings}}" />
+                    </telerikInput:RadListPicker>
+                    <googleAds:AdView x:Name="AdView1"
+                                      Grid.Row="5"
+                                      Grid.Column="0"
+                                      Grid.ColumnSpan="2"
+                                      HorizontalAlignment="Left"
+                                      VerticalAlignment="Top"
+                                      AdUnitID="ca-app-pub-2360101082795294/1534884796"
+                                      Format="Banner"
+                                      IsHitTestVisible="True" />
+                    <!--
+                        <Ad:IMAdView xmlns:Ad="clr-namespace:InMobi.WP.AdSDK;assembly=InMobiWPAdSDK" Grid.Row="6"
+                        Grid.ColumnSpan="2"                 Name="AdView1"
+                        AdSize="15"
+                        AppId="d82660c8d4d84c6f8b89c531da1b62d0"                            Height="70" Width="auto" VerticalAlignment="Top" RefreshInterval="20" AnimationType="CURL_UP" >
+                        </Ad:IMAdView>
+                    -->
+                </Grid>
+            </phone:PanoramaItem>
+        </phone:Panorama>
+        <ctrl:FeedbackOverlay Canvas.ZIndex="999" ctrl:FeedbackOverlay.EnableAnimation="True" />
     </Grid>
 </phone:PhoneApplicationPage>

@@ -16,6 +16,33 @@ namespace AutoChangeLockScreen
         public Help()
         {
             InitializeComponent();
+            if (!Utils.ShowAds)
+            {
+                //ApplicationBar.MenuItems.RemoveAt(0);
+                RowAds.Height = new GridLength(0);
+            }
+        }
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            UpdateAd();
+        }
+        public void UpdateAd()
+        {
+            AdView.Visibility = Utils.ShowAds ? Visibility.Visible : Visibility.Collapsed;
+
+            // if we add more of these, we'll need to be more clever here
+            if (!Utils.ShowAds)
+            {
+                //ApplicationBar.MenuItems.RemoveAt(0);
+                RowAds.Height = new GridLength(0);
+                btnBuy.Visibility = Visibility.Collapsed;
+            }
+            //else
+            //{
+            //    //Render_Ad();
+            //    Display_Ad();
+            //}
         }
         private void btnBuy_Click(object sender, RoutedEventArgs e)
         {

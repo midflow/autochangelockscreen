@@ -319,17 +319,7 @@ namespace Image_Tiles
                     {
                         local.Write(stream.GetBuffer(), 0, stream.GetBuffer().Length);
                     }
-                }
-                //using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
-                //{
-                //    if (isf.FileExists(imgName))
-                //        isf.DeleteFile(imgName);
-                //    using (IsolatedStorageFileStream isfs = isf.CreateFile(imgName))
-                //    {
-                //        var bmp = new WriteableBitmap(element, null);
-                //        bmp.SaveJpeg(isfs, (int)element.Width, (int)element.Height, 0, 100);                        
-                //    }                    
-                //}
+                }                
             }
             catch (IsolatedStorageException exc)
             {
