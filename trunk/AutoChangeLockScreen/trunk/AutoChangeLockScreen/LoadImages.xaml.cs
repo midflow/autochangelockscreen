@@ -132,7 +132,8 @@ namespace AutoChangeLockScreen
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Page1.xaml", UriKind.Relative));
+            //NavigationService.Navigate(new Uri("/Page1.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/AddImage.xaml", UriKind.Relative));
         }
 
         private void btnMinus_Click(object sender, EventArgs e)

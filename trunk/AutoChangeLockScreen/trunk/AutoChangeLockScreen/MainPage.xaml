@@ -1,4 +1,4 @@
-﻿<phone:PhoneApplicationPage
+﻿<phone:PhoneApplicationPage xmlns:AppPromo="clr-namespace:AppPromo;assembly=AppPromo.WP8" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -6,6 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+xmlns:ctrl="clr-namespace:AutoChangeLockScreen.Controls"
+    xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
     x:Class="AutoChangeLockScreen.MainPage"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -18,84 +20,114 @@
     </phone:PhoneApplicationPage.Background>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar BackgroundColor="#FF08317B" Mode="Default" Opacity="0.5">
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/favs.png" Text="Review" IsEnabled="False" Click="ReviewButton_Click"/>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.questionmark.rest.png" Text="Help" Click="HelpButton_Click"/>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.status.rest.png" Text="About" Click="AboutButton_Click"/>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/folder.png" Text="My Apps" Click="MyAppsButton_Click"/>
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem IsEnabled="True" Text="Share this" Click="ShareThis_Click"/>
                 <shell:ApplicationBarMenuItem IsEnabled="True" Text="SMS this" Click="SMSThis_Click" />
                 <shell:ApplicationBarMenuItem IsEnabled="True" Text="Email this" Click="EmailThis_Click"/>
             </shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/favs.png" Text="Review" IsEnabled="False" Click="ReviewButton_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.questionmark.rest.png" Text="Help" Click="HelpButton_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.status.rest.png" Text="About" Click="AboutButton_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/folder.png" Text="My Apps" Click="MyAppsButton_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
+    <Grid>
+        <phone:Panorama>
+            <phone:Panorama.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Background.png"/>
+            </phone:Panorama.Background>
+            <phone:PanoramaItem Header="{Binding LocalizedResources.ChooseSource, Source={StaticResource LocalizedStrings}}" Foreground="#FF110505" FontSize="30">
+                <phone:PanoramaItem.Background>
+                    <ImageBrush Stretch="Fill"/>
+                </phone:PanoramaItem.Background>
+                <Grid x:Name="LayoutRoot">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel x:Name="TitlePanel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
+                        <TextBlock Text="{Binding LocalizedResources.AutoChange, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF110505" FontWeight="Bold" FontSize="25" />
+                        <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle1Style}" x:Name="AppTitle" Foreground="#FF2C2726" FontWeight="Bold" FontSize="45"/>
+                    </StackPanel>                    
+                    <Button x:Name="btnDefault" Content="{Binding LocalizedResources.Default, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Bottom"  Foreground="#FFF9F9F9" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="1" Width="180" Background="#FF589DCD" BorderThickness="1" RenderTransformOrigin="0,0" Click="btnDefault_Click" />
+                    <Button x:Name="btnYour" Content="{Binding LocalizedResources.YourPhotos, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="3" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnYour_Click"  />
 
-    <phone:Panorama>
-        <phone:Panorama.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Background.png"/>
-        </phone:Panorama.Background>
-        <phone:PanoramaItem Header="{Binding LocalizedResources.ChooseSource, Source={StaticResource LocalizedStrings}}" Foreground="#FF110505" FontSize="30">
-            <phone:PanoramaItem.Background>
-                <ImageBrush Stretch="Fill"/>
-            </phone:PanoramaItem.Background>
-            <Grid x:Name="LayoutRoot">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-
-                <!--TitlePanel contains the name of the application and page title-->
-                <StackPanel x:Name="TitlePanel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
-                    <TextBlock Text="{Binding LocalizedResources.AutoChange, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF110505" FontWeight="Bold" FontSize="26.667" />
-                    <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle1Style}" x:Name="AppTitle" Foreground="#FF2C2726" FontWeight="Bold" FontSize="50"/>
-                </StackPanel>
-
-                <!--<Grid x:Name="ContentPanel" Grid.Row="1" >
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LocalizedResources.ChooseSource, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" Foreground="#FF110505" FontWeight="Bold" FontFamily="Tahoma" FontSize="26.667" TextDecorations="Underline"/>
-
-                </Grid>-->
-                <Button Name="btnDefault" Content="{Binding LocalizedResources.Default, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Bottom"  Foreground="#FFF9F9F9" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="1" Width="180" Background="#FF589DCD" BorderThickness="1" RenderTransformOrigin="0,0" Click="btnDefault_Click" />
-                <Button Name="btnYour" Content="{Binding LocalizedResources.YourPhotos, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="3" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnYour_Click"  />
-
-                <Button Name="btnRSS" Content="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnRSS_Click" />
-            </Grid>
-        </phone:PanoramaItem>
-        <phone:PanoramaItem Header="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}" Foreground="#FF110505" FontSize="30">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="200"/>
-                    <RowDefinition Height="80"/>
-                    <RowDefinition Height="80"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+                    <Button x:Name="btnRSS" Content="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Bottom" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnRSS_Click" />
+                </Grid>
+            </phone:PanoramaItem>
+            <phone:PanoramaItem Header="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}" Foreground="#FF110505" FontSize="30">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
 
-                <!--TitlePanel contains the name of the application and page title-->
-                <StackPanel  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
-                    <TextBlock Text="{Binding LocalizedResources.AutoChange, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF110505" FontWeight="Bold" FontSize="26.667" />
-                    <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle1Style}"  Foreground="#FF2C2726" FontWeight="Bold" FontSize="50"/>
-                </StackPanel>
-                <CheckBox Name="chkRandom" Content="{Binding LocalizedResources.Random, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="1" VerticalAlignment="Center"/>
-                <TextBlock Text="{Binding LocalizedResources.IntervalTime, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle1Style}"   FontSize="30" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Grid.Row="2" />
-                <RadioButton Name="rbt30" Content="{Binding LocalizedResources.Thirdty, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="2" VerticalAlignment="Top" IsChecked="True" />
-                <RadioButton Name="rbt60" Content="{Binding LocalizedResources.Sixty, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="3" VerticalAlignment="Top"/>
-                <Button Name="btnSave" Content="{Binding LocalizedResources.Save, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Top" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnSave_Click" />
-            </Grid>
-        </phone:PanoramaItem>
-    </phone:Panorama>
+                    <!--TitlePanel contains the name of the application and page title-->
+                    <StackPanel  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
+                        <TextBlock Text="{Binding LocalizedResources.AutoChange, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF110505" FontWeight="Bold" FontSize="25" />
+                        <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle1Style}"  Foreground="#FF2C2726" FontWeight="Bold" FontSize="45"/>
+                    </StackPanel>
+                    <CheckBox x:Name="chkRandom" Content="{Binding LocalizedResources.Random, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="1" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding LocalizedResources.IntervalTime, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle1Style}"   FontSize="30" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Grid.Row="2" />                    
+                    <Button x:Name="btnSave" Content="{Binding LocalizedResources.Save, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Top" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnSave_Click" />
+                    <telerikInput:RadListPicker Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="2" VerticalAlignment="Top" Width="180" InlineModeThreshold="5" x:Name="lstInterval">
+                        <telerikInput:RadListPickerItem Content="{Binding LocalizedResources.Thirdty, Source={StaticResource LocalizedStrings}}"></telerikInput:RadListPickerItem>
+                        <telerikInput:RadListPickerItem Content="{Binding LocalizedResources.Sixty, Source={StaticResource LocalizedStrings}}"></telerikInput:RadListPickerItem>
+                        <telerikInput:RadListPickerItem Content="{Binding LocalizedResources.TwoHours, Source={StaticResource LocalizedStrings}}"></telerikInput:RadListPickerItem>
+                        <telerikInput:RadListPickerItem Content="{Binding LocalizedResources.HalfDay, Source={StaticResource LocalizedStrings}}"></telerikInput:RadListPickerItem>
+                        <telerikInput:RadListPickerItem Content="{Binding LocalizedResources.OneDay, Source={StaticResource LocalizedStrings}}"></telerikInput:RadListPickerItem>
+                    </telerikInput:RadListPicker>
+                </Grid>
+            </phone:PanoramaItem>
+            <!--<phone:PanoramaItem Header="{Binding LocalizedResources.Content, Source={StaticResource LocalizedStrings}}" Foreground="#FF110505" FontSize="30">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+
+                    --><!--TitlePanel contains the name of the application and page title--><!--
+                    <StackPanel  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
+                        <TextBlock Text="{Binding LocalizedResources.AutoChange, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF110505" FontWeight="Bold" FontSize="25" />
+                        <TextBlock Text="{Binding LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle1Style}"  Foreground="#FF2C2726" FontWeight="Bold" FontSize="45"/>
+                    </StackPanel>
+                    <TextBlock  Text="{Binding LocalizedResources.CustomText, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle1Style}"   FontSize="30" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Grid.Row="1" />
+                    <TextBox x:Name="txtText" Grid.Column="1" Grid.Row="1" FontSize="50" ></TextBox>
+                    <TextBlock Text="{Binding LocalizedResources.NewsSource, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle1Style}"   FontSize="30" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Grid.Row="2" />                    
+                    <telerikInput:RadListPicker Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="2" VerticalAlignment="Top" Width="180" InlineModeThreshold="5" x:Name="lstNews">
+                        <telerikInput:RadListPickerItem Content="{Binding LocalizedResources.BingNews, Source={StaticResource LocalizedStrings}}"></telerikInput:RadListPickerItem>
+                        <telerikInput:RadListPickerItem Content="{Binding LocalizedResources.GoogleNews, Source={StaticResource LocalizedStrings}}"></telerikInput:RadListPickerItem>                        
+                    </telerikInput:RadListPicker>
+                    <Button x:Name="btnSaveContent" Content="{Binding LocalizedResources.Save, Source={StaticResource LocalizedStrings}}" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Top" Foreground="#FFF9F9F9" FontWeight="Bold" Width="180" Background="#FF589DCD" BorderThickness="1" Click="btnSaveContent_Click" />
+                </Grid>
+            </phone:PanoramaItem>-->
+        </phone:Panorama>
+        <ctrl:FeedbackOverlay ctrl:FeedbackOverlay.EnableAnimation="True" Canvas.ZIndex="999"   />
+    </Grid>
 </phone:PhoneApplicationPage>

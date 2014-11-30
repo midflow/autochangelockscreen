@@ -64,13 +64,16 @@ namespace AutoChangeLockScreen.Models
             BitmapImage image = new BitmapImage();
             IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();            
             string isoFilename = strImageName;
-            
-            Stream stream = isoStore.OpenFile(isoFilename, System.IO.FileMode.Open);
-            image.SetSource(stream);
-            this.ImageBinary = image;
-            //*** Image Size ***'
-            this.ImageSize = stream.Length + " Bytes";
-            stream.Close();
+
+            if (isoStore.FileExists(strImageName))
+            {
+                Stream stream = isoStore.OpenFile(isoFilename, System.IO.FileMode.Open);
+                image.SetSource(stream);
+                this.ImageBinary = image;
+                //*** Image Size ***'
+                this.ImageSize = stream.Length + " Bytes";
+                stream.Close();
+            }
         }
     }
 }

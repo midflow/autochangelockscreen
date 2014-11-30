@@ -28,6 +28,7 @@ namespace AutoChangeLockScreen
         //string periodicTaskName = "PeriodicAgent";
         public bool agentsAreEnabled = true;
         public static int NumberImage = 0;
+        //static bool blRatingShow = false;
 
         public MainPage()
         {
@@ -35,7 +36,7 @@ namespace AutoChangeLockScreen
             //LoadImages_Loaded();
             //AppTitle.Text = AutoChangeLockScreen.Resources.AppResources.ApplicationTitle;
             // Sample code to localize the ApplicationBar
-            BuildLocalizedApplicationBar();            
+            BuildLocalizedApplicationBar();
 
             if (IsolatedStorageSettings.ApplicationSettings.Contains("Random"))
             {
@@ -43,12 +44,32 @@ namespace AutoChangeLockScreen
             }
             if (IsolatedStorageSettings.ApplicationSettings.Contains("Interval"))
             {
-                bool is30 = bool.Parse(IsolatedStorageSettings.ApplicationSettings["Interval"] as string);
-                if (is30 == true)
-                    rbt30.IsChecked = true;
-                else 
-                    rbt60.IsChecked = true;
-            }
+                int interval = int.Parse(IsolatedStorageSettings.ApplicationSettings["Interval"] as string);
+                switch (interval)
+                {
+                    case 30:
+                        //rbt30.IsChecked = true;
+                        lstInterval.SelectedIndex = 0;
+                        break;
+                    case 60:
+                        //rbt60.IsChecked = true;
+                        lstInterval.SelectedIndex = 1;
+                        break;
+                    case 120: // 2hours
+                        //rbt60.IsChecked = true;
+                        lstInterval.SelectedIndex = 2;
+                        break;
+                    case 720: // 1/2 day
+                        //rbt60.IsChecked = true;
+                        lstInterval.SelectedIndex = 3;
+                        break;
+                    case 1440: // a day
+                        //rbt60.IsChecked = true;
+                        lstInterval.SelectedIndex = 4;
+                        break;
+                }
+                
+            }           
         }
         // Build a localized ApplicationBar
         private void BuildLocalizedApplicationBar()
@@ -208,7 +229,7 @@ namespace AutoChangeLockScreen
         private void EmailThis_Click(object sender, EventArgs e)
         {
             EmailComposeTask emailtask = new EmailComposeTask();
-            emailtask.Subject = "Pin your image to home screen";
+            emailtask.Subject = "Auto change wallpaper";
             emailtask.Body = "Here are a nice app to set dynamic wallpaper for Windows Phone. Click for detail: http://www.windowsphone.com/s?appid=ee8e9449-61b1-4049-9ca4-5407995234ab";
             emailtask.Bcc = "lttrungbk@yahoo.com";
             emailtask.Show();
@@ -229,14 +250,72 @@ namespace AutoChangeLockScreen
 
             if (!settings.Contains("Interval"))
             {
-                settings.Add("Interval", rbt30.IsChecked == true ? "True" : "False");
+                switch (lstInterval.SelectedIndex)
+                {
+                    case 0:
+                        settings.Add("Interval", "30");
+                        break;
+                    case 1:
+                        settings.Add("Interval", "60");
+                        break;
+                    case 2:
+                        settings.Add("Interval", "120");
+                        break;
+                    case 3:
+                        settings.Add("Interval", "720");
+                        break;
+                    case 4:
+                        settings.Add("Interval", "1440");
+                        break;
+                }
+                
             }
             else
             {
-                settings["Interval"] = rbt30.IsChecked == true ? "True" : "False";
+                switch (lstInterval.SelectedIndex)
+                {
+                    case 0:
+                        settings["Interval"] = "30";
+                        break;
+                    case 1:
+                        settings["Interval"] = "60";
+                        break;
+                    case 2:
+                        settings["Interval"] = "120";
+                        break;
+                    case 3:
+                        settings["Interval"] = "720";
+                        break;
+                    case 4:
+                        settings["Interval"] = "1440";
+                        break;
+                }                
             }
             settings.Save();
         }
+        //private void btnSaveContent_Click(object sender, RoutedEventArgs e)
+        //{
+        //    IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+        //    // txtInput is a TextBox defined in XAML.
+        //    if (!settings.Contains("Title"))
+        //    {
+        //        settings.Add("Title", txtText.Text);
+        //    }
+        //    else
+        //    {
+        //        settings["Title"] = txtText.Text;
+        //    }
+
+        //    if (!settings.Contains("SourceNews"))
+        //    {
+        //        settings.Add("SourceNews", lstNews.SelectedIndex);
+        //    }
+        //    else
+        //    {
+        //        settings["SourceNews"] = lstNews.SelectedIndex;
+        //    }
+        //    settings.Save();
+        //}
 
     }
 }
