@@ -5,8 +5,8 @@
     <Language code="vi" />
     <Language code="vi-VN" />
   </Languages>
-  <App xmlns="" ProductID="{ee8e9449-61b1-4049-9ca4-5407995234ab}" Title="Auto Wallpaper" RuntimeType="Silverlight" Version="1.0.0.1" Genre="apps.normal" Author="trunglt" Description="Sample description" Publisher="trunglt" PublisherID="{cde9748e-d1f2-4067-b8cc-f4e0d758d2fd}">
-    <IconPath IsRelative="true" IsResource="false">Assets\ACWallpaper.png</IconPath>
+  <App xmlns="" ProductID="{ee8e9449-61b1-4049-9ca4-5407995234ab}" Title="Auto Wallpaper" RuntimeType="Silverlight" Version="1.1.2.1" Genre="apps.normal" Author="trunglt" Description="Sample description" Publisher="trunglt" PublisherID="{cde9748e-d1f2-4067-b8cc-f4e0d758d2fd}">
+    <IconPath IsRelative="true" IsResource="false">AutoWallpaper.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
@@ -15,6 +15,7 @@
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
       <Capability Name="ID_CAP_IDENTITY_DEVICE" />
       <Capability Name="ID_CAP_ISV_CAMERA" />
+      <Capability Name="ID_CAP_MEDIALIB_PHOTO" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" ActivationPolicy="Resume" />
@@ -22,9 +23,9 @@
     <Tokens>
       <PrimaryToken TokenID="AutoChangeLockScreenToken" TaskName="_default">
         <TemplateFlip>
-          <SmallImageURI IsRelative="true" IsResource="false">Assets\ACWallpaper.png</SmallImageURI>
+          <SmallImageURI IsRelative="true" IsResource="false">AutoWallpaper.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\ACWallpaper.png</BackgroundImageURI>
+          <BackgroundImageURI IsRelative="true" IsResource="false">AutoWallpaper.png</BackgroundImageURI>
           <Title>Auto Wallpaper</Title>
           <BackContent>
           </BackContent>
@@ -32,17 +33,18 @@
           </BackBackgroundImageURI>
           <BackTitle>
           </BackTitle>
-          <LargeBackgroundImageURI IsRelative="true" IsResource="false">AC Wallpaper.png</LargeBackgroundImageURI>
+          <LargeBackgroundImageURI IsRelative="true" IsResource="false">AutoWallpaper-wide.png</LargeBackgroundImageURI>
           <LargeBackContent />
           <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
           </LargeBackBackgroundImageURI>
-          <DeviceLockImageURI>
-          </DeviceLockImageURI>
+          <DeviceLockImageURI IsRelative="true" IsResource="false">AC Wallpaper_Lock.png</DeviceLockImageURI>
           <HasLarge>True</HasLarge>
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>
     <Extensions>
+      <Extension ExtensionName="LockScreen_Notification_IconCount" ConsumerID="{111DFF24-AA15-4A96-8006-2BFF8122084F}" TaskID="_default" />
+      <Extension ExtensionName="LockScreen_Notification_TextField" ConsumerID="{111DFF24-AA15-4A96-8006-2BFF8122084F}" TaskID="_default" />
       <Extension ExtensionName="LockScreen_Background" ConsumerID="{111DFF24-AA15-4A96-8006-2BFF8122084F}" TaskID="_default" />
     </Extensions>
     <ScreenResolutions>

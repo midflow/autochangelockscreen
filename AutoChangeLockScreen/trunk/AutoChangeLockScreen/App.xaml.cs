@@ -1,11 +1,14 @@
-﻿
-//#define DEBUG_AGENT
+﻿//#define DEBUG_AGENT
+
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Resources;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Navigation;
+using System.Windows.Resources;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using AutoChangeLockScreen.Resources;
@@ -18,6 +21,7 @@ using Microsoft.Phone.Scheduler;
 using Windows.Phone.System.UserProfile;
 using System.Windows.Media;
 using Windows.ApplicationModel;
+using Microsoft.Xna.Framework.Media;
 
 namespace AutoChangeLockScreen
 {
@@ -29,8 +33,8 @@ namespace AutoChangeLockScreen
         public static bool blLoadIamge = false;
         public static int isDefault = 0; //0 = defaul, 1 yours, 2 rss
         public static List<myImages> imageList = new List<myImages>();
-        static PeriodicTask periodicTask;
-        static string periodicTaskName = "PeriodicAgent";
+        private static PeriodicTask periodicTask;
+        private static string periodicTaskName = "PeriodicAgent";
         public static bool agentsAreEnabled = true;
 
         //user
@@ -50,6 +54,9 @@ namespace AutoChangeLockScreen
             {
                 using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
                 {
+                    if (!isf.DirectoryExists("wallpaper"))
+                        isf.CreateDirectory("wallpaper");
+                    
                     if (isf.FileExists(imgName))
                         isf.DeleteFile(imgName);
                     using (IsolatedStorageFileStream isfs = isf.CreateFile(imgName))
@@ -71,7 +78,7 @@ namespace AutoChangeLockScreen
             string[] files;
             bool isRandom = false;
             int intImageInit = 0;
-            string is30 = "False";
+            int intInterval = 30;
             IsolatedStorageFile isoStore;
             isoStore = IsolatedStorageFile.GetUserStoreForApplication();
 
@@ -83,9 +90,9 @@ namespace AutoChangeLockScreen
             }
             if (IsolatedStorageSettings.ApplicationSettings.Contains("Interval"))
             {
-                is30 = IsolatedStorageSettings.ApplicationSettings["Interval"] as string;
+                intInterval = int.Parse(IsolatedStorageSettings.ApplicationSettings["Interval"].ToString());
             }
-            
+
             switch (strSource)
             {
                 case "Default":
@@ -94,14 +101,15 @@ namespace AutoChangeLockScreen
                     if (isRandom)
                     {
                         Random rand = new Random();
-                        intImageInit = rand.Next(0, NumberImage-1);
+                        intImageInit = rand.Next(0, NumberImage - 1);
                     }
                     else
                     {
                         intImageInit = 0;
                     }
-                    LockScreenChange("wallpaper/Wallpaper_" + intImageInit.ToString() + ".jpg", true);
                     
+                    LockScreenChange("wallpaper/Wallpaper_" + intImageInit.ToString() + ".jpg", true);
+                    MergeImageText("Good Morning!", "wallpaper/Wallpaper_" + intImageInit + ".jpg");
                     break;
                 case "Your":
                     isoStore = IsolatedStorageFile.GetUserStoreForApplication();
@@ -111,14 +119,15 @@ namespace AutoChangeLockScreen
                     if (isRandom)
                     {
                         Random rand = new Random();
-                        intImageInit = rand.Next(0, NumberImage-1);
+                        intImageInit = rand.Next(0, NumberImage - 1);
                     }
                     else
                     {
                         intImageInit = 0;
                     }
+                    //MergeImageText("Good Morning!", App.imageList[intImageInit].ImageName);
                     LockScreenChange(App.imageList[intImageInit].ImageName, false);
-                    
+
                     break;
                 case "Rss":
                     isoStore = IsolatedStorageFile.GetUserStoreForApplication();
@@ -127,21 +136,32 @@ namespace AutoChangeLockScreen
                     if (isRandom)
                     {
                         Random rand = new Random();
-                        intImageInit = rand.Next(0, NumberImage-1);
+                        intImageInit = rand.Next(0, NumberImage - 1);
                     }
                     else
                     {
                         intImageInit = 0;
                     }
-                    LockScreenChange("download/Wallpaper_"+intImageInit.ToString()+".jpg", false);
-                    
+                    LockScreenChange("download/Wallpaper_" + intImageInit.ToString() + ".jpg", false);
+
                     break;
             }
 
             strSource += " " + NumberImage.ToString();
             strSource += " " + isRandom.ToString();
-            strSource += " " + is30.ToString();
+            strSource += " " + intInterval.ToString();
             strSource += " " + "0";
+
+            //var tile = ShellTile.ActiveTiles.First();
+            //var uri = LockScreen.GetImageUri();
+            //var data = new FlipTileData
+            //{
+            //    Count = 1,
+            //    Title = uri.ToString() + "123",
+            //    WideBackContent = uri.ToString()
+            //};
+
+            //tile.Update(data);
 
             using (StreamWriter writer = new StreamWriter(fileStream))
             {
@@ -179,11 +199,10 @@ namespace AutoChangeLockScreen
                 // debug, so run in every 30 secs
 
 
-//#if(DEBUG_AGENT)
-//                ScheduledActionService.LaunchForTest(periodicTaskName, TimeSpan.FromSeconds(10));
-//                System.Diagnostics.Debug.WriteLine("Periodic task is started: " + periodicTaskName);
-//#endif
-
+                //#if(DEBUG_AGENT)
+                //                ScheduledActionService.LaunchForTest(periodicTaskName, TimeSpan.FromSeconds(10));
+                //                System.Diagnostics.Debug.WriteLine("Periodic task is started: " + periodicTaskName);
+                //#endif
             }
             catch (InvalidOperationException exception)
             {
@@ -192,7 +211,9 @@ namespace AutoChangeLockScreen
                     // load error text from localized strings
                     MessageBox.Show("Background agents for this application have been disabled by the user.");
                 }
-                if (exception.Message.Contains("BNS Error: The maximum number of ScheduledActions of this type have already been added."))
+                if (
+                    exception.Message.Contains(
+                        "BNS Error: The maximum number of ScheduledActions of this type have already been added."))
                 {
                     // No user action required. The system prompts the user when the hard limit of periodic tasks has been reached.
                 }
@@ -275,6 +296,51 @@ namespace AutoChangeLockScreen
             return Color.FromArgb(a, r, g, b);
         }
 
+        public static void MergeImageText(string txt, String imgUri)
+        {
+            try
+            {
+                BitmapImage image = new BitmapImage();
+                IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
+                string isoFilename = imgUri;
+
+                //if (isoStore.FileExists(imgUri))
+                //{
+                //    Stream stream = isoStore.OpenFile(isoFilename, System.IO.FileMode.Open, FileAccess.ReadWrite);
+                //    image.SetSource(stream);
+                //}
+
+                StreamResourceInfo sr = Application.GetResourceStream(new Uri("wallpaper/Wallpaper_0.jpg", UriKind.Relative));
+                image.SetSource((sr.Stream));
+                // image = new BitmapImage(new Uri("ms-appdata:///Local/"+imgUri, UriKind.Absolute));
+                WriteableBitmap wb = new WriteableBitmap(image);
+
+                TextBlock txtText = new TextBlock();
+                txtText.Text = txt;
+                txtText.FontSize = 50;
+                
+                txtText.Foreground = new SolidColorBrush(Colors.White);
+                wb.Render(txtText, new TranslateTransform() { X = wb.PixelWidth/2-230, Y = 25 });
+                wb.Invalidate();
+
+                saveImage(wb, "Wallpaper_0.jpg");
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveJpeg(stream, wb.PixelWidth, wb.PixelHeight, 0, 100);
+                    stream.Seek(0, SeekOrigin.Begin);
+                    using (MediaLibrary mediaLibrary = new MediaLibrary())
+                        mediaLibrary.SavePicture("/Picture.jpg", stream);
+                }
+                MessageBox.Show("Picture Saved...");
+
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
@@ -317,13 +383,14 @@ namespace AutoChangeLockScreen
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-
         }
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            // Call this on launch to initialise the feedback helper
+            AutoChangeLockScreen.Helpers.FeedbackHelper.Default.Launching();
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -464,7 +531,8 @@ namespace AutoChangeLockScreen
                 //
                 // If a compiler error is hit then ResourceFlowDirection is missing from
                 // the resource file.
-                FlowDirection flow = (FlowDirection)Enum.Parse(typeof(FlowDirection), AppResources.ResourceFlowDirection);
+                FlowDirection flow =
+                    (FlowDirection) Enum.Parse(typeof (FlowDirection), AppResources.ResourceFlowDirection);
                 RootFrame.FlowDirection = flow;
             }
             catch

@@ -62,8 +62,7 @@
                                 </Image.Source>
                             </Image>
                             <Grid Width="311">
-                                <TextBlock Text="{Binding ImageName}"  TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="26.667" Margin="12,0,12,76"/>
-                                <!--<TextBlock Text="{Binding ImageSize}" TextWrapping="Wrap" Margin="12,79,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="18.667"/>-->
+                                <TextBlock Text="{Binding ImageName}"  TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="26.667" Margin="12,0,12,76"/>                                
                             </Grid>
                         </StackPanel>
                     </DataTemplate>

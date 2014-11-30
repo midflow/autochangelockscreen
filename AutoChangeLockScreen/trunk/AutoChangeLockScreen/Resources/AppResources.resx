@@ -324,4 +324,85 @@
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="FeedBack" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="FeedBackMsg" xml:space="preserve">
+    <value>Sorry to hear that you didn't want to rate this app. Tell us about your experience or suggest how we can make it better.</value>
+  </data>
+  <data name="FeedbackBody" xml:space="preserve">
+    <value>[Your feedback here]
+
+
+---------------------------------
+Device Name: {0}
+Device Manufacturer: {1}
+Device Firmware Version: {2}
+Device Hardware Version: {3}
+Application Version: {4}
+---------------------------------</value>
+  </data>
+  <data name="FeedbackMessage1" xml:space="preserve">
+    <value>Sorry to hear you didn't want to rate MyApp.
+
+Tell us about your experience or suggest how we can make it even better.</value>
+  </data>
+  <data name="FeedbackNo" xml:space="preserve">
+    <value>no thanks</value>
+  </data>
+  <data name="FeedbackSubject" xml:space="preserve">
+    <value>MyApp Customer Feedback </value>
+  </data>
+  <data name="FeedbackTitle" xml:space="preserve">
+    <value>Can we make it better?</value>
+  </data>
+  <data name="FeedbackTo" xml:space="preserve">
+    <value>support@myapp.com</value>
+  </data>
+  <data name="FeedbackYes" xml:space="preserve">
+    <value>give feedback</value>
+  </data>
+  <data name="RatingMessage1" xml:space="preserve">
+    <value>We'd love you to rate our app 5 stars
+
+Showing us some love on the store helps us to continue to work on the app and make things even better!</value>
+  </data>
+  <data name="RatingMessage2" xml:space="preserve">
+    <value>You look to be getting a lot of use out of our application!
+
+Why not give us a 5 star rating to show your appreciation?</value>
+  </data>
+  <data name="RatingNo" xml:space="preserve">
+    <value>no thanks</value>
+  </data>
+  <data name="RatingTitle" xml:space="preserve">
+    <value>Enjoying MyApp?</value>
+  </data>
+  <data name="RatingYes" xml:space="preserve">
+    <value>rate 5 stars</value>
+  </data>
+  <data name="HalfDay" xml:space="preserve">
+    <value>12 hours</value>
+  </data>
+  <data name="OneDay" xml:space="preserve">
+    <value>1 day</value>
+  </data>
+  <data name="TwoHours" xml:space="preserve">
+    <value>2 hours</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="BingNews" xml:space="preserve">
+    <value>Bing News</value>
+  </data>
+  <data name="GoogleNews" xml:space="preserve">
+    <value>Google News</value>
+  </data>
+  <data name="CustomText" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="NewsSource" xml:space="preserve">
+    <value>Source</value>
+  </data>
 </root>
