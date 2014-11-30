@@ -12,23 +12,27 @@
     <RootNamespace>AutoChangeLockScreen</RootNamespace>
     <AssemblyName>AC Wallpaper Free</AssemblyName>
     <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
-    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <SilverlightVersion>
+    </SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
     <SupportedCultures>vi%3bvi-VN</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>AutoChangeLockScreen_$(Configuration)_$(Platform).xap</XapFilename>
+    <XapFilename>AutoChangeLockScreenFree_$(Configuration)_$(Platform).xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
     <SilverlightAppEntry>AutoChangeLockScreen.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <ExpressionBlendVersion>5.0.40218.0</ExpressionBlendVersion>
     <SccProjectName>Svn</SccProjectName>
     <SccLocalPath>Svn</SccLocalPath>
     <SccAuxPath>Svn</SccAuxPath>
     <SccProvider>SubversionScc</SccProvider>
+    <TargetFrameworkProfile />
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <NuGetPackageImportStamp>d79ab23e</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,6 +65,7 @@
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>
@@ -71,6 +76,7 @@
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|ARM' ">
     <DebugSymbols>true</DebugSymbols>
@@ -82,6 +88,7 @@
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|ARM' ">
     <DebugType>pdbonly</DebugType>
@@ -92,21 +99,38 @@
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget />
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddImage.xaml.cs">
+      <DependentUpon>AddImage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FeedbackOverlay.xaml.cs">
+      <DependentUpon>FeedbackOverlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUISelector.cs" />
     <Compile Include="Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\FeedbackHelper.cs" />
+    <Compile Include="Helpers\StorageHelper.cs" />
     <Compile Include="LoadRssImages.xaml.cs">
       <DependentUpon>LoadRssImages.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\FlickrData.cs" />
+    <Compile Include="NokiaTool.cs" />
+    <Compile Include="Pages\EditorPage.xaml.cs">
+      <DependentUpon>EditorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PickImagePage.xaml.cs">
+      <DependentUpon>PickImagePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RssPage.xaml.cs">
       <DependentUpon>RssPage.xaml</DependentUpon>
     </Compile>
@@ -132,6 +156,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\DataService.cs" />
+    <Compile Include="Utils.cs" />
     <Compile Include="ViewModels\PhotosViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -143,11 +168,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="AddImage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FeedbackOverlay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Help.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LoadRssImages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\EditorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\PickImagePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -173,15 +214,27 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="analytics.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="app.config" />
-    <None Include="packages.config" />
-    <None Include="Properties\AppManifest.xml" />
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="Help\Nokia Imaging SDK.chm" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\AppManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="AC Wallpaper.png" />
+    <Content Include="analytics.xml" />
     <Content Include="Assets\ACWallpaper.png" />
     <Content Include="Assets\AppBar\add.png" />
     <Content Include="Assets\AppBar\appbar.map.position.rest.png" />
@@ -197,6 +250,13 @@
     <Content Include="Assets\AppBar\photo.crop.png" />
     <Content Include="Assets\AppBar\share.png" />
     <Content Include="Assets\AppBar\transport.play.png" />
+    <Content Include="Assets\BadgeLogo.png" />
+    <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\nokiaimg.png" />
+    <Content Include="Assets\SplashScreen.png" />
+    <Content Include="Assets\SquareTile150x150.png" />
+    <Content Include="Assets\SquareTile71x71.png" />
+    <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -216,9 +276,23 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Resource>
+    <Content Include="Assets\WideLogo.png" />
+    <Content Include="AutoWallpaper-wide.png" />
+    <Content Include="AutoWallpaper.png" />
+    <Content Include="Images\back.png" />
+    <Content Include="Images\close.png" />
+    <Content Include="Images\cross.png" />
+    <Content Include="Images\exit.png" />
+    <Content Include="Images\logo-img-editor.png" />
+    <Content Include="Images\next.png" />
+    <Content Include="Images\pause.png" />
+    <Content Include="Images\ref.png" />
+    <Content Include="Images\skipAd.png" />
+    <Content Include="Images\skipAdclose.png" />
     <Content Include="P10009031.jpg" />
     <None Include="ReadMe-AdRotator-XAML.txt" />
     <Content Include="ReadMe.Coding4Fun.Toolkit.txt" />
+    <Content Include="Refresh.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="wallpaper\Wallpaper_0.jpg" />
@@ -226,6 +300,10 @@
     <Content Include="wallpaper\Wallpaper_10.jpg" />
     <Content Include="wallpaper\Wallpaper_11.jpg" />
     <Content Include="wallpaper\Wallpaper_12.jpg" />
+    <Content Include="wallpaper\Wallpaper_13.jpg" />
+    <Content Include="wallpaper\Wallpaper_14.jpg" />
+    <Content Include="wallpaper\Wallpaper_15.jpg" />
+    <Content Include="wallpaper\Wallpaper_16.jpg" />
     <Content Include="wallpaper\Wallpaper_2.jpg" />
     <Content Include="wallpaper\Wallpaper_3.jpg" />
     <Content Include="wallpaper\Wallpaper_4.jpg" />
@@ -244,13 +322,6 @@
     <EmbeddedResource Include="Resources\AppResources.vi.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AdDuplex.WindowsPhone, Version=2.8.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AdDuplexWP8.2.8.0.3\lib\wp8\AdDuplex.WindowsPhone.dll</HintPath>
-    </Reference>
-    <Reference Include="AdRotator">
-      <HintPath>..\packages\AdRotatorWP.1.0.3\lib\wp8\AdRotator.dll</HintPath>
-    </Reference>
     <Reference Include="Coding4Fun.Toolkit.Audio">
       <HintPath>..\packages\Coding4Fun.Toolkit.Audio.2.0.7\lib\windowsphone8\Coding4Fun.Toolkit.Audio.dll</HintPath>
     </Reference>
@@ -263,18 +334,14 @@
     <Reference Include="Coding4Fun.Toolkit.Storage">
       <HintPath>..\packages\Coding4Fun.Toolkit.Storage.2.0.7\lib\windowsphone8\Coding4Fun.Toolkit.Storage.dll</HintPath>
     </Reference>
-    <Reference Include="Google.AdMob.Ads.WindowsPhone7">
-      <HintPath>..\..\..\..\Dropbox\Programming\googleadmobadssdkwindowsphone7\GoogleAdMobAdsSDKWindowsPhone7-4.0.4\sdk\Google.AdMob.Ads.WindowsPhone7.dll</HintPath>
+    <Reference Include="GoogleAds">
+      <HintPath>..\..\..\googlemobileadssdkwindowsphone8\lib\windowsphone8\GoogleAds.dll</HintPath>
     </Reference>
-    <Reference Include="InMobiWP7SDK">
-      <HintPath>..\..\..\..\Dropbox\Programming\InMobi_windows_SDK\InMobi_Windows_AdSDK_200\Windows Phone 7.5\InMobi_WP_SDK_w100\InMobiWP7SDK.dll</HintPath>
+    <Reference Include="GoogleAnalytics">
+      <HintPath>..\packages\GoogleAnalyticsSDK.1.2.08\lib\windowsphone8\GoogleAnalytics.dll</HintPath>
     </Reference>
-    <Reference Include="inmobiwpadsdk">
-      <HintPath>..\..\..\..\dropbox\programming\inmobi_windows_sdk\inmobi_windows_adsdk_200\windows phone 8\inmobi_wp_sdk_201\libs\inmobiwpadsdk.dll</HintPath>
-    </Reference>
-    <Reference Include="Inneractive.Nokia.Ad, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AdRotatorWP.1.0.3\lib\wp8\Inneractive.Nokia.Ad.dll</HintPath>
+    <Reference Include="GoogleAnalytics.Core">
+      <HintPath>..\packages\GoogleAnalyticsSDK.1.2.08\lib\windowsphone8\GoogleAnalytics.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Advertising.Mobile, Version=6.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\AdRotatorWP.1.0.3\lib\wp8\Microsoft.Advertising.Mobile.dll</HintPath>
@@ -283,10 +350,29 @@
       <HintPath>..\packages\AdRotatorWP.1.0.3\lib\wp8\Microsoft.Advertising.Mobile.UI.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions" />
-    <Reference Include="SOMAWP8">
-      <HintPath>..\packages\AdRotatorWP.1.0.3\lib\wp8\SOMAWP8.dll</HintPath>
+    <Reference Include="Nokia.Graphics.Imaging.Managed, Version=1.2.99.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NokiaImagingSDK.1.2.99\lib\wp8\Nokia.Graphics.Imaging.Managed.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\sl4-windowsphone71\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\sl4-windowsphone71\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Interactivity" />
+    <Reference Include="Telerik.Windows.Controls.DataVisualization, Version=2013.3.1016.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="telerik.windows.controls.imageeditor, Version=2013.3.1016.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2013.3.1016.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Primitives, Version=2013.3.1016.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Core, Version=2013.3.1016.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="vservWindowsPhone, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\VservWP8SDK\WP8SDK\vservWindowsPhone.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Background.png" />
@@ -307,4 +393,16 @@
   </Target>
   -->
   <ProjectExtensions />
+  <Import Project="..\packages\NokiaImagingSDK.1.2.99\build\wp8\NokiaImagingSDK.targets" Condition="Exists('..\packages\NokiaImagingSDK.1.2.99\build\wp8\NokiaImagingSDK.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NokiaImagingSDK.1.2.99\build\wp8\NokiaImagingSDK.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NokiaImagingSDK.1.2.99\build\wp8\NokiaImagingSDK.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
 </Project>

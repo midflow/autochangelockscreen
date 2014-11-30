@@ -1,114 +1,156 @@
-﻿<phone:PhoneApplicationPage 
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"    
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ViewModels="clr-namespace:AutoChangeLockScreen.ViewModels"
-    xmlns:myUserControl="clr-namespace:AutoChangeLockScreen"
-    xmlns:Ad="clr-namespace:InMobi.WP.AdSDK;assembly=InMobiWPAdSDK"
-    xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
-    x:Class="AutoChangeLockScreen.LoadRssImages"
-    mc:Ignorable="d"
-    SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+﻿<phone:PhoneApplicationPage x:Class="AutoChangeLockScreen.LoadRssImages"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:Ad="clr-namespace:InMobi.WP.AdSDK;assembly=InMobiWPAdSDK"
+                            xmlns:ViewModels="clr-namespace:AutoChangeLockScreen.ViewModels"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+                            xmlns:googleAds="clr-namespace:GoogleAds;assembly=GoogleAds"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:myUserControl="clr-namespace:AutoChangeLockScreen"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            Orientation="Portrait"
+                            SupportedOrientations="Portrait"
+                            shell:SystemTray.IsVisible="True"
+                            mc:Ignorable="d">
 
     <phone:PhoneApplicationPage.FontFamily>
-        <StaticResource ResourceKey="PhoneFontFamilyNormal"/>
+        <StaticResource ResourceKey="PhoneFontFamilyNormal" />
     </phone:PhoneApplicationPage.FontFamily>
     <phone:PhoneApplicationPage.FontSize>
         <StaticResource ResourceKey="PhoneFontSizeNormal" />
     </phone:PhoneApplicationPage.FontSize>
     <phone:PhoneApplicationPage.Foreground>
-        <StaticResource ResourceKey="PhoneForegroundBrush"/>
+        <StaticResource ResourceKey="PhoneForegroundBrush" />
     </phone:PhoneApplicationPage.Foreground>
-    <phone:PhoneApplicationPage.ApplicationBar>        
+    <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar BackgroundColor="#FF2648A2">
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="Delete Selected" Click="btnMinus_Click"/>
-                <shell:ApplicationBarMenuItem Text="Delete All" Click="btnDeleteAll_Click"/>
+                <shell:ApplicationBarMenuItem Click="btnMinus_Click" Text="Delete Selected" />
+                <shell:ApplicationBarMenuItem Click="btnDeleteAll_Click" Text="Delete All" />
             </shell:ApplicationBar.MenuItems>
-            <shell:ApplicationBarIconButton x:Name="abbStart" IconUri="/Assets/AppBar/transport.play.png" Text="Start" Click="btnStart_Click"/>
-            <shell:ApplicationBarIconButton x:Name="abbADD" IconUri="/Assets/AppBar/add.png" Text="Add" Click="btnAdd_Click"/>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/minus.png" Text="Remove" Click="btnMinus_Click"/>
+            <shell:ApplicationBarIconButton x:Name="abbStart"
+                                            Click="btnStart_Click"
+                                            IconUri="/Assets/AppBar/transport.play.png"
+                                            Text="Start" />
+            <shell:ApplicationBarIconButton x:Name="abbADD"
+                                            Click="btnAdd_Click"
+                                            IconUri="/Assets/AppBar/add.png"
+                                            Text="Add" />
+            <shell:ApplicationBarIconButton Click="btnMinus_Click"
+                                            IconUri="/Assets/AppBar/minus.png"
+                                            Text="Remove" />
         </shell:ApplicationBar>
 
     </phone:PhoneApplicationPage.ApplicationBar>
 
 
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
+    <!--  LayoutRoot is the root grid where all page content is placed  -->
 
     <Grid x:Name="LayoutRoot" Opacity="0.8">
-    	<Grid.Background>
-    		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-    			<GradientStop Color="#FF102457" Offset="0"/>
-    			<GradientStop Color="#FF4165C3" Offset="1"/>
-    			<GradientStop Color="#FF3F62BF" Offset="1"/>
-    		</LinearGradientBrush>
-    	</Grid.Background>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                <GradientStop Offset="0" Color="#FF102457" />
+                <GradientStop Offset="1" Color="#FF4165C3" />
+                <GradientStop Offset="1" Color="#FF3F62BF" />
+            </LinearGradientBrush>
+        </Grid.Background>
 
 
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
 
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
 
         </Grid.RowDefinitions>
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="{Binding LocalizedResources.ImageSource, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="{Binding LocalizedResources.Rss, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        <!--  TitlePanel contains the name of the application and page title  -->
+        <StackPanel x:Name="TitlePanel"
+                    Grid.Row="0"
+                    Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle"
+                       Style="{StaticResource PhoneTextNormalStyle}"
+                       Text="{Binding LocalizedResources.ImageSource,
+                                      Source={StaticResource LocalizedStrings}}" />
+            <TextBlock x:Name="PageTitle"
+                       Margin="9,-7,0,0"
+                       Style="{StaticResource PhoneTextTitle1Style}"
+                       Text="{Binding LocalizedResources.Rss,
+                                      Source={StaticResource LocalizedStrings}}" />
         </StackPanel>
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0">
+        <!--  ContentPanel - place additional content here  -->
+        <Grid x:Name="ContentPanel"
+              Grid.Row="1"
+              Margin="12,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="142"/>
+                <RowDefinition x:Name="RowAds" Height="142" />
             </Grid.RowDefinitions>
-            <ScrollViewer Grid.Row="0" >
-                <phone:LongListSelector Margin="0,0,-12,73" x:Name="myList" SelectionChanged="myList_SelectionChanged">
-                <phone:LongListSelector.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel x:Name="stackPanel" Orientation="Horizontal" Margin="0,0,0,17">
-                        	<VisualStateManager.VisualStateGroups>
-                        		<VisualStateGroup x:Name="VisualStateGroup">
-                        			<VisualState x:Name="Normal"/>
-                        			<VisualState x:Name="Selected">
-                        				<Storyboard>
-                        					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="stackPanel">
-                        						<DiscreteObjectKeyFrame KeyTime="0">
-                        							<DiscreteObjectKeyFrame.Value>
-                        								<SolidColorBrush Color="#FF50D8D2"/>
-                        							</DiscreteObjectKeyFrame.Value>
-                        						</DiscreteObjectKeyFrame>
-                        					</ObjectAnimationUsingKeyFrames>
-                        				</Storyboard>
-                        			</VisualState>
-                        		</VisualStateGroup>
-                        	</VisualStateManager.VisualStateGroups>
-                        	<VisualStateManager.CustomVisualStateManager>
-                        		<ec:ExtendedVisualStateManager/>
-                        	</VisualStateManager.CustomVisualStateManager>                            
-                            <Image Height="70" Width="70" Source="{Binding ImageBinary}" Margin="12,0,9,0"/>
-                            <Grid Width="311">
-                                <TextBlock Text="{Binding ImageName}"  TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="26.667" Margin="12,0,12,31"/>
-                                <TextBlock Text="{Binding ImageSize}" TextWrapping="Wrap" Margin="12,39,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="18.667"/>
-                            </Grid>
-                        </StackPanel>
-                    </DataTemplate>
-                </phone:LongListSelector.ItemTemplate>
+            <ScrollViewer Grid.Row="0">
+                <phone:LongListSelector x:Name="myList"
+                                        Margin="0,0,-12,73"
+                                        SelectionChanged="myList_SelectionChanged">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel x:Name="stackPanel"
+                                        Margin="0,0,0,17"
+                                        Orientation="Horizontal">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="VisualStateGroup">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="Selected">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="stackPanel" Storyboard.TargetProperty="(Panel.Background)">
+                                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                                        <DiscreteObjectKeyFrame.Value>
+                                                            <SolidColorBrush Color="#FF50D8D2" />
+                                                        </DiscreteObjectKeyFrame.Value>
+                                                    </DiscreteObjectKeyFrame>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <VisualStateManager.CustomVisualStateManager>
+                                    <ec:ExtendedVisualStateManager />
+                                </VisualStateManager.CustomVisualStateManager>
+                                <Image Width="70"
+                                       Height="70"
+                                       Margin="12,0,9,0"
+                                       Source="{Binding ImageBinary}" />
+                                <Grid Width="311">
+                                    <TextBlock Margin="12,0,12,31"
+                                               FontSize="26.667"
+                                               Style="{StaticResource PhoneTextExtraLargeStyle}"
+                                               Text="{Binding ImageName}"
+                                               TextWrapping="Wrap" />
+                                    <TextBlock Margin="12,39,12,0"
+                                               FontSize="18.667"
+                                               Style="{StaticResource PhoneTextSubtleStyle}"
+                                               Text="{Binding ImageSize}"
+                                               TextWrapping="Wrap" />
+                                </Grid>
+                            </StackPanel>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>
             </ScrollViewer>
-            <Ad:IMAdView Grid.Row="1"
-                            Name="AdView"                            
-                            AdSize="15"                            
-                            AppId="7e6443a7bbbd4d5ab17a079ce12a8edb"                            Height="70" Width="auto" VerticalAlignment="Top">
-            </Ad:IMAdView>
+            <googleAds:AdView x:Name="AdView"
+                              Grid.Row="1"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Top"
+                              AdUnitID="ca-app-pub-2360101082795294/1534884796"
+                              Format="Banner"
+                              IsHitTestVisible="True" />
+            <!--
+                <adduplex:AdControl Grid.Row="1" VerticalAlignment="Top" xmlns:adduplex="clr-namespace:AdDuplex;assembly=AdDuplex.WindowsPhone" x:Name="AdView"
+                AppId="45659"
+                />
+            -->
         </Grid>
- 
+
     </Grid>
 
 </phone:PhoneApplicationPage>

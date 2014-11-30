@@ -228,7 +228,7 @@
     <value>Nguồn ảnh</value>
   </data>
   <data name="IntervalTime" xml:space="preserve">
-    <value>Khoảng thời gian</value>
+    <value>Thời gian</value>
   </data>
   <data name="IntroMySelf" xml:space="preserve">
     <value>Chân thành cảm ơn các bạn đã ủng hộ. Nếu thích ứng dụng này vui lòng đánh giá 5* và giới thiệu cho mọi người giúp mình nha. Mọi ý kiến xin gửi vào email lttrungbk@yahoo.com. Chân thành cảm ơn!</value>
@@ -311,27 +311,110 @@
     <value>Chia sẻ ứng dụng</value>
   </data>
   <data name="SMSThis" xml:space="preserve">
-    <value>Chia sẻ qua SMS</value>
+    <value>Chia sẻ qua tin nhắn</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Cài đặt</value>
+  </data>
+  <data name="Random" xml:space="preserve">
+    <value>Ngẫu nhiên</value>
+  </data>
+  <data name="Sixty" xml:space="preserve">
+    <value>60 phút</value>
+  </data>
+  <data name="Thirdty" xml:space="preserve">
+    <value>30 phút</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="FeedBack" xml:space="preserve">
+    <value>Phản hồi</value>
+  </data>
+  <data name="FeedBackMsg" xml:space="preserve">
+    <value>Thật tiếc vì bạn đã không muốn đánh giá ứng dụng này. Mong bạn hãy gửi cho chúng tôi một vài ý kiến đóng góp để có thể tạo ra ứng dụng tốt hơn.</value>
+  </data>
+  <data name="FeedbackBody" xml:space="preserve">
+    <value>[Phản hồi của bạn]
+
+
+---------------------------------
+Device Name: {0}
+Device Manufacturer: {1}
+Device Firmware Version: {2}
+Device Hardware Version: {3}
+Application Version: {4}
+---------------------------------</value>
+  </data>
+  <data name="FeedbackMessage1" xml:space="preserve">
+    <value>Thật tiếc vì bạn đã không muốn đánh giá ứng dụng này. 
+
+Mong bạn hãy gửi cho chúng tôi một vài ý kiến đóng góp để có thể tạo ra ứng dụng tốt hơn.</value>
+  </data>
+  <data name="FeedbackNo" xml:space="preserve">
+    <value>không, cảm ơn.</value>
+  </data>
+  <data name="FeedbackSubject" xml:space="preserve">
+    <value>Auto Wallpaper Customer Feedback </value>
+  </data>
+  <data name="FeedbackTitle" xml:space="preserve">
+    <value>Chúng tôi có thể làm cho phần mềm này tốt hơn?</value>
+  </data>
+  <data name="FeedbackTo" xml:space="preserve">
+    <value>lttrungbk@yahoo.com</value>
+  </data>
+  <data name="FeedbackYes" xml:space="preserve">
+    <value>Gửi phản hồi</value>
+  </data>
+  <data name="RatingMessage1" xml:space="preserve">
+    <value>Chúng tôi rất vui nếu bạn đánh giá ứng dụng này 5 sao.
+
+Mong bạn hãy gửi 1 vài đánh giá giúp ứng dụng của chúng tôi tốt hơn.</value>
+  </data>
+  <data name="RatingMessage2" xml:space="preserve">
+    <value>Có vẻ như bạn đã sử dụng ứng dụng này nhiều lần.
+
+Vậy hãy đánh giá ứng dụng này 5 sao nhé?</value>
+  </data>
+  <data name="RatingNo" xml:space="preserve">
+    <value>không, cảm ơn.</value>
+  </data>
+  <data name="RatingTitle" xml:space="preserve">
+    <value>Bạn có thích ứng dụng này không?</value>
+  </data>
+  <data name="RatingYes" xml:space="preserve">
+    <value>5 sao</value>
+  </data>
+  <data name="HalfDay" xml:space="preserve">
+    <value>12 giờ</value>
+  </data>
+  <data name="OneDay" xml:space="preserve">
+    <value>1 ngày</value>
+  </data>
+  <data name="TwoHours" xml:space="preserve">
+    <value>2 giờ</value>
   </data>
   <data name="PaidApp" xml:space="preserve">
     <value>Bản trả tiền</value>
   </data>
   <data name="PaidAppFeatures" xml:space="preserve">
-    <value>Bản này kèm theo quảng cáo, hãy mua phiên bản trả tiền để loại bỏ quảng cáo. Những tính năng có thêm trên bản trả tiền là"
-- Wallpapers ngẫu nhiên
-- Đặt thời gian đổi là 30ph hoặc 1h
-- Có thêm ảnh đẹp</value>
+    <value>- Chế độ ngẫu nhiên
+- Thêm khoảng thời gian đổi ảnh
+- Không quảng cáo
+- Nhiều ảnh mới
+- Cập nhật thường xuyên
+-....</value>
   </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Cài đặt (bản trả tiền)</value>
+  <data name="SavePaid" xml:space="preserve">
+    <value>Lưu (Paid)</value>
   </data>
-  <data name="m30" xml:space="preserve">
-    <value>30ph</value>
+  <data name="PaidWarning" xml:space="preserve">
+    <value>Bạn cần mua bản Pro hoặc Chọn menu "Loại bỏ quảng cáo" để sử dụng tính năng này và loại bỏ quảng cáo</value>
   </data>
-  <data name="m60" xml:space="preserve">
-    <value>60ph</value>
+  <data name="RemoveAds" xml:space="preserve">
+    <value>Bỏ quảng cáo</value>
   </data>
-  <data name="Random" xml:space="preserve">
-    <value>Ngẫu nhiên</value>
+  <data name="SaveMsg" xml:space="preserve">
+    <value>Đã lưu</value>
   </data>
 </root>

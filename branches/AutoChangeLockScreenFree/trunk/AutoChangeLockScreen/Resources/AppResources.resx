@@ -224,7 +224,7 @@
     <value>Image Source</value>
   </data>
   <data name="IntervalTime" xml:space="preserve">
-    <value>Interval time</value>
+    <value>Interval</value>
   </data>
   <data name="IntroMySelf" xml:space="preserve">
     <value>Thanks so much for your supports. If you like this app, Rate it 5 stars and recomment other to use it. If you have any suggestion, send it to lttrungbk@yahoo.com. Thanks!</value>
@@ -309,25 +309,108 @@
   <data name="SMSThis" xml:space="preserve">
     <value>SMS this</value>
   </data>
-  <data name="PaidApp" xml:space="preserve">
-    <value>Paid app</value>
-  </data>
-  <data name="PaidAppFeatures" xml:space="preserve">
-    <value>This version has ads, to remove it, you can find Paid version Auto Wallpaper. In current version of Auto Wallpaper (paid):
-- Random wallpaper
-- Set interval time is 30m or 60m
-- More beautiful wallpapers</value>
-  </data>
   <data name="Settings" xml:space="preserve">
-    <value>Settings (paid version)</value>
-  </data>
-  <data name="m30" xml:space="preserve">
-    <value>30m</value>
-  </data>
-  <data name="m60" xml:space="preserve">
-    <value>60m</value>
+    <value>Settings</value>
   </data>
   <data name="Random" xml:space="preserve">
     <value>Random</value>
+  </data>
+  <data name="Sixty" xml:space="preserve">
+    <value>60 minutes</value>
+  </data>
+  <data name="Thirdty" xml:space="preserve">
+    <value>30 minutes</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="FeedBack" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="FeedBackMsg" xml:space="preserve">
+    <value>Sorry to hear that you didn't want to rate this app. Tell us about your experience or suggest how we can make it better.</value>
+  </data>
+  <data name="FeedbackBody" xml:space="preserve">
+    <value>[Your feedback here]
+
+
+---------------------------------
+Device Name: {0}
+Device Manufacturer: {1}
+Device Firmware Version: {2}
+Device Hardware Version: {3}
+Application Version: {4}
+---------------------------------</value>
+  </data>
+  <data name="FeedbackMessage1" xml:space="preserve">
+    <value>Sorry to hear you didn't want to rate MyApp.
+
+Tell us about your experience or suggest how we can make it even better.</value>
+  </data>
+  <data name="FeedbackNo" xml:space="preserve">
+    <value>no thanks</value>
+  </data>
+  <data name="FeedbackSubject" xml:space="preserve">
+    <value>MyApp Customer Feedback </value>
+  </data>
+  <data name="FeedbackTitle" xml:space="preserve">
+    <value>Can we make it better?</value>
+  </data>
+  <data name="FeedbackTo" xml:space="preserve">
+    <value>support@myapp.com</value>
+  </data>
+  <data name="FeedbackYes" xml:space="preserve">
+    <value>give feedback</value>
+  </data>
+  <data name="RatingMessage1" xml:space="preserve">
+    <value>We'd love you to rate our app 5 stars
+
+Showing us some love on the store helps us to continue to work on the app and make things even better!</value>
+  </data>
+  <data name="RatingMessage2" xml:space="preserve">
+    <value>You look to be getting a lot of use out of our application!
+
+Why not give us a 5 star rating to show your appreciation?</value>
+  </data>
+  <data name="RatingNo" xml:space="preserve">
+    <value>no thanks</value>
+  </data>
+  <data name="RatingTitle" xml:space="preserve">
+    <value>Enjoying MyApp?</value>
+  </data>
+  <data name="RatingYes" xml:space="preserve">
+    <value>rate 5 stars</value>
+  </data>
+  <data name="HalfDay" xml:space="preserve">
+    <value>12 hours</value>
+  </data>
+  <data name="OneDay" xml:space="preserve">
+    <value>1 day</value>
+  </data>
+  <data name="TwoHours" xml:space="preserve">
+    <value>2 hours</value>
+  </data>
+  <data name="PaidApp" xml:space="preserve">
+    <value>Paid App</value>
+  </data>
+  <data name="PaidAppFeatures" xml:space="preserve">
+    <value>- Random Images
+- More interval times
+- No ads
+- New images
+- Frequent Updates
+-....</value>
+  </data>
+  <data name="SavePaid" xml:space="preserve">
+    <value>Save (Paid)</value>
+  </data>
+  <data name="PaidWarning" xml:space="preserve">
+    <value>You need to buy a paid version or choose "Remove Ads" from Menu to enable these features and remove ads</value>
+  </data>
+  <data name="RemoveAds" xml:space="preserve">
+    <value>Remove Ads</value>
+  </data>
+  <data name="SaveMsg" xml:space="preserve">
+    <value>Setting has been saved</value>
   </data>
 </root>

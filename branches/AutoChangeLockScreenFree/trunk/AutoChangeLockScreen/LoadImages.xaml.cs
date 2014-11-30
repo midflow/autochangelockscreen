@@ -31,6 +31,32 @@ namespace AutoChangeLockScreen
 
             BuildLocalizedApplicationBar();
             Loaded += LoadImages_Loaded;
+            if (!Utils.ShowAds && ApplicationBar.MenuItems.Count > 4)
+            {
+                ApplicationBar.MenuItems.RemoveAt(0);
+                RowAds.Height = new GridLength(0);
+            }
+        }
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            UpdateAd();
+        }
+        public void UpdateAd()
+        {
+            AdView.Visibility = Utils.ShowAds ? Visibility.Visible : Visibility.Collapsed;
+
+            // if we add more of these, we'll need to be more clever here
+            if (!Utils.ShowAds && ApplicationBar.MenuItems.Count > 4)
+            {
+                ApplicationBar.MenuItems.RemoveAt(0);
+                RowAds.Height = new GridLength(0);
+            }
+            //else
+            //{
+            //    //Render_Ad();
+            //    Display_Ad();
+            //}
         }
         private void LoadImages_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -128,7 +154,8 @@ namespace AutoChangeLockScreen
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Page1.xaml", UriKind.Relative));
+            //NavigationService.Navigate(new Uri("/Page1.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/AddImage.xaml", UriKind.Relative));
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
